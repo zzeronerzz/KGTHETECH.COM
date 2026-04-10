@@ -3,76 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Boldones" rel="stylesheet">
-    <title>KGTHETECH LLC</title>
-    <style>
-        body {
-            background-image: url('nyc-alley-graffiti.jpg'); /* Background image */
-            font-family: 'Boldones', sans-serif;
-            color: #00FF00; /* Neon green */
-            background-color: black;
-        }
-        .header {
-            position: relative;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 10px;
-            text-align: center;
-        }
-        .login-section, .payment-buttons {
-            margin: 10px 0;
-        }
-        .payment-buttons img {
-            width: 100px;
-            margin: 5px;
-        }
-        .product-descriptions {
-            background-color: rgba(255,165,0,0.5); /* Orange accent */
-            padding: 20px;
-            border-radius: 5px;
-        }
-        .subscription-info {
-            background-color: rgba(255,0,0,0.5); /* Red accent */
-            padding: 10px;
-            margin: 10px;
-        }
-    </style>
+    <meta name="description" content="KG The Tech - Handmade cybersecurity tools, Wi-Fi cantennas, ESP32 kits, and ethical hacking hardware. Built from scratch in Aurora, Colorado.">
+    <meta name="keywords" content="KG The Tech, cybersecurity tools, cantenna, ESP32 kit, ethical hacking, wardriver, Wi-Fi antenna, hacking on a budget">
+    <meta name="author" content="Kenneth Gilliam - KG The Tech">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kgthetech.com/">
+    <meta property="og:title" content="KG The Tech - Hacking on a Budget">
+    <meta property="og:description" content="Handmade cybersecurity tools and ethical hacking hardware. Built from scratch, built to last.">
+
+    <title>KG The Tech | Hacking on a Budget - Cybersecurity Tools & Hardware</title>
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="header">
-        <h1>KGTHETECH LLC - Welcome!</h1>
-        <div class="login-section">
-            <form action="/login" method="POST">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username"><br>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password"><br>
-                <input type="submit" value="Login">
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <div class="logo">KG THE TECH</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="store.html">Store</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="subscribe.html">Subscribe</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="donate.html">Donate</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="tagline">HACKING ON A BUDGET</h1>
+                <p class="subtitle">Handmade Cybersecurity Tools & Ethical Hacking Hardware</p>
+                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 0 auto var(--spacing-md);">
+                    Custom-built Wi-Fi antennas, signal survey kits, and penetration testing hardware. Every piece handmade by Kenneth Gilliam in Aurora, Colorado. No factory lines. No mass production. Built from scratch, built to last.
+                </p>
+                <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+                    <a href="store.html" class="btn btn-primary pulse">Shop Now</a>
+                    <a href="about.html" class="btn btn-secondary">My Story</a>
+                    <a href="videos.html" class="btn btn-tertiary">Watch Builds</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- What We Build -->
+        <section>
+            <h2 style="text-align: center;">WHAT WE BUILD</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: var(--spacing-lg); color: rgba(255, 255, 255, 0.8);">
+                Every tool is designed, assembled, and tested by hand. These are real tools for real work.
+            </p>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-image">📡</div>
+                        <h3>ESP32 Wi-Fi Signal Survey Kit</h3>
+                        <p>Open-hardware development kit for RF/IoT hobbyists and educators. ESP32 board, GPS antenna, dual Wi-Fi antennas, MicroSD logging. Ready out of the box.</p>
+                        <p class="card-price">$150</p>
+                        <a href="store.html#product-esp32" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <img src="images/products/cantenna-24ghz/cantenna-01.jpg" alt="2.4GHz CANTenna Standard" style="width: 100%; height: 250px; object-fit: contain; border-radius: var(--radius-md); border: 2px solid var(--gold); margin-bottom: var(--spacing-sm); background: rgba(0,0,0,0.5);">
+                        <h3>CANTenna Standard</h3>
+                        <p>2.4 GHz directional Wi-Fi antenna. 14dBi gain, 22-degree beam, up to 300m range. Accurately built to 1/4 wavelength specs. Tripod and cable included.</p>
+                        <p class="card-price">$50</p>
+                        <a href="store.html#product-cantenna-standard" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <img src="images/products/cantenna-24ghz/cantenna-02.jpg" alt="CANTenna Heavy Duty" style="width: 100%; height: 250px; object-fit: contain; border-radius: var(--radius-md); border: 2px solid var(--gold); margin-bottom: var(--spacing-sm); background: rgba(0,0,0,0.5);">
+                        <h3>CANTenna Heavy Duty</h3>
+                        <p>The tank-built version. Same specs as the standard, but constructed from thick car exhaust pipe tubing. Virtually indestructible. Professional grade.</p>
+                        <p class="card-price">$150</p>
+                        <a href="store.html#product-cantenna-heavy" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why KG The Tech -->
+        <section style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%); border: 2px solid var(--gold); border-radius: var(--radius-lg); padding: var(--spacing-lg);">
+            <h2 style="text-align: center;">WHY KG THE TECH</h2>
+            <div class="card-grid" style="margin-top: var(--spacing-md);">
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem;">🔨</div>
+                    <h3 style="color: var(--gold);">Handmade</h3>
+                    <p>Every device is built by hand, one at a time. No assembly lines, no overseas factories. You get something real.</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem;">📐</div>
+                    <h3 style="color: var(--gold);">Precision-Built</h3>
+                    <p>Cantennas are built to exact 1/4 wavelength specifications. Not a random pole in a can. Engineering matters.</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem;">✅</div>
+                    <h3 style="color: var(--gold);">Ready to Use</h3>
+                    <p>Fully assembled, tested, and shipped. No soldering, no configuration. Plug in and go.</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem;">💰</div>
+                    <h3 style="color: var(--gold);">Budget-Friendly</h3>
+                    <p>Professional-grade tools without professional-grade prices. Cybersecurity hardware shouldn't cost a fortune.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Kenneth (Brief) -->
+        <section style="background: rgba(57, 255, 20, 0.05); border: 2px solid var(--neon-green); border-radius: var(--radius-lg); padding: var(--spacing-lg);">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 style="text-align: center;">BUILT BY KENNETH GILLIAM</h2>
+                <p style="font-size: 1.1rem; text-align: center; color: rgba(255, 255, 255, 0.9);">
+                    Self-taught since 2004. 20+ years in networking and system administration. From New York, now building in Aurora, Colorado. Every dollar from sales goes toward parts, certifications, equipment, and survival. This is real — no corporate backing, no investors, just hustle.
+                </p>
+                <p style="text-align: center; margin-top: var(--spacing-md);">
+                    <a href="about.html" class="btn btn-secondary">Read the Full Story</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Legal Notice (Brief) -->
+        <section class="disclaimer">
+            <h4>LEGAL NOTICE</h4>
+            <p>All products sold by KG The Tech / KGTheTech LLC are intended exclusively for authorized testing, educational purposes, and lawful use on networks and systems the buyer owns or has explicit written permission to test. Buyer assumes full legal responsibility for use. Unauthorized access to networks or communications is a federal crime. <a href="store.html#disclaimer" style="color: var(--cyan);">Read full legal disclaimer.</a></p>
+        </section>
+
+        <!-- Payment Methods -->
+        <section style="text-align: center;">
+            <h2>SECURE PAYMENTS</h2>
+            <p style="font-size: 1.1rem; margin-bottom: var(--spacing-md); color: rgba(255, 255, 255, 0.8);">
+                All transactions processed securely through PayPal. Additional payment options available on request.
+            </p>
+            <div style="display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap; font-size: 1.2rem;">
+                <span style="color: var(--gold); font-weight: 700;">PayPal</span>
+                <span style="color: var(--neon-green); font-weight: 700;">Cash App: $GilliamTELLC</span>
+            </div>
+        </section>
+
+        <!-- Connect -->
+        <section>
+            <h2 style="text-align: center;">CONNECT</h2>
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@kgthetech" target="_blank" class="social-link">
+                    <span>📱</span> TikTok: @kgthetech
+                </a>
+                <a href="https://beacons.ai/kgthetech" target="_blank" class="social-link">
+                    <span>🔗</span> Beacons
+                </a>
+                <a href="https://www.linkedin.com/in/kgthetech" target="_blank" class="social-link">
+                    <span>💼</span> LinkedIn
+                </a>
+                <a href="https://github.com/zzeronerzz" target="_blank" class="social-link">
+                    <span>💻</span> GitHub
+                </a>
+                <a href="mailto:KGtechsupport@kgthetech.com" class="social-link">
+                    <span>✉️</span> Email
+                </a>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <h3>STAY IN THE LOOP</h3>
+            <p>Get notified about new builds, restocks, and tutorials.</p>
+            <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit" class="btn btn-tertiary">Subscribe</button>
             </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>KG THE TECH</h4>
+                <p>Hacking on a Budget</p>
+                <p>Aurora, Colorado</p>
+                <p>KGTheTech LLC</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="store.html">Store</a></li>
+                    <li><a href="videos.html">Videos</a></li>
+                    <li><a href="subscribe.html">Subscribe</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="https://www.tiktok.com/@kgthetech" target="_blank">TikTok: @kgthetech</a></li>
+                    <li><a href="https://beacons.ai/kgthetech" target="_blank">Beacons</a></li>
+                    <li><a href="https://www.linkedin.com/in/kgthetech" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/zzeronerzz" target="_blank">GitHub</a></li>
+                    <li><a href="mailto:KGtechsupport@kgthetech.com">Email</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="store.html#disclaimer">Legal Disclaimer</a></li>
+                    <li><a href="about.html">About Kenneth</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <p style="margin-top: var(--spacing-sm);">All products are for authorized testing and educational use only.</p>
+            </div>
         </div>
-    </div>
-    <div class="payment-buttons">
-        <h2>Secure Payment Options</h2>
-        <a href="https://paypal.com" target="_blank"><img src="paypal-button.png" alt="PayPal"></a>
-        <a href="https://www.bitcoin.com" target="_blank"><img src="bitcoin-button.png" alt="Bitcoin"></a>
-        <a href="https://cash.app" target="_blank"><img src="cashapp-button.png" alt="Cash App"></a>
-        <a href="https://zellepay.com" target="_blank"><img src="zelle-button.png" alt="Zelle"></a>
-    </div>
-    <div class="product-descriptions">
-        <h2>Product Descriptions</h2>
-        <p><strong>Wardriver:</strong> Product description from Etsy for Wardriver...</p>
-        <p><strong>Cantenna:</strong> Product description from Etsy for Canttenna...</p>
-    </div>
-    <div class="subscription-info">
-        <h2>Subscription Tiers</h2>
-        <p>$5/month - Basic Subscription</p>
-        <p>$10/month - Premium Subscription</p>
-    </div>
-    <div class="legal-info">
-        <h2>Legal Business Registration</h2>
-        <p>EIN & DUNS registrations info...</p>
-    </div>
-    <script src="https://www.youtube.com/subscribe_embed.js"></script>
+        <div class="footer-bottom">
+            <p>&copy; 2026 KGTheTech LLC. All rights reserved. | Built from the hood, for the culture.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
