@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Hide construction / staging variants from crawlers
+Disallow: /index_construction.html
+Disallow: /index_full.html
+
+Sitemap: https://kgthetech.com/sitemap.xml
