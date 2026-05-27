@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KGTHETECH Project Portfolio — ESP32 wardrivers, local AI systems, cyberdeck, security hardware builds.">
+    <meta name="keywords" content="KGTHETECH portfolio, ESP32 wardriver, cyberdeck, local AI, cybersecurity hardware, Kenny AI, cantenna build">
+    <meta name="author" content="KG The Tech">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kgthetech.com/portfolio.html">
+    <meta property="og:title" content="Project Portfolio — KGTHETECH">
+    <meta property="og:description" content="Real builds. No prototypes, no mockups. ESP32 wardrivers, local AI systems, cyberdeck, security hardware.">
+
+    <title>Project Portfolio — KGTHETECH</title>
+    <link rel="canonical" href="https://kgthetech.com/portfolio.html">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .portfolio-hero {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+        }
+        .portfolio-hero h1 {
+            font-size: 2.8rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .portfolio-card {
+            background: rgba(0,0,0,0.7);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-top: 3px solid var(--gold);
+            border-radius: 12px;
+            padding: 1.75rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--neon-green);
+            border-top-color: var(--neon-green);
+        }
+        .portfolio-category {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.6rem;
+        }
+        .portfolio-card h2 {
+            font-size: 1.15rem;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+        .portfolio-card p {
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.72);
+            line-height: 1.65;
+            margin-bottom: 0.75rem;
+        }
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 1rem;
+        }
+        .ptag {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 3px;
+            border: 1px solid rgba(57,255,20,0.3);
+            color: var(--neon-green);
+            background: rgba(57,255,20,0.06);
+        }
+        .ptag-gold {
+            border-color: rgba(212,175,55,0.3);
+            color: var(--gold);
+            background: rgba(212,175,55,0.06);
+        }
+        .status-live {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-family: var(--font-mono);
+            padding: 0.2rem 0.55rem;
+            border-radius: 3px;
+            background: rgba(57,255,20,0.15);
+            color: var(--neon-green);
+            border: 1px solid rgba(57,255,20,0.4);
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.08em;
+        }
+        .portfolio-img-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .portfolio-img-grid img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid rgba(212,175,55,0.2);
+            background: #fff;
+            transition: border-color 0.2s, transform 0.15s;
+        }
+        .portfolio-img-grid img:hover {
+            border-color: var(--gold);
+            transform: scale(1.03);
+        }
+        .section-header {
+            text-align: center;
+            padding: 2rem 2rem 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .linkedin-note {
+            background: rgba(212,175,55,0.06);
+            border: 1px solid rgba(212,175,55,0.25);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin: 0 2rem 2rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 900px;
+        }
+        .linkedin-note a { color: var(--gold); }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">KGTHETECH</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="store.html">Store</a></li>
+                <li><a href="merch.html">Merch</a></li>
+                <li><a href="digital.html">Downloads</a></li>
+                <li><a href="mcp.html">MCP Servers</a></li>
+                <li><a href="guides/index.html">Guides</a></li>
+                <li><a href="portfolio.html" style="color: var(--gold);">Portfolio</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="portfolio-hero">
+            <h1 class="gold-text">PROJECT PORTFOLIO</h1>
+            <p style="font-size: 1.15rem; color: rgba(255,255,255,0.75); max-width: 700px; margin: 0 auto 1rem;">
+                Real builds. In production. Not prototypes, not concept work — every project listed here is built, tested, and operational.
+            </p>
+        </div>
+
+        <div class="linkedin-note" style="margin: 0 auto 2rem; max-width: 1300px;">
+            &#x1F517; Full project list with photos and videos also on <a href="https://www.linkedin.com/in/kennygee" target="_blank">LinkedIn /in/kennygee</a> — Notable Projects section.
+        </div>
+
+        <!-- ── Wardriver Gallery ── -->
+        <section style="max-width:1300px; margin: 0 auto; padding: 0 2rem 2rem;">
+            <h2 style="color: var(--gold); margin-bottom: 0.5rem;">ESP32 Wardriver — <span style="color: var(--neon-green);">Hardware Product</span></h2>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 1rem;">Custom passive WiFi + multi-radio reconnaissance platform. Hand-assembled in Aurora, CO. In production and available for sale.</p>
+            <div class="portfolio-img-grid">
+                <img src="images/products/wardriver/KGPL7082.png" alt="Wardriver assembled with antennas">
+                <img src="images/products/wardriver/KGPL7078.png" alt="Wardriver components overview">
+                <img src="images/products/wardriver/KGPL7085.png" alt="Wardriver PCB upright">
+                <img src="images/products/wardriver/KGPL7108.png" alt="Full wardriver kit">
+                <img src="images/products/wardriver/KGPL7109.png" alt="Boards stacked close-up">
+                <img src="images/products/wardriver/KGPL7095.png" alt="OLED display module">
+                <img src="images/products/wardriver/KGPL7100.png" alt="Radio module detail">
+                <img src="images/products/wardriver/KGPL7096.png" alt="PCB detail">
+            </div>
+            <p style="margin-top:0.75rem;"><a href="store.html" class="btn btn-primary" style="display:inline-block;">View in Store &rarr;</a></p>
+        </section>
+
+        <!-- ── Project Cards ── -->
+        <div class="portfolio-grid">
+
+            <div class="portfolio-card">
+                <p class="portfolio-category">AI Systems</p>
+                <span class="status-live">&#x25CF; LIVE</span>
+                <h2>Kenny AI — Local AI Stack</h2>
+                <p>Full-stack local AI assistant running on dedicated hardware. 585+ indexed capability modules across network defense, OSINT, trading, government contracting, health monitoring, and business operations. Voice + text ingress. No cloud dependencies. Canonical memory, lookup-first resolver. Runs 24/7 on-premise.</p>
+                <p style="font-size:0.85rem;">Architecture: 8B parameter LLM + Python control plane + 249 compiled rules + 138 laws + tool registry. Built on 6STAX policy engine.</p>
+                <div class="portfolio-tags">
+                    <span class="ptag">Python</span>
+                    <span class="ptag">Local LLM</span>
+                    <span class="ptag">Voice</span>
+                    <span class="ptag">No Cloud</span>
+                    <span class="ptag-gold">In Production</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <p class="portfolio-category">Security Hardware</p>
+                <span class="status-live">&#x25CF; IN PRODUCTION</span>
+                <h2>ESP32 Wardriver — WiFi Recon Platform</h2>
+                <p>Custom passive WiFi + multi-radio recon system built on ESP32-S3. NRF24L01+ 2.4 GHz radio, GPS module with SD logging, OLED status display, custom firmware. Captures SSIDs, BSSIDs, channel, RSSI, GPS coordinates. Hand-assembled, field-tested, currently sold as KGTHETECH hardware.</p>
+                <div class="portfolio-tags">
+                    <span class="ptag">ESP32</span>
+                    <span class="ptag">NRF24</span>
+                    <span class="ptag">GPS</span>
+                    <span class="ptag">C++ Firmware</span>
+                    <span class="ptag-gold">For Sale</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <p class="portfolio-category">Hardware · RF</p>
+                <span class="status-live">&#x25CF; IN PRODUCTION</span>
+                <h2>Cantenna — Directional 2.4/5 GHz</h2>
+                <p>Hand-built directional WiFi antenna. 13–14 dBi gain, 22-degree beam, up to 300m range. Built to exact 1/4 wavelength specifications. SMA connector with pigtail. Standard and Heavy Duty (car exhaust pipe construction) variants. Tripod and cable included on HD version.</p>
+                <div class="portfolio-tags">
+                    <span class="ptag">RF Hardware</span>
+                    <span class="ptag">14 dBi</span>
+                    <span class="ptag">SMA</span>
+                    <span class="ptag-gold">For Sale</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <p class="portfolio-category">Gov Contracting · AI</p>
+                <span class="status-live">&#x25CF; LIVE</span>
+                <h2>SAM.gov Contract Intelligence Tool</h2>
+                <p>AI-powered government contracting workflow system integrated into Kenny AI. Real-time SAM.gov opportunity search, email alert parsing (SAM.gov + Grants.gov), AI proposal generator, subcontractor SOW builder, USASpending.gov past-pricing research, and contract pipeline tracker. Built for KGTHETECH's own federal contracting workflow.</p>
+                <div class="portfolio-tags">
+                    <span class="ptag">SAM.gov API</span>
+                    <span class="ptag">AI Proposals</span>
+                    <span class="ptag">Gmail</span>
+                    <span class="ptag-gold">Live</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <p class="portfolio-category">Desktop Tools</p>
+                <span class="status-live">&#x25CF; AVAILABLE</span>
+                <h2>Photo &amp; File Converter</h2>
+                <p>Batch file conversion desktop app. CR2, HEIC, PSD, RAW, PDF → PNG, JPG, TIFF. Drag-drop UI, multi-threaded — converts hundreds of files in seconds. Full EXIF orientation handling. No cloud, no account. 100% offline Windows app. Available on request via email.</p>
+                <div class="portfolio-tags">
+                    <span class="ptag">Python</span>
+                    <span class="ptag">Tkinter</span>
+                    <span class="ptag">rawpy</span>
+                    <span class="ptag">Windows</span>
+                    <span class="ptag-gold">Available</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <p class="portfolio-category">Health · Biometrics</p>
+                <span class="status-live">&#x25CF; LIVE</span>
+                <h2>Garmin Vitals — Local Integration (No Cloud)</h2>
+                <p>Local-only Garmin Forerunner 265 integration for real-time health monitoring inside Kenny AI. USB .FIT file reader with WPD COM interface — no Garmin Connect app, no cloud sync ever. Decodes HR, SpO2, HRV, respiration rate from proprietary binary fields. Live BPM overlay on Kenny UI dashboard. 100% offline.</p>
+                <div class="portfolio-tags">
+                    <span class="ptag">WPD / COM</span>
+                    <span class="ptag">fitparse</span>
+                    <span class="ptag">BLE</span>
+                    <span class="ptag">No Cloud</span>
+                    <span class="ptag-gold">Live</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <p class="portfolio-category">Trading · Finance</p>
+                <span class="status-live">&#x25CF; LIVE</span>
+                <h2>Live Trading Intelligence Panel</h2>
+                <p>Real-time trading dashboard in Kenny AI. Live account data (Alpaca API), AI pre-trade verdict engine, candle analysis, Trump signal sentiment panel, crypto market feed, news aggregation. Live mode only — no paper trading. AI buy/skip/hold recommendation before every trade execution.</p>
+                <div class="portfolio-tags">
+                    <span class="ptag">Alpaca API</span>
+                    <span class="ptag">AI Signals</span>
+                    <span class="ptag">Crypto</span>
+                    <span class="ptag-gold">Live</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <p class="portfolio-category">Image Generation</p>
+                <span class="status-live">&#x25CF; LIVE</span>
+                <h2>2-Stage AI Image Engine</h2>
+                <p>Custom SDXL pipeline: Stage 1 generates blank garment/surface via diffusion, Stage 2 overlays precise typography with PIL stroke rendering. Solves the "jumbled text" problem in pure diffusion-generated images. Used for KGTHETECH apparel mockups. 12 style modes, runs on RTX 3080 Ti locally. No cloud API.</p>
+                <div class="portfolio-tags">
+                    <span class="ptag">SDXL</span>
+                    <span class="ptag">PIL</span>
+                    <span class="ptag">diffusers</span>
+                    <span class="ptag">RTX 3080 Ti</span>
+                    <span class="ptag-gold">Live</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- LinkedIn projects placeholder -->
+        <section style="max-width:1300px; margin: 0 auto; padding: 1rem 2rem 3rem;">
+            <div style="background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.2); border-radius: 10px; padding: 1.75rem;">
+                <h3 style="color: var(--gold); margin-bottom: 0.5rem;">&#x1F4CB; More Projects on LinkedIn</h3>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.93rem;">Additional projects — including the Cyberdeck build and other hardware work — are documented with photos and videos on the LinkedIn profile. Visit <a href="https://www.linkedin.com/in/kennygee" target="_blank" style="color: var(--cyan);">linkedin.com/in/kennygee</a> → Notable Projects section.</p>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section style="text-align: center; padding: 2rem;">
+            <h2>Commission a Build</h2>
+            <p style="color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto 1.5rem;">Need custom hardware, an AI system, or a security tool built to spec? KGTHETECH takes commissioned projects.</p>
+            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+            <a href="store.html" class="btn btn-secondary" style="margin-left: 1rem;">View Store</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>KG THE TECH</h4>
+                <p>Hacking on a Budget</p>
+                <p>Aurora, Colorado</p>
+                <p>KGTheTech LLC</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="store.html">Store</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="merch.html">Merch</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/kennygee" target="_blank">LinkedIn: /in/kennygee</a></li>
+                    <li><a href="https://github.com/zzeronerzz" target="_blank">GitHub: @zzeronerzz</a></li>
+                    <li><a href="mailto:kg@kgthetech.com">kg@kgthetech.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 KGTheTech LLC. All rights reserved. | Built from the hood, for the culture.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
