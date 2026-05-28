@@ -23,7 +23,7 @@
   }
   .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase; }
   .logo .y { color: var(--yellow); }
-  nav ul { list-style: none; display: flex; gap: 0; }
+  nav ul { list-style: none; display: flex; gap: 0; flex: 1; justify-content: center; }
   nav ul li a {
     display: block; padding: 0.5rem 1.2rem;
     font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em;
@@ -33,19 +33,27 @@
 
   /* HOME */
   .hero { position: relative; overflow: hidden; padding: 0; min-height: 90vh; display: flex; flex-direction: column; }
-  .hero-top { background: var(--yellow); padding: 3rem 3rem 2rem; display: flex; align-items: center; }
+  .hero-top { background: var(--yellow); padding: 5px 3rem; display: flex; align-items: center; }
   .hero-top .location { font-size: 0.7rem; font-weight: 900; letter-spacing: 0.3em; text-transform: uppercase; color: #555; margin: 0; }
-  .hero-top .brand-logo { height: 90px; width: 90px; object-fit: contain; margin-left: 20px; display: block; flex-shrink: 0; }
-  .hero-main { background: var(--black); flex: 1; padding: 3rem 3rem 4rem; position: relative; }
+  .hero-top .brand-logo { height: 54px; width: 54px; object-fit: contain; margin-left: 20px; display: block; flex-shrink: 0; }
+  .hero-main { background: var(--black); flex: 1; padding: 3rem 3rem 4rem; position: relative; overflow: hidden; }
   .hero-main::before {
     content: 'KG'; position: absolute; right: -1rem; top: -3rem;
     font-size: 22rem; font-weight: 900; color: rgba(255,230,0,0.04);
     line-height: 1; pointer-events: none; user-select: none;
   }
+  .hero-main-logo {
+    position: absolute; left: 50%; top: 3rem;
+    transform: translateX(-50%);
+    height: calc(8rem * 0.9 * 3); width: auto;
+    opacity: 0.18; pointer-events: none; z-index: 1;
+    display: block;
+  }
+  .hero-content { position: relative; z-index: 2; }
   .hero h1 {
     font-size: 8rem; font-weight: 900; text-transform: uppercase;
     letter-spacing: -0.04em; line-height: 0.9;
-    color: var(--white); position: relative; z-index: 1;
+    color: var(--white); position: relative; z-index: 2;
   }
   .hero h1 .yellow-line { color: var(--yellow); display: block; }
   .hero h1 .stroke { -webkit-text-stroke: 3px var(--white); color: transparent; display: block; }
@@ -393,6 +401,8 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
       <img src="images/kgthetech-logo.png" alt="KGTheTech Logo" class="brand-logo">
     </div>
     <div class="hero-main">
+      <img src="images/kgthetech-logo.png" alt="" class="hero-main-logo">
+      <div class="hero-content">
       <h1>
         <span class="yellow-line">HACKING</span>
         <span>ON A</span>
@@ -416,6 +426,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
     All products sold by KGTheTech LLC are for authorized testing and educational use only. Purchase, possession, and use of RF hardware and penetration testing tools may be restricted by federal, state, or local laws. Buyer is solely responsible for compliance with all applicable laws. Unauthorized interception of wireless communications is a federal crime under 18 U.S.C. &sect; 2511. KGTheTech LLC assumes no liability for misuse. All sales are final. No refunds on custom-built hardware. Buyer confirms they are 18 years of age or older and authorized to purchase and possess this equipment.
   </div>
 </div>
+      </div>
     </div>
   </section>
 
