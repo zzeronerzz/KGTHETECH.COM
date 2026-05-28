@@ -1564,48 +1564,71 @@ function changeQty(name, delta) {
   function _coConfirm(method) {
     var c = _co;
     var amt2 = '$' + (c.amount % 1 === 0 ? parseInt(c.amount) : c.amount.toFixed(2)) + (c.isSub ? '/mo' : '');
-    var dateStr = new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-    var msgLines = [
-      'NEW ORDER — ' + dateStr,
+    var now = new Date();
+    var dateStr = now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    var orderNum = 'KGT-' + now.getFullYear() + ('0'+(now.getMonth()+1)).slice(-2) + ('0'+now.getDate()).slice(-2) + '-' + (now.getHours()*100+now.getMinutes());
+    var div = '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
+    var lines = [
+      div,
+      'KGTHETECH.COM — NEW ORDER',
+      div,
       '',
-      'ITEM: ' + c.name,
-      'AMOUNT: ' + amt2,
-      'PAYMENT: ' + method,
+      'ORDER #:   ' + orderNum,
+      'DATE:      ' + dateStr,
+      'PAYMENT:   ' + method + (method !== 'PayPal' ? ' (customer confirmed sent)' : ' (PayPal checkout)'),
       '',
-      'CUSTOMER',
-      'Name: ' + c.cName,
-      'Email: ' + c.cEmail,
-      c.cPhone ? 'Phone: ' + c.cPhone : '',
-      c.cAddr ? 'Ship to: ' + c.cAddr + ', ' + c.cCity : ''
-    ].filter(Boolean).join('\n');
+      div,
+      'ORDER DETAILS',
+      div,
+      'ITEM:      ' + c.name,
+      'CATEGORY:  ' + (c.label || 'KGTheTech'),
+      'AMOUNT:    ' + amt2,
+      '',
+      div,
+      'CUSTOMER INFO',
+      div,
+      'NAME:      ' + c.cName,
+      'EMAIL:     ' + c.cEmail,
+      c.cPhone ? 'PHONE:     ' + c.cPhone : '',
+      c.cAddr  ? 'SHIP TO:   ' + c.cAddr  : '',
+      c.cCity  ? '           ' + c.cCity  : '',
+      '',
+      div,
+      'ACTION: Reply to confirm receipt and process order.',
+      div
+    ].filter(function(l){ return l !== null && l !== undefined; }).join('\n');
 
-    // Fire order notification via Web3Forms (instant email to kg@kgthetech.com)
-    if (_W3F_KEY && _W3F_KEY !== 'PASTE_YOUR_WEB3FORMS_KEY_HERE') {
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          access_key: _W3F_KEY,
-          subject: 'NEW ORDER: ' + c.name + ' — ' + c.cName,
-          from_name: c.cName + ' (via kgthetech.com)',
-          email: c.cEmail,
-          message: msgLines
-        })
-      }).catch(function(){});
-    }
+    // Send invoice to kg@kgthetech.com via Web3Forms
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: _W3F_KEY,
+        subject: 'NEW ORDER — ' + c.name + ' (' + amt2 + ') via ' + method + ' — ' + c.cName,
+        from_name: c.cName,
+        email: c.cEmail,
+        message: lines
+      })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (!d.success) console.warn('Web3Forms:', d.message);
+    })
+    .catch(function(err){ console.warn('Order notify failed:', err); });
 
-    // Show confirmation screen
-    var instrMap = {
-      'PayPal': 'Your PayPal payment window is open. Complete payment there — you are done.',
-      'Zelle': 'Send ' + amt2 + ' via Zelle to 917-518-4458. Your order is logged.',
-      'Cash App': 'Send ' + amt2 + ' via Cash App to $GilliamTELLC. Your order is logged.'
+    // Show on-screen confirmation
+    var payNote = {
+      'PayPal':   'PayPal is opening. Complete payment there.',
+      'Zelle':    'Send ' + amt2 + ' to 917-518-4458 via Zelle. Note: ' + c.name + '.',
+      'Cash App': 'Send ' + amt2 + ' to $GilliamTELLC on Cash App. Note: ' + c.name + '.'
     };
     document.getElementById('checkout-inner').innerHTML =
       '<div style="text-align:center; padding:2rem 0;">' +
       '<div style="font-size:2.5rem; margin-bottom:1rem; color:var(--yellow);">&#10003;</div>' +
-      '<h2 style="margin:0 0 0.75rem; font-size:1.2rem;">Order Received</h2>' +
-      '<p style="font-family:Arial,sans-serif; color:#888; line-height:1.8; margin:0 0 1.5rem; font-size:0.88rem;">' + (instrMap[method]||'') + '<br><br>A confirmation will be sent to ' + c.cEmail + '.</p>' +
-      '<button class="co-btn-go" onclick="closeCheckout()" style="width:100%;">Close</button>' +
+      '<h2 style="margin:0 0 0.5rem; font-size:1.2rem;">Order Logged</h2>' +
+      '<p style="font-family:monospace; font-size:0.75rem; color:#555; margin:0 0 1rem;">' + orderNum + '</p>' +
+      '<p style="font-family:Arial,sans-serif; color:#888; line-height:1.7; margin:0 0 1.5rem; font-size:0.85rem;">' + (payNote[method]||'') + '</p>' +
+      '<button class="co-btn-go" onclick="closeCheckout()" style="width:100%;">Done</button>' +
       '</div>';
   }
 
