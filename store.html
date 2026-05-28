@@ -72,6 +72,89 @@
     </script>
 
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .portfolio-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-top: 3px solid var(--gold);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem 1rem;
+            position: relative;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .portfolio-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 4px 24px rgba(212,175,55,0.12);
+        }
+        .portfolio-category {
+            font-size: 0.75rem;
+            color: var(--gold);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin: 0 0 0.25rem;
+        }
+        .portfolio-card h2 {
+            font-size: 1.1rem;
+            margin: 0.4rem 0 0.75rem;
+            color: #fff;
+        }
+        .status-live {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 0.7rem;
+            font-family: var(--font-mono);
+            color: var(--neon-green);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+        .portfolio-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.75rem; }
+        .ptag {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 4px;
+            padding: 0.15rem 0.55rem;
+            font-size: 0.72rem;
+            font-family: var(--font-mono);
+            color: rgba(255,255,255,0.7);
+        }
+        .ptag-gold {
+            background: rgba(212,175,55,0.12);
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            padding: 0.15rem 0.55rem;
+            font-size: 0.72rem;
+            font-family: var(--font-mono);
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .btn-tt {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            text-decoration: none;
+            background: transparent;
+            border: 1px solid;
+            transition: background 0.2s, color 0.2s;
+            cursor: pointer;
+        }
+        .btn-tt-cyan { border-color: var(--cyan); color: var(--cyan); }
+        .btn-tt-cyan:hover { background: var(--cyan); color: #000; }
+        .btn-tt-gold { border-color: var(--gold); color: var(--gold); }
+        .btn-tt-gold:hover { background: var(--gold); color: #000; }
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem 2rem;
+        }
+    </style>
 </head>
 <body>
     <!-- Header & Navigation -->
@@ -106,6 +189,72 @@
             <p style="text-align: center; font-size: 1.2rem; margin-bottom: var(--spacing-xl);">
                 Handmade cybersecurity tools. <span class="gold-text">Fully assembled.</span> <span class="neon-green">Ready to go.</span> <span class="cyan-text">Built on a budget.</span>
             </p>
+        </section>
+
+        <!-- Catalog Quick-View Cards -->
+        <section style="padding: 0 0 1rem;">
+            <div class="catalog-grid">
+
+                <div class="portfolio-card">
+                    <p class="portfolio-category">RF Hardware &middot; Standard</p>
+                    <span class="status-live">&#x25CF; FOR SALE</span>
+                    <h2>Cantenna — Standard (Soup Can, No Tripod)</h2>
+                    <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin: 0.75rem 0;">
+                        <a href="https://www.tiktok.com/@kgthetech/video/7588687310019956023" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; Cantenna Build</a>
+                        <a href="https://www.tiktok.com/@kgthetech/video/7570463042387971383" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; DIY Cantenna Guide</a>
+                        <a href="https://www.tiktok.com/@kgthetech/photo/7535676906302197047" target="_blank" class="btn-tt btn-tt-cyan">&#x1F4F7; 5G Antenna</a>
+                    </div>
+                    <div class="portfolio-tags">
+                        <span class="ptag">2.4 GHz</span>
+                        <span class="ptag">14 dBi</span>
+                        <span class="ptag">22&deg; Beam</span>
+                        <span class="ptag">300m Range</span>
+                        <span class="ptag">N-Connector</span>
+                        <span class="ptag-gold">$50 &mdash; Buy Now</span>
+                    </div>
+                    <p style="margin-top:0.75rem;"><a href="#product-cantenna-standard" class="btn btn-primary" style="display:inline-block;">View &amp; Purchase &rarr;</a></p>
+                </div>
+
+                <div class="portfolio-card">
+                    <p class="portfolio-category">RF Hardware &middot; Heavy Duty</p>
+                    <span class="status-live">&#x25CF; FOR SALE</span>
+                    <h2>Cantenna — Heavy Duty (Car Exhaust Pipe)</h2>
+                    <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin: 0.75rem 0;">
+                        <a href="https://www.tiktok.com/@kgthetech/video/7588687310019956023" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; Cantenna Build</a>
+                        <a href="https://www.tiktok.com/@kgthetech/video/7570463042387971383" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; DIY Cantenna Guide</a>
+                    </div>
+                    <div class="portfolio-tags">
+                        <span class="ptag">2.4 GHz</span>
+                        <span class="ptag">14 dBi</span>
+                        <span class="ptag">3mm Steel</span>
+                        <span class="ptag">Tripod Included</span>
+                        <span class="ptag">Custom Wire</span>
+                        <span class="ptag-gold">$150 &mdash; Buy Now</span>
+                    </div>
+                    <p style="margin-top:0.75rem;"><a href="#product-cantenna-heavy" class="btn btn-primary" style="display:inline-block;">View &amp; Purchase &rarr;</a></p>
+                </div>
+
+                <div class="portfolio-card">
+                    <p class="portfolio-category">Security Hardware</p>
+                    <span class="status-live">&#x25CF; FOR SALE</span>
+                    <h2>ESP32 Wi-Fi Signal Survey &amp; Developer Kit</h2>
+                    <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin: 0.75rem 0;">
+                        <a href="https://www.tiktok.com/@kgthetech/video/7576932074850946359" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; Wardriver Done Differently</a>
+                        <a href="https://www.tiktok.com/@kgthetech/video/7569744930575355191" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; What's In the Kit</a>
+                        <a href="https://www.tiktok.com/@kgthetech/video/7570028760683072781" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; Wigle.net Enabled</a>
+                    </div>
+                    <div class="portfolio-tags">
+                        <span class="ptag">ESP32</span>
+                        <span class="ptag">GPS</span>
+                        <span class="ptag">Dual Wi-Fi</span>
+                        <span class="ptag">MicroSD</span>
+                        <span class="ptag">NRF24</span>
+                        <span class="ptag-gold">$150 &mdash; Buy Now</span>
+                    </div>
+                    <p style="margin-top:0.75rem;"><a href="#product-esp32" class="btn btn-primary" style="display:inline-block;">View &amp; Purchase &rarr;</a></p>
+                </div>
+
+            </div>
         </section>
 
         <!-- Product 1: ESP32 Wi-Fi Signal Survey & Developer Kit -->
