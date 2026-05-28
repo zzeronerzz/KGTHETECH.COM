@@ -1566,7 +1566,9 @@ function changeQty(name, delta) {
     var amt2 = '$' + (c.amount % 1 === 0 ? parseInt(c.amount) : c.amount.toFixed(2)) + (c.isSub ? '/mo' : '');
     var now = new Date();
     var dateStr = now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-    var orderNum = 'KGT-' + now.getFullYear() + ('0'+(now.getMonth()+1)).slice(-2) + ('0'+now.getDate()).slice(-2) + '-' + (now.getHours()*100+now.getMinutes());
+    var _seq = parseInt(localStorage.getItem('kgtt_seq') || '0') + 1;
+    localStorage.setItem('kgtt_seq', _seq);
+    var orderNum = 'KGTT-' + ('000000' + _seq).slice(-6);
     var div = '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
     var lines = [
       div,
