@@ -1507,13 +1507,14 @@ function changeQty(name, delta) {
     } else if (c.step === 4) {
       var amt2 = '$' + (c.amount % 1 === 0 ? parseInt(c.amount) : c.amount.toFixed(2));
       var ppUrl = 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=gilliamtradesenterprises%40gmail.com&item_name=' + encodeURIComponent(c.name) + '&amount=' + c.amount.toFixed(2) + '&currency_code=USD&no_shipping=0&return=https://kgthetech.com/%23store&cancel_return=https://kgthetech.com/%23store';
+      window._co_pp_url = ppUrl;
       var body = '';
       if (c.method === 'paypal') {
         body =
           '<p class="co-step">PAY WITH PAYPAL</p>' +
           '<p class="co-price">' + amt2 + '</p>' +
           '<p class="co-note">You will go to PayPal to pay, then return here. PayPal or any debit/credit card accepted.</p>' +
-          '<button class="co-btn-pay" onclick="_coGoPayPal('' + ppUrl.replace(/'/g,"\'") + '')">Go to PayPal &rarr;</button>' +
+          '<button class="co-btn-pay" onclick="_coGoPayPal(window._co_pp_url)">Go to PayPal &rarr;</button>' +
           '<button class="co-change" onclick="_coBack()">&larr; Change payment method</button>';
       } else if (c.method === 'zelle') {
         body =
