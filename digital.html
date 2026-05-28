@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Digital downloads from KGTHETECH — Cantenna build guides, ESP32 starter packs, Kali cheat sheets, AI security prompts, brand kits, Notion templates, Lightroom presets. Instant delivery.">
+    <meta name="keywords" content="cantenna build guide pdf, ESP32 starter kit, kali cheat sheet, security prompts, notion pentest tracker, KGTHETECH downloads">
+    <meta name="author" content="KG The Tech">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kgthetech.com/digital.html">
+    <meta property="og:title" content="Digital Downloads — KGTHETECH">
+    <meta property="og:description" content="Build guides, code packs, cheat sheets, AI prompts, Notion templates. Instant delivery after checkout.">
+
+    <title>Digital Downloads — KGTHETECH</title>
+
+    <link rel="canonical" href="https://kgthetech.com/digital.html">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .digital-hero {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+        }
+        .digital-hero h1 {
+            font-size: 2.8rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .digital-hero .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+        .digital-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .digital-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .digital-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--neon-green);
+        }
+        .digital-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .digital-card-title {
+            font-size: 1.15rem;
+            margin: 0 0 0.5rem 0;
+            color: #fff;
+        }
+        .digital-card-tagline {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin: 0 0 1rem 0;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+        .digital-card-meta {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 1rem;
+        }
+        .digital-card-price {
+            font-size: 1.6rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin: 0 0 1rem 0;
+        }
+        .digital-buy-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 0.75rem;
+            background: var(--neon-green);
+            color: #000;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+        .digital-buy-btn:hover { background: #fff; }
+        .digital-buy-btn:disabled {
+            background: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+            cursor: not-allowed;
+        }
+        .digital-info {
+            max-width: 900px;
+            margin: 2rem auto 4rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            border-left: 3px solid var(--gold);
+        }
+        .digital-info h3 { color: var(--gold); margin-top: 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">KGTHETECH</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="store.html">Store</a></li>
+                <li><a href="merch.html">Merch</a></li>
+                <li><a href="digital.html">Downloads</a></li>
+                                <li><a href="mcp.html">MCP Servers</a></li>
+                                <li><a href="guides/index.html">Guides</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="subscribe.html">Subscribe</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="donate.html">Donate</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="digital-hero">
+            <h1>DIGITAL DOWNLOADS</h1>
+            <p class="subtitle">
+                Field-tested build guides, code packs, cheat sheets, and AI prompts from the KGTHETECH lab.
+                Instant delivery after checkout — token-based download links emailed within 60 seconds.
+            </p>
+        </section>
+
+        <div class="digital-grid" id="digital-grid">
+            <div class="digital-card" data-sku="cantenna-build-guide-001">
+                <div class="digital-icon">📡</div>
+                <h2 class="digital-card-title">Cantenna Build Guide</h2>
+                <p class="digital-card-tagline">Step-by-step DIY assembly of the 2.4 GHz directional Wi-Fi antenna. Photos, dimensions, parts list, FCC notes.</p>
+                <div class="digital-card-meta">PDF · ~30 pages · instant download</div>
+                <p class="digital-card-price">$15</p>
+                <button class="digital-buy-btn" data-sku="cantenna-build-guide-001">Buy & Download</button>
+            </div>
+
+            <div class="digital-card" data-sku="esp32-survey-starter-002">
+                <div class="digital-icon">⚡</div>
+                <h2 class="digital-card-title">ESP32 Wi-Fi Survey Starter</h2>
+                <p class="digital-card-tagline">Arduino sketch + flashing guide. Get a wardriver running tonight on your existing ESP32 dev board.</p>
+                <div class="digital-card-meta">ZIP · sketch + PDF guide · instant download</div>
+                <p class="digital-card-price">$19</p>
+                <button class="digital-buy-btn" data-sku="esp32-survey-starter-002">Buy & Download</button>
+            </div>
+
+            <div class="digital-card" data-sku="kali-cheatsheet-pack-003">
+                <div class="digital-icon">📋</div>
+                <h2 class="digital-card-title">Kali Cybersec Cheat Sheet Pack</h2>
+                <p class="digital-card-tagline">15 printable PDFs: nmap, gobuster, sqlmap, hydra, burp, ffuf, hashcat, john, metasploit, aircrack, recon-ng, wpscan, nuclei, naabu, amass.</p>
+                <div class="digital-card-meta">ZIP · 15 PDFs · instant download</div>
+                <p class="digital-card-price">$7</p>
+                <button class="digital-buy-btn" data-sku="kali-cheatsheet-pack-003">Buy & Download</button>
+            </div>
+
+            <div class="digital-card" data-sku="ai-security-prompts-004">
+                <div class="digital-icon">🤖</div>
+                <h2 class="digital-card-title">AI Prompt Pack — Security Research</h2>
+                <p class="digital-card-tagline">40+ battle-tested prompts for recon, audit, exploit write-up, report drafting. Works with Claude, ChatGPT, local Llama.</p>
+                <div class="digital-card-meta">ZIP · 40+ prompts in JSON + markdown · instant download</div>
+                <p class="digital-card-price">$12</p>
+                <button class="digital-buy-btn" data-sku="ai-security-prompts-004">Buy & Download</button>
+            </div>
+
+            <div class="digital-card" data-sku="kgthetech-brand-pack-005">
+                <div class="digital-icon">🎨</div>
+                <h2 class="digital-card-title">KGTHETECH Brand Pack</h2>
+                <p class="digital-card-tagline">Affiliate-ready brand kit. SVG + PNG logo variants, color palette, font specimens, brand guidelines PDF.</p>
+                <div class="digital-card-meta">ZIP · SVG/PNG/PDF · instant download</div>
+                <p class="digital-card-price">$15</p>
+                <button class="digital-buy-btn" data-sku="kgthetech-brand-pack-005">Buy & Download</button>
+            </div>
+
+            <div class="digital-card" data-sku="notion-pentest-tracker-006">
+                <div class="digital-icon">📝</div>
+                <h2 class="digital-card-title">Notion Pentest Engagement Tracker</h2>
+                <p class="digital-card-tagline">Track scope, milestones, findings, deliverables, time. Built from real engagement workflows. Duplicate to your workspace in one click.</p>
+                <div class="digital-card-meta">ZIP · Notion template + setup PDF · instant download</div>
+                <p class="digital-card-price">$19</p>
+                <button class="digital-buy-btn" data-sku="notion-pentest-tracker-006">Buy & Download</button>
+            </div>
+
+            <div class="digital-card" data-sku="lightroom-urban-tech-presets-007">
+                <div class="digital-icon">📸</div>
+                <h2 class="digital-card-title">Urban Tech Lightroom Presets</h2>
+                <p class="digital-card-tagline">10 photography presets from @kgphotographylov3. Neon-saturated city night, lab-clinical, gritty street — all matched.</p>
+                <div class="digital-card-meta">ZIP · 10 .xmp + 10 .lrtemplate presets · instant download</div>
+                <p class="digital-card-price">$9</p>
+                <button class="digital-buy-btn" data-sku="lightroom-urban-tech-presets-007">Buy & Download</button>
+            </div>
+        </div>
+
+        <div class="digital-info">
+            <h3>How instant delivery works</h3>
+            <p>
+                After Stripe confirms payment (~10 seconds), you'll get an email with a unique download
+                link. Token is valid for 7 days with 3 downloads (covers network blips). Files are served
+                straight from KGTHETECH.COM — no third-party host.
+            </p>
+            <p>
+                Problem with a download? Email <a href="mailto:kg@kgthetech.com">kg@kgthetech.com</a> with
+                your order ID and you'll get a fresh link within hours.
+            </p>
+            <p>
+                All products are licensed for personal use. Commercial use of the brand pack requires
+                separate written agreement.
+            </p>
+        </div>
+
+        <section>
+            <h2 style="text-align: center;">CONNECT</h2>
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@kgthetech" target="_blank" class="social-link"><span>🎵</span> TikTok: @kgthetech</a>
+                <a href="https://www.instagram.com/kgphotographylov3" target="_blank" class="social-link"><span>📸</span> Instagram: @kgphotographylov3</a>
+                <a href="mailto:kg@kgthetech.com" class="social-link"><span>✉️</span> kg@kgthetech.com</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 KGTHETECH LLC. All rights reserved. NYC origins, Aurora Colorado registered.</p>
+    </footer>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+    (function() {
+        var pk = window.STRIPE_PK || "pk_test_REPLACE_ME";
+        var stripe = (pk && pk.indexOf("REPLACE_ME") === -1) ? Stripe(pk) : null;
+
+        document.querySelectorAll('.digital-buy-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!stripe) {
+                    alert("Checkout will go live once Stripe is configured. " +
+                          "Meanwhile, email kg@kgthetech.com to order directly.");
+                    return;
+                }
+                var sku = btn.getAttribute('data-sku');
+                btn.disabled = true;
+                btn.textContent = 'Loading...';
+                fetch('/api/digital-checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sku: sku })
+                })
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (data.session_id) {
+                        return stripe.redirectToCheckout({ sessionId: data.session_id });
+                    } else if (data.checkout_url) {
+                        window.location = data.checkout_url;
+                    } else {
+                        throw new Error(data.error || 'No session returned');
+                    }
+                })
+                .catch(function(err) {
+                    alert('Checkout error: ' + err.message);
+                    btn.disabled = false;
+                    btn.textContent = 'Buy & Download';
+                });
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
