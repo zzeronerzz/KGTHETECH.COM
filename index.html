@@ -307,8 +307,9 @@
 }
 
 /* ── TIKTOK VIDEO PREVIEW CARDS ── */
-.tt-card { position:relative; height:140px; background:#0f0f0f; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid rgba(255,230,0,0.15); }
-.tt-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,#1a1a1a 0%,#000 100%); }
+.tt-card { position:relative; height:190px; background:#0f0f0f; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid rgba(255,230,0,0.15); background-size:cover; background-position:center; }
+.tt-card::before { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.35); transition:background 0.2s; }
+.tt-card:hover::before { background:rgba(0,0,0,0.15); }
 .tt-play { position:relative; z-index:1; width:42px; height:42px; border-radius:50%; background:rgba(255,230,0,0.12); border:2px solid rgba(255,230,0,0.35); display:flex; align-items:center; justify-content:center; }
 .tt-play::after { content:''; border-style:solid; border-width:8px 0 8px 16px; border-color:transparent transparent transparent var(--yellow); margin-left:2px; }
 .tt-logo { position:absolute; bottom:0.5rem; right:0.65rem; font-size:0.58rem; font-weight:900; letter-spacing:0.1em; color:rgba(255,230,0,0.35); text-transform:uppercase; z-index:1; }
@@ -1001,34 +1002,34 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
 </div>
 <div id="page-videos" class="page">
 <div style="max-width:1060px; margin:0 auto; padding:3rem 2rem;">
-  <h1 style="margin:0 0 0.5rem;">Build Documentation &amp; Technical Tutorials</h1>
+  <h1 style="margin:0 0 0.5rem;">Build Documentation</h1>
   <p style="margin:0 0 2.5rem; opacity:0.6; font-size:0.95rem;">All videos on TikTok @KGTheTech. Click any card to watch.</p>
 
   <h2 style="font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.55; margin:0 0 1.25rem; padding-bottom:0.6rem; border-bottom:1px solid rgba(128,128,128,0.2);">Cantenna Builds</h2>
   <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.25rem; margin-bottom:3rem;">
     <a href="https://www.tiktok.com/@kgthetech/video/7570455966328655118" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
-      <div class="tt-card"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
+      <div class="tt-card" data-tt="https://www.tiktok.com/@kgthetech/video/7570455966328655118"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
       <div style="padding:1rem;">
         <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">Enhance Your WiFi Signal with a Cantenna</p>
         <p style="margin:0; font-size:0.78rem; opacity:0.55;">Cantenna Build &nbsp;&#9654;&nbsp; TikTok</p>
       </div>
     </a>
     <a href="https://www.tiktok.com/@kgthetech/video/7570463042387971383" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
-      <div class="tt-card"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
+      <div class="tt-card" data-tt="https://www.tiktok.com/@kgthetech/video/7570463042387971383"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
       <div style="padding:1rem;">
         <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">DIY Cantenna: Build Your Own WiFi Enhancer</p>
         <p style="margin:0; font-size:0.78rem; opacity:0.55;">DIY Build Guide &nbsp;&#9654;&nbsp; TikTok</p>
       </div>
     </a>
     <a href="https://www.tiktok.com/@kgthetech/video/7570473082721144077" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
-      <div class="tt-card"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
+      <div class="tt-card" data-tt="https://www.tiktok.com/@kgthetech/video/7570473082721144077"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
       <div style="padding:1rem;">
         <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">DIY Cantenna for Better WiFi Networking</p>
         <p style="margin:0; font-size:0.78rem; opacity:0.55;">Build Series &nbsp;&#9654;&nbsp; TikTok</p>
       </div>
     </a>
     <a href="https://www.tiktok.com/@kgthetech/video/7588687310019956023" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
-      <div class="tt-card"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
+      <div class="tt-card" data-tt="https://www.tiktok.com/@kgthetech/video/7588687310019956023"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
       <div style="padding:1rem;">
         <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">Full Cantenna Build Process — Start to Finish</p>
         <p style="margin:0; font-size:0.78rem; opacity:0.55;">Full Build &nbsp;&#9654;&nbsp; TikTok</p>
@@ -1039,21 +1040,21 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
   <h2 style="font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.55; margin:0 0 1.25rem; padding-bottom:0.6rem; border-bottom:1px solid rgba(128,128,128,0.2);">ESP32 Wardriver Builds</h2>
   <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.25rem; margin-bottom:3rem;">
     <a href="https://www.tiktok.com/@kgthetech/video/7576932074850946359" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
-      <div class="tt-card"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
+      <div class="tt-card" data-tt="https://www.tiktok.com/@kgthetech/video/7576932074850946359"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
       <div style="padding:1rem;">
         <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">Wardriver Done Differently</p>
         <p style="margin:0; font-size:0.78rem; opacity:0.55;">ESP32 Build &nbsp;&#9654;&nbsp; TikTok</p>
       </div>
     </a>
     <a href="https://www.tiktok.com/@kgthetech/video/7569744930575355191" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
-      <div class="tt-card"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
+      <div class="tt-card" data-tt="https://www.tiktok.com/@kgthetech/video/7569744930575355191"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
       <div style="padding:1rem;">
         <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">What's In the Kit</p>
         <p style="margin:0; font-size:0.78rem; opacity:0.55;">Kit Breakdown &nbsp;&#9654;&nbsp; TikTok</p>
       </div>
     </a>
     <a href="https://www.tiktok.com/@kgthetech/video/7570028760683072781" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
-      <div class="tt-card"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
+      <div class="tt-card" data-tt="https://www.tiktok.com/@kgthetech/video/7570028760683072781"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
       <div style="padding:1rem;">
         <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">Wigle.net Enabled — Automatic Logging</p>
         <p style="margin:0; font-size:0.78rem; opacity:0.55;">Firmware Demo &nbsp;&#9654;&nbsp; TikTok</p>
@@ -1064,7 +1065,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
   <h2 style="font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.55; margin:0 0 1.25rem; padding-bottom:0.6rem; border-bottom:1px solid rgba(128,128,128,0.2);">RF &amp; Antenna Builds</h2>
   <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.25rem; margin-bottom:3rem;">
     <a href="https://www.tiktok.com/@kgthetech/photo/7535676906302197047" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
-      <div class="tt-card"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
+      <div class="tt-card" data-tt="https://www.tiktok.com/@kgthetech/photo/7535676906302197047"><div class="tt-play"></div><span class="tt-logo">TikTok</span></div>
       <div style="padding:1rem;">
         <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">5G Copper Patch Antenna Build</p>
         <p style="margin:0; font-size:0.78rem; opacity:0.55;">RF Build &nbsp;&#9654;&nbsp; TikTok</p>
@@ -1672,6 +1673,34 @@ function changeQty(name, delta) {
     var prev = _navHistory.pop();
     _origShowPage(prev, null);
     document.getElementById('back-btn').style.display = _navHistory.length > 0 ? 'block' : 'none';
+  }
+
+
+  // ── TIKTOK THUMBNAILS via oEmbed ──
+  function _loadTtThumbs() {
+    document.querySelectorAll('.tt-card[data-tt]').forEach(function(card) {
+      if (card.getAttribute('data-tt-done')) return;
+      card.setAttribute('data-tt-done', '1');
+      var url = card.getAttribute('data-tt');
+      fetch('https://www.tiktok.com/oembed?url=' + encodeURIComponent(url))
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          if (d && d.thumbnail_url) {
+            card.style.backgroundImage = 'url(' + d.thumbnail_url + ')';
+          }
+        })
+        .catch(function() {});
+    });
+  }
+  // Load thumbs when videos page is first shown
+  var _origShowPage2 = showPage;
+  showPage = function(name, el) {
+    _origShowPage2(name, el);
+    if (name === 'videos') _loadTtThumbs();
+  };
+  // Also load on init if videos is active
+  if (document.getElementById('page-videos') && document.getElementById('page-videos').classList.contains('active')) {
+    _loadTtThumbs();
   }
 
   // ── CONTACT FORM (Web3Forms) ──
