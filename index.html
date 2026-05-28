@@ -1261,11 +1261,13 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
     <!-- SEND A MESSAGE -->
     <div>
       <h2 style="margin:0 0 1.5rem; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; opacity:0.5; border-bottom:1px solid rgba(128,128,128,0.2); padding-bottom:0.6rem;">Send a Message</h2>
-      <form onsubmit="(function(e){e.preventDefault();var n=e.target.querySelector('[name=name]').value;var s=e.target.querySelector('[name=subject]').value;var m=e.target.querySelector('[name=message]').value;window.location.href='mailto:kg@kgthetech.com?subject='+encodeURIComponent(s+' — '+n)+'&body='+encodeURIComponent('Name: '+n+'\n\n'+m);})(event)">
+      <form id="contact-form">
         <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Your Name</label><input type="text" name="name" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"></div>
-        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Subject</label><select name="subject" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"><option value="">-- Select --</option><option>Government Contracts</option><option>Product Inquiry</option><option>Order Support</option><option>Business Inquiry / Partnership</option><option>Custom Build Request</option><option>Technical Support</option><option>Media / Press</option><option>Feedback</option><option>Other</option></select></div>
+        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Your Email</label><input type="email" name="email" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"></div>
+        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Subject</label><select name="subject" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem; background-color:#0a0a0a;"><option value="">-- Select --</option><option>Government Contracts</option><option>Product Inquiry</option><option>Order Support</option><option>Business Inquiry / Partnership</option><option>Custom Build Request</option><option>Technical Support</option><option>Media / Press</option><option>Feedback</option><option>Other</option></select></div>
         <div style="margin-bottom:1.25rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Message</label><textarea name="message" rows="5" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem; resize:vertical;"></textarea></div>
-        <button type="submit" style="width:100%; padding:0.85rem; font-weight:700; cursor:pointer; background:transparent; border:2px solid currentColor; border-radius:6px; color:inherit; font-size:0.88rem;">Send Message &rarr;</button>
+        <button id="contact-submit" type="submit" style="width:100%; padding:0.85rem; font-weight:700; cursor:pointer; background:transparent; border:2px solid currentColor; border-radius:6px; color:inherit; font-size:0.88rem;">Send Message &rarr;</button>
+        <p id="contact-result" style="margin:0.75rem 0 0; font-size:0.8rem; text-align:center; display:none;"></p>
       </form>
     </div>
 
@@ -1559,8 +1561,7 @@ function changeQty(name, delta) {
   }
   function _coMethod(m) { _co.method = m; _co.step = 4; _renderCo(); }
 
-  // Web3Forms access key — get yours free at web3forms.com (enter kg@kgthetech.com)
-  var _W3F_KEY = 'PASTE_YOUR_WEB3FORMS_KEY_HERE';
+  var _W3F_KEY = '7c94a151-5d03-420a-94f6-1e9098883494';
 
   function _coConfirm(method) {
     var c = _co;
@@ -1674,6 +1675,45 @@ function changeQty(name, delta) {
     _origShowPage(prev, null);
     document.getElementById('back-btn').style.display = _navHistory.length > 0 ? 'block' : 'none';
   }
+
+  // ── CONTACT FORM (Web3Forms) ──
+  (function(){
+    var cf = document.getElementById('contact-form');
+    if (!cf) return;
+    cf.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = document.getElementById('contact-submit');
+      var res = document.getElementById('contact-result');
+      var fd = new FormData(cf);
+      fd.append('access_key', _W3F_KEY);
+      fd.append('subject', 'Contact: ' + (fd.get('subject')||'Message') + ' — ' + (fd.get('name')||''));
+      fd.append('from_name', fd.get('name') + ' (kgthetech.com contact form)');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      fetch('https://api.web3forms.com/submit', { method:'POST', body: fd })
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          if (d.success) {
+            res.textContent = 'Message sent. You will hear back soon.';
+            res.style.color = 'var(--yellow)';
+            cf.reset();
+          } else {
+            res.textContent = 'Error: ' + (d.message || 'Try again.');
+            res.style.color = '#f87171';
+          }
+          res.style.display = 'block';
+        })
+        .catch(function(){
+          res.textContent = 'Network error — try again.';
+          res.style.color = '#f87171';
+          res.style.display = 'block';
+        })
+        .finally(function(){
+          btn.textContent = 'Send Message →';
+          btn.disabled = false;
+        });
+    });
+  })();
 
 </script>
 
