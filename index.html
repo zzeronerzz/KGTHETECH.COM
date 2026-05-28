@@ -1642,30 +1642,7 @@ function changeQty(name, delta) {
       '--------------------------------------------'
     ].filter(function(l) { return l !== null; }).join('\n');
 
-    // Customer confirmation message
-    var customerConf = [
-      'Hi ' + c.cName + ',',
-      '',
-      'Your KGTHETECH order has been received and logged.',
-      '',
-      'Order #:    ' + orderNum,
-      'Date:       ' + dateStr,
-      'Item:       ' + c.name,
-      'Amount:     ' + amt2,
-      'Payment:    ' + method,
-      (shipLine ? 'Ship To:    ' + shipLine : ''),
-      '',
-      'KG will confirm your payment receipt within 1-2 business days',
-      'and will follow up at this email address.',
-      '',
-      'Screenshot this email for your records.',
-      '',
-      'Questions? kg@kgthetech.com | kgthetech.com',
-      '',
-      '© 2026 KGTHETECH LLC · All sales final.'
-    ].filter(function(l) { return l !== null; }).join('\n');
-
-    // Single call: KG gets full invoice, customer gets autoresponse confirmation
+    // KG gets invoice, customer is CC'd on the same email
     fetch('https://formsubmit.co/ajax/kg@kgthetech.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -1674,7 +1651,7 @@ function changeQty(name, delta) {
         email: c.cEmail,
         _subject: '[ORDER ' + orderNum + '] ' + c.name + ' — ' + amt2 + ' via ' + method + ' — ' + c.cName,
         _replyto: c.cEmail,
-        _autoresponse: customerConf,
+        _cc: c.cEmail,
         _captcha: 'false',
         message: invoice
       })
