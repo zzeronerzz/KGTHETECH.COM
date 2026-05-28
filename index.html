@@ -1,285 +1,1309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KG The Tech - Handmade cybersecurity tools, Wi-Fi cantennas, ESP32 kits, and ethical hacking hardware. Built from scratch in Aurora, Colorado.">
-    <meta name="keywords" content="KG The Tech, cybersecurity tools, cantenna, ESP32 kit, ethical hacking, wardriver, Wi-Fi antenna, hacking on a budget">
-    <meta name="author" content="KGTHETECH - KG The Tech">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KGTHETECH — HACKING ON A BUDGET</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --yellow: #FFE600; --black: #000; --white: #fff; --gray: #111; }
+  body { background: var(--black); color: var(--white); font-family: 'Arial Black', 'Impact', 'Helvetica Neue', Arial, sans-serif; line-height: 1.1; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
 
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kgthetech.com/">
-    <meta property="og:title" content="KG The Tech - Hacking on a Budget">
-    <meta property="og:description" content="Handmade cybersecurity tools and ethical hacking hardware. Built from scratch, built to last.">
+  /* PAGE SYSTEM */
+  .page { display: none; }
+  .page.active { display: block; }
+  .img-placeholder { background: #1a1a1a; display: flex; align-items: center; justify-content: center; color: #333; font-size: 0.72rem; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; min-height: 200px; border: 1px solid #222; }
 
-    <title>KG The Tech | Hacking on a Budget - Cybersecurity Tools & Hardware</title>
+  nav {
+    background: var(--black); border-bottom: 3px solid var(--yellow);
+    padding: 1.2rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 200;
+  }
+  .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase; }
+  .logo .y { color: var(--yellow); }
+  nav ul { list-style: none; display: flex; gap: 0; }
+  nav ul li a {
+    display: block; padding: 0.5rem 1.2rem;
+    font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em;
+    color: #666; transition: all 0.15s; cursor: pointer;
+  }
+  nav ul li a:hover, nav ul li a.nav-active { color: var(--yellow); background: rgba(255,230,0,0.05); }
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://kgthetech.com/">
+  /* HOME */
+  .hero { position: relative; overflow: hidden; padding: 0; min-height: 90vh; display: flex; flex-direction: column; }
+  .hero-top { background: var(--yellow); padding: 3rem 3rem 2rem; }
+  .hero-top .location { font-size: 0.7rem; font-weight: 900; letter-spacing: 0.3em; text-transform: uppercase; color: #555; margin-bottom: 1rem; }
+  .hero-main { background: var(--black); flex: 1; padding: 3rem 3rem 4rem; position: relative; }
+  .hero-main::before {
+    content: 'KG'; position: absolute; right: -1rem; top: -3rem;
+    font-size: 22rem; font-weight: 900; color: rgba(255,230,0,0.04);
+    line-height: 1; pointer-events: none; user-select: none;
+  }
+  .hero h1 {
+    font-size: 8rem; font-weight: 900; text-transform: uppercase;
+    letter-spacing: -0.04em; line-height: 0.9;
+    color: var(--white); position: relative; z-index: 1;
+  }
+  .hero h1 .yellow-line { color: var(--yellow); display: block; }
+  .hero h1 .stroke { -webkit-text-stroke: 3px var(--white); color: transparent; display: block; }
+  .hero-sub { font-size: 0.88rem; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: #444; margin-top: 2rem; margin-bottom: 1rem; }
+  .hero-desc { font-family: Arial, sans-serif; font-size: 1rem; color: #888; max-width: 500px; line-height: 1.6; margin-bottom: 3rem; font-weight: 400; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-yellow { display: inline-block; background: var(--yellow); color: var(--black); padding: 1.1rem 2.5rem; font-size: 0.82rem; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.15s; cursor: pointer; }
+  .btn-yellow:hover { background: #fff; }
+  .btn-outline-w { display: inline-block; border: 3px solid var(--white); color: var(--white); padding: 1.1rem 2.5rem; font-size: 0.82rem; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.15s; cursor: pointer; }
+  .btn-outline-w:hover { background: var(--white); color: var(--black); }
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="KG The Tech — Cybersecurity Hardware, Handmade in Colorado">
-    <meta name="twitter:description" content="Handmade cybersecurity tools, Wi-Fi cantennas, ESP32 kits, and ethical hacking hardware. Built from scratch by KGTHETECH.">
+  .marquee-bar { background: var(--yellow); padding: 0.85rem 0; overflow: hidden; border-top: 3px solid var(--black); border-bottom: 3px solid var(--black); }
+  .marquee-inner { display: flex; gap: 3rem; white-space: nowrap; animation: marquee 15s linear infinite; }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .m-item { font-size: 0.78rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--black); }
+  .m-item::before { content: '★ '; }
 
-    <!-- Structured data (JSON-LD) — Organization + Person -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "@id": "https://kgthetech.com/#organization",
-          "name": "KG The Tech",
-          "alternateName": "KGTHETECH",
-          "url": "https://kgthetech.com/",
-          "founder": { "@id": "https://kgthetech.com/#kenneth-gilliam" },
-          "description": "Handmade cybersecurity hardware, Wi-Fi cantennas, ESP32 signal-survey kits, and ethical hacking equipment. Built by hand by KGTHETECH in Aurora, Colorado.",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Aurora",
-            "addressRegion": "CO",
-            "addressCountry": "US"
-          },
-          "sameAs": [
-            "https://www.tiktok.com/@kgthetech",
-            "https://www.instagram.com/kgphotographylov3",
-            "https://beacons.ai/kgthetech",
-            "https://www.linkedin.com/in/kennygee",
-            "https://github.com/zzeronerzz"
-          ]
-        },
-        {
-          "@type": "Person",
-          "@id": "https://kgthetech.com/#kenneth-gilliam",
-          "name": "KG",
-          "jobTitle": "Independent Cybersecurity Hardware Engineer",
-          "worksFor": { "@id": "https://kgthetech.com/#organization" },
-          "url": "https://kgthetech.com/about.html",
-          "sameAs": [
-            "https://www.linkedin.com/in/kennygee",
-            "https://github.com/zzeronerzz"
-          ]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://kgthetech.com/#website",
-          "url": "https://kgthetech.com/",
-          "name": "KG The Tech",
-          "publisher": { "@id": "https://kgthetech.com/#organization" }
-        }
-      ]
-    }
-    </script>
+  /* HOME products */
+  .home-prods { padding: 5rem 3rem; }
+  .section-head { margin-bottom: 3rem; }
+  .section-head h2 { font-size: 5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1; }
+  .section-head h2 .y { color: var(--yellow); }
+  .section-head h2 .s { -webkit-text-stroke: 2px var(--white); color: transparent; }
+  .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+  .product-card { background: var(--gray); position: relative; overflow: hidden; }
+  .card-photo { height: 220px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 900; letter-spacing: 0.15em; color: #333; text-transform: uppercase; }
+  .card-body { padding: 2rem 1.5rem; }
+  .card-num { font-size: 4rem; font-weight: 900; color: var(--yellow); line-height: 1; margin-bottom: 0.5rem; }
+  .card-name { font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.75rem; }
+  .card-desc { font-family: Arial, sans-serif; font-size: 0.82rem; color: #666; line-height: 1.5; margin-bottom: 1.5rem; font-weight: 400; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; }
+  .card-price { font-size: 2rem; font-weight: 900; color: var(--yellow); }
+  .card-btn {
+    background: var(--yellow); color: var(--black);
+    padding: 0.6rem 1.2rem; font-size: 0.72rem; font-weight: 900;
+    text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.15s; cursor: pointer;
+  }
+  .card-btn:hover { background: var(--white); }
 
-    <link rel="stylesheet" href="css/style.css">
+  /* Pillars */
+  .pillars-urb { background: var(--yellow); padding: 4rem 3rem; border-top: 3px solid var(--black); border-bottom: 3px solid var(--black); }
+  .pillars-urb h2 { font-size: 3rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; color: var(--black); margin-bottom: 2.5rem; }
+  .pillars-grid-urb { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+  .pillar-urb { background: var(--black); padding: 1.5rem; }
+  .pillar-urb-title { font-size: 0.85rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: var(--yellow); margin-bottom: 0.75rem; }
+  .pillar-urb p { font-family: Arial, sans-serif; font-size: 0.8rem; color: #666; line-height: 1.5; font-weight: 400; }
+
+  /* Founder */
+  .founder-urb { padding: 5rem 3rem; background: var(--gray); border-top: 3px solid var(--yellow); border-bottom: 3px solid var(--yellow); display: flex; justify-content: space-between; align-items: center; gap: 3rem; }
+  .founder-urb blockquote { font-family: Arial, sans-serif; font-size: 1.1rem; color: #888; line-height: 1.6; font-weight: 400; max-width: 600px; border-left: 4px solid var(--yellow); padding-left: 2rem; }
+  .founder-urb-btn { white-space: nowrap; }
+
+  .bottom-cta { background: var(--yellow); padding: 4rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+  .bottom-cta h3 { font-size: 2.5rem; font-weight: 900; text-transform: uppercase; color: var(--black); letter-spacing: -0.02em; }
+  .bottom-cta .cta-sub { font-family: Arial, sans-serif; font-size: 0.9rem; color: #555; margin-top: 0.5rem; }
+  .cta-action { background: var(--black); color: var(--yellow); padding: 1.1rem 2.5rem; font-size: 0.82rem; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.15s; cursor: pointer; display: inline-block; }
+  .cta-action:hover { background: #222; }
+
+  .legal-urb { padding: 1.5rem 3rem; font-family: Arial, sans-serif; font-size: 0.78rem; color: #444; border-top: 3px solid var(--yellow); }
+
+  /* STORE */
+  .store-header-urb { padding: 5rem 3rem 2rem; border-bottom: 3px solid var(--yellow); }
+  .store-header-urb h1 { font-size: 5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.75rem; }
+  .store-header-urb h1 .y { color: var(--yellow); }
+  .store-header-urb p { font-family: Arial, sans-serif; font-size: 0.9rem; color: #666; }
+  .store-products-urb { padding: 3rem; }
+  .store-product-urb { display: grid; grid-template-columns: 300px 1fr; background: var(--gray); margin-bottom: 3px; overflow: hidden; }
+  .store-img-urb { height: 100%; min-height: 280px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 900; letter-spacing: 0.15em; color: #333; text-transform: uppercase; border-right: 3px solid var(--yellow); }
+  .store-info-urb { padding: 2.5rem; }
+  .store-badge-urb { display: inline-block; background: var(--yellow); color: var(--black); font-size: 0.65rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; padding: 0.2rem 0.6rem; margin-bottom: 1rem; }
+  .store-name-urb { font-size: 2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+  .store-price-urb { font-size: 3rem; font-weight: 900; color: var(--yellow); margin-bottom: 1rem; line-height: 1; }
+  .store-desc-urb { font-family: Arial, sans-serif; font-size: 0.88rem; color: #666; line-height: 1.6; margin-bottom: 1rem; font-weight: 400; }
+  .store-pkg-urb { font-family: Arial, sans-serif; font-size: 0.82rem; color: #555; margin-bottom: 1rem; }
+  .store-pkg-urb strong { color: #888; }
+  .specs-urb { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+  .spec-urb { font-size: 0.68rem; font-weight: 900; text-transform: uppercase; background: #000; border: 2px solid #333; padding: 0.2rem 0.6rem; color: var(--yellow); letter-spacing: 0.08em; }
+  .tiktok-urb { margin-bottom: 1rem; }
+  .tiktok-urb a { font-size: 0.78rem; font-weight: 900; text-transform: uppercase; color: var(--yellow); text-decoration: underline; margin-right: 1.5rem; }
+  .order-urb { font-family: Arial, sans-serif; font-size: 0.85rem; color: #555; }
+  .order-urb a { color: var(--yellow); text-decoration: underline; }
+  .store-legal-urb { padding: 1.5rem 3rem; font-family: Arial, sans-serif; font-size: 0.78rem; color: #444; border-top: 3px solid var(--yellow); }
+
+  /* PORTFOLIO */
+  .port-header-urb { padding: 5rem 3rem 2rem; border-bottom: 3px solid var(--yellow); }
+  .port-header-urb h1 { font-size: 5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1; }
+  .port-header-urb h1 .y { color: var(--yellow); }
+  .port-header-urb p { font-family: Arial, sans-serif; font-size: 0.9rem; color: #666; margin-top: 0.5rem; }
+  .port-sec-urb { padding: 3rem; border-bottom: 3px solid #222; }
+  .port-sec-urb h2 { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: var(--yellow); margin-bottom: 2rem; border-bottom: 3px solid var(--yellow); padding-bottom: 0.75rem; display: inline-block; }
+  .port-grid-urb { display: grid; grid-template-columns: repeat(2,1fr); gap: 3px; }
+  .port-card-urb { background: var(--gray); padding: 1.5rem; transition: background 0.15s; }
+  .port-card-urb:hover { background: #1a1a1a; }
+  .port-card-head-urb { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+  .port-card-name-urb { font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; }
+  .port-status-urb { font-size: 0.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; background: var(--yellow); color: var(--black); padding: 0.2rem 0.5rem; white-space: nowrap; }
+  .port-desc-urb { font-family: Arial, sans-serif; font-size: 0.8rem; color: #666; line-height: 1.5; margin-bottom: 0.75rem; font-weight: 400; }
+  .port-tags-urb { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .port-tag-urb { font-size: 0.62rem; font-weight: 900; text-transform: uppercase; background: #000; border: 1px solid #333; padding: 0.15rem 0.4rem; color: #555; }
+
+  /* GALLERY */
+  .gallery-header-urb { padding: 5rem 3rem 2rem; border-bottom: 3px solid var(--yellow); }
+  .gallery-header-urb h1 { font-size: 5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1; }
+  .gallery-header-urb h1 .y { color: var(--yellow); }
+  .gallery-header-urb p { font-family: Arial, sans-serif; font-size: 0.9rem; color: #666; margin-top: 0.5rem; }
+  .gallery-sec-urb { padding: 3rem; border-bottom: 3px solid #222; }
+  .gallery-sec-head-urb { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+  .gallery-sec-head-urb h2 { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; }
+  .gallery-price-urb { font-size: 1.5rem; font-weight: 900; color: var(--yellow); }
+  .gallery-desc-urb { font-family: Arial, sans-serif; font-size: 0.82rem; color: #555; margin-bottom: 1.5rem; font-weight: 400; }
+  .photo-grid-urb { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; margin-bottom: 1.5rem; }
+  .photo-grid-urb .img-placeholder { min-height: 140px; font-size: 0.6rem; }
+  .gallery-btn-urb { margin-top: 1rem; }
+
+  /* ABOUT */
+  .about-header-urb { padding: 5rem 3rem 2rem; border-bottom: 3px solid var(--yellow); }
+  .about-header-urb h1 { font-size: 5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1; }
+  .about-header-urb h1 .y { color: var(--yellow); }
+  .about-body-urb { padding: 3rem; max-width: 800px; border-bottom: 3px solid #222; }
+  .about-body-urb p { font-family: Arial, sans-serif; font-size: 1rem; color: #666; line-height: 1.7; margin-bottom: 1.5rem; font-weight: 400; }
+  .about-products-urb { background: var(--yellow); padding: 3rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--black); }
+  .about-products-urb h3 { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; color: var(--black); margin-bottom: 0.5rem; }
+  .about-products-list-urb { font-family: Arial, sans-serif; font-size: 0.9rem; color: #444; }
+  .about-btns-urb { display: flex; gap: 1rem; }
+  .about-btns-urb a { background: var(--black); color: var(--yellow); padding: 0.9rem 1.8rem; font-size: 0.78rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.15s; display: inline-block; }
+  .about-btns-urb a:hover { background: #222; }
+
+  /* CONTACT */
+  .contact-header-urb { padding: 5rem 3rem 2rem; border-bottom: 3px solid var(--yellow); }
+  .contact-header-urb h1 { font-size: 5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1; }
+  .contact-header-urb h1 .y { color: var(--yellow); }
+  .contact-grid-urb { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; padding: 3px 3rem 3rem; }
+  .contact-col-urb { background: var(--gray); padding: 2.5rem; }
+  .contact-label-urb { font-size: 0.62rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: var(--yellow); margin-bottom: 0.4rem; }
+  .contact-val-urb { font-family: Arial, sans-serif; font-size: 0.95rem; color: #888; margin-bottom: 1.5rem; font-weight: 400; }
+  .contact-val-urb a { color: var(--yellow); text-decoration: underline; }
+  .contact-custom-urb { background: var(--yellow); padding: 3rem; border-top: 3px solid var(--black); }
+  .contact-custom-urb h3 { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; color: var(--black); margin-bottom: 1rem; }
+  .contact-custom-urb p { font-family: Arial, sans-serif; font-size: 0.9rem; color: #444; line-height: 1.6; }
+  .contact-custom-urb a { color: var(--black); text-decoration: underline; }
+  .contact-payment-urb { padding: 1.5rem 3rem; font-family: Arial, sans-serif; font-size: 0.85rem; font-weight: 900; color: #444; border-top: 3px solid var(--yellow); }
+
+  footer { background: var(--black); border-top: 3px solid var(--yellow); padding: 3rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem; }
+  footer h4 { font-size: 0.72rem; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; color: var(--yellow); margin-bottom: 1rem; }
+  footer p, footer a { font-family: Arial, sans-serif; font-size: 0.82rem; color: #555; line-height: 1.7; display: block; font-weight: 400; }
+  footer a:hover { color: var(--yellow); }
+  .footer-bottom { background: #050505; text-align: center; padding: 1.2rem; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #333; }
+</style>
+
+<style>
+/* ── CART NAV ── */
+.kgt-cart-btn {
+  display:flex; align-items:center; gap:0.45rem;
+  cursor:pointer; color:#888; flex-shrink:0; margin-left:auto; padding-left:1.5rem;
+  border:none; background:transparent;
+}
+.kgt-cart-btn:hover { color:#bbb; }
+.kgt-cart-btn svg { width:20px; height:20px; flex-shrink:0; }
+.kgt-cart-label { font-weight:800; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; }
+#cart-count {
+  background:#333; color:#ccc; border-radius:50%;
+  min-width:1.3rem; height:1.3rem; display:inline-flex;
+  align-items:center; justify-content:center;
+  font-size:0.62rem; font-weight:800; border:1px solid #555;
+}
+/* nav-active fix for templates that use .active instead of .nav-active */
+nav ul li a.nav-active, nav ul li a.active { opacity:1 !important; }
+</style>
+
+<style>
+/* ── STORE: street urban / streetwear theme ── */
+#page-store .store-hdr { border-bottom: 2px solid rgba(255,230,0,0.3); padding-bottom: 1.5rem; margin-bottom: 2.5rem; text-align: left !important; }
+#page-store .store-hdr h1 { font-size: 2.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; }
+#page-store .store-hdr .store-note { color: var(--yellow); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; }
+.store-card {
+  border: none !important;
+  border-radius: 0 !important;
+  background: rgba(255,230,0,0.03) !important;
+  padding: 0 !important;
+  margin-bottom: 2rem !important;
+  }
+.store-card-inner { padding: 2rem; }
+.store-card .store-cat { color: var(--yellow) !important; font-size: 0.7rem !important; letter-spacing: 0.2em !important; font-weight: 900 !important; text-transform: uppercase !important; }
+.store-card h2 { font-weight: 900 !important; text-transform: uppercase !important; letter-spacing: -0.01em !important; }
+.store-card .store-price-tag { color: var(--yellow) !important; font-weight: 900 !important; }
+.store-card .store-img-ph { background: #111 !important; border: none !important; border-bottom: 2px solid var(--yellow) !important; opacity: 1 !important; color: #333 !important; }
+.merch-card { border: none !important; border-radius: 0 !important; background: rgba(255,230,0,0.03) !important; }
+.merch-card div:first-child { border-bottom: 1px solid var(--yellow) !important; }
+</style>
+<style>/* kgt-nav-gap-fix */
+nav ul { gap: 1.1rem !important; }
+nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
+</style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <nav>
-            <div class="logo">KGTHETECH</div>
-                                    <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="store.html">Store</a></li>
-                <li><a href="merch.html">Merch</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="videos.html">Videos</a></li>
-                <li><a href="guides/index.html">Guides</a></li>
-                <li><a href="subscribe.html">Subscribe</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="donate.html">Donate</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
 
-    <div style="text-align:center; padding:0.3rem 1rem; background:rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,215,0,0.15); font-size:0.82rem; color:rgba(255,255,255,0.5);">
-        Accepted: <span style="color:var(--gold); font-weight:700;">PayPal</span> &nbsp;&middot;&nbsp; <span style="color:#33d17a; font-weight:700;">Cash App: $GilliamTELLC</span>
+<nav>
+  <div class="logo">KG<span class="y">THE</span>TECH</div>
+  <ul>
+    <li><a onclick="showPage('home',this)" class="nav-active">HOME</a></li>
+    <li><a onclick="showPage('store',this)">STORE</a></li>
+    <li><a onclick="showPage('portfolio',this)">PORTFOLIO</a></li>
+    <li><a onclick="showPage('videos',this)">VIDEOS</a></li>
+<li><a onclick="showPage('guides',this)">GUIDES</a></li>
+<li><a onclick="showPage('subscribe',this)">SUBSCRIBE</a></li>
+<li><a onclick="showPage('gallery',this)">GALLERY</a></li>
+    <li><a onclick="showPage('about',this)">ABOUT</a></li>
+    <li><a onclick="showPage('donate',this)">DONATE</a></li>
+<li><a onclick="showPage('contact',this)">CONTACT</a></li>
+  </ul>
+  <button class="kgt-cart-btn" onclick="showPage('cart',null)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <span class="kgt-cart-label">Cart</span>
+    <span id="cart-count">0</span>
+  </button>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <section class="hero">
+    <div class="hero-top">
+      <div class="location">Aurora, Colorado — Est. KG The Tech — NYC Roots</div>
+    </div>
+    <div class="hero-main">
+      <h1>
+        <span class="yellow-line">HACKING</span>
+        <span>ON A</span>
+        <span class="stroke">BUDGET</span>
+      </h1>
+      <div class="hero-sub">Handmade Cybersecurity Tools &amp; Ethical Hacking Hardware</div>
+      <p class="hero-desc">Custom-built Wi-Fi antennas, signal survey kits, and penetration testing hardware. Every piece handmade by KGTHETECH in Aurora, Colorado. No factory lines. No mass production. Built from scratch, built to last.</p>
+      <div class="hero-btns">
+        <a onclick="showPage('store',this)" class="btn-yellow">SHOP NOW</a>
+        <a onclick="showPage('about',this)" class="btn-outline-w">MY STORY</a>
+        <a href="https://www.tiktok.com/@kgthetech" target="_blank" class="btn-outline-w">WATCH BUILDS</a>
+      </div>
+
+<div style="margin-top:1.5rem; max-width:600px;">
+  <button onclick="toggleAcc(this)" style="cursor:pointer; background:transparent; border:none; color:inherit; font-size:0.84rem; padding:0; display:flex; align-items:center; gap:0.45rem; opacity:0.8; line-height:1.4;">
+    <span style="color:#e53e3e; font-weight:900; font-size:1rem;">*</span>
+    <span style="font-weight:600;">Legal Disclaimer</span>
+    <span style="font-size:0.65rem; opacity:0.5; margin-left:0.2rem;">&#9660;</span>
+  </button>
+  <div style="display:none; margin-top:0.6rem; padding:1rem 1.25rem; border:1px solid rgba(200,0,0,0.25); border-radius:6px; font-size:0.76rem; line-height:1.9; opacity:0.78;">
+    All products sold by KGTheTech LLC are for authorized testing and educational use only. Purchase, possession, and use of RF hardware and penetration testing tools may be restricted by federal, state, or local laws. Buyer is solely responsible for compliance with all applicable laws. Unauthorized interception of wireless communications is a federal crime under 18 U.S.C. &sect; 2511. KGTheTech LLC assumes no liability for misuse. All sales are final. No refunds on custom-built hardware. Buyer confirms they are 18 years of age or older and authorized to purchase and possess this equipment.
+  </div>
+</div>
+    </div>
+  </section>
+
+  <div class="marquee-bar">
+    <div class="marquee-inner">
+      <span class="m-item">KGTHETECH</span>
+      <span class="m-item">HACKING ON A BUDGET</span>
+      <span class="m-item">AURORA CO</span>
+      <span class="m-item">HANDBUILT</span>
+      <span class="m-item">CANTENNA $50</span>
+      <span class="m-item">ESP32 WARDRIVER</span>
+      <span class="m-item">ETHICAL HACKING</span>
+      <span class="m-item">KGTHETECH</span>
+      <span class="m-item">HACKING ON A BUDGET</span>
+      <span class="m-item">AURORA CO</span>
+      <span class="m-item">HANDBUILT</span>
+      <span class="m-item">CANTENNA $50</span>
+      <span class="m-item">ESP32 WARDRIVER</span>
+      <span class="m-item">ETHICAL HACKING</span>
+    </div>
+  </div>
+
+  <section class="home-prods">
+    <div class="section-head">
+      <h2><span class="y">THE</span> <span class="s">GEAR</span></h2>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="card-photo">CANTENNA STANDARD</div>
+        <div class="card-body">
+          <div class="card-num">01</div>
+          <div class="card-name">Cantenna Standard</div>
+          <p class="card-desc">2.4GHz directional, 14dBi, 22° beam, 300m range. Handbuilt. Tested. Proven.</p>
+          <div class="card-footer">
+            <div class="card-price">$50</div>
+            <a onclick="showPage('store',this)" class="card-btn">VIEW</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="card-photo">CANTENNA HEAVY DUTY</div>
+        <div class="card-body">
+          <div class="card-num">02</div>
+          <div class="card-name">Cantenna Heavy Duty</div>
+          <p class="card-desc">3mm steel exhaust pipe, tank-grade. When you need more reach without cutting corners.</p>
+          <div class="card-footer">
+            <div class="card-price">$150</div>
+            <a onclick="showPage('store',this)" class="card-btn">VIEW</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="card-photo">ESP32 WARDRIVER KIT</div>
+        <div class="card-body">
+          <div class="card-num">03</div>
+          <div class="card-name">ESP32 Wardriver Kit</div>
+          <p class="card-desc">GPS + dual WiFi + NRF24 + MicroSD. Fully standalone. No phone, no cloud. Just deploy.</p>
+          <div class="card-footer">
+            <div class="card-price">$150</div>
+            <a onclick="showPage('store',this)" class="card-btn">VIEW</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars-urb">
+    <h2>WHY KG THE TECH</h2>
+    <div class="pillars-grid-urb">
+      <div class="pillar-urb">
+        <div class="pillar-urb-title">HANDMADE</div>
+        <p>Every unit built by hand. No assembly lines. No shortcuts.</p>
+      </div>
+      <div class="pillar-urb">
+        <div class="pillar-urb-title">PRECISION-BUILT</div>
+        <p>Accurate 1/4 wavelength spec. Measured and verified.</p>
+      </div>
+      <div class="pillar-urb">
+        <div class="pillar-urb-title">READY TO USE</div>
+        <p>Ships assembled and tested. Deploy from day one.</p>
+      </div>
+      <div class="pillar-urb">
+        <div class="pillar-urb-title">BUDGET-FRIENDLY</div>
+        <p>Pro-grade hardware without the enterprise markup. Starting at $50.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="founder-urb">
+    <blockquote>"Self-taught since 2004. 20+ years networking and sysadmin. From New York, now Aurora CO. No corporate backing, no investors. Just hustle."</blockquote>
+    <div class="founder-urb-btn">
+      <a onclick="showPage('about',this)" class="btn-yellow">READ FULL STORY</a>
+    </div>
+  </section>
+
+  <div class="bottom-cta">
+    <div>
+      <h3>Handbuilt.<br>No Middleman.</h3>
+      <p class="cta-sub">PayPal · Cash App · kg@kgthetech.com</p>
+    </div>
+    <a onclick="showPage('contact',this)" class="cta-action">GET IN TOUCH</a>
+  </div>
+
+  <div class="legal-urb">All products for authorized testing and educational use. Buyer assumes full legal responsibility.</div>
+</div>
+
+<!-- STORE -->
+<div id="page-store" class="page">
+
+    <div class="store-page-wrap" style="max-width:960px; margin:0 auto; padding:3rem 2rem;">
+
+      <div class="store-hdr" style="margin-bottom:3rem;">
+        <h1>CYBERSECURITY HARDWARE CATALOG</h1>
+        <p style="margin:0.5rem 0 0.25rem; line-height:1.8;">Handbuilt. Tested. Shipped.</p>
+        <p style="margin:0; opacity:0.55; font-size:0.85rem;">Allow 3&ndash;6 weeks &nbsp;&middot;&nbsp; Buyer pays shipping &nbsp;&middot;&nbsp; PayPal &nbsp;&middot;&nbsp; Cash App</p>
+      </div>
+
+      <!-- PRODUCT 1 -->
+      <div class="store-card" style="border-radius:10px; padding:2rem; margin-bottom:2.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+          <div>
+            <p class="store-cat" style="margin:0 0 0.25rem; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.12em;">RF Hardware &middot; Standard</p>
+            <h2 style="margin:0;">Cantenna — Standard</h2>
+          </div>
+          <span class="store-price-tag" style="font-size:2rem; font-weight:700;">$50</span>
+        </div>
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kgthetech%40gmail.com&item_name=Cantenna+Standard&amount=50.00&currency_code=USD&no_shipping=0" target="_blank" style="display:block; text-decoration:none; margin-bottom:1.5rem; cursor:pointer;" title="Click to buy — Cantenna Standard">
+          <img src="images/products/cantenna-24ghz/cantenna-01.jpg" alt="Cantenna Standard — 2.4GHz directional Wi-Fi antenna" style="width:100%; height:220px; object-fit:cover; display:block;">
+        </a>
+        <p style="margin:0 0 1.2rem; line-height:1.9;">Directional 2.4GHz Wi-Fi antenna. 14dBi gain, 22&deg; beam, up to 300m range. Accurately built to 1/4 wavelength spec. Female N-type connector. No tripod included.</p>
+        <button onclick="toggleAcc(this)" style="cursor:pointer; padding:0.5rem 1.25rem; font-size:0.85rem; font-weight:700; border:1px solid currentColor; background:transparent; color:inherit; border-radius:4px; margin-bottom:1.2rem;">+ Full Description</button>
+        <div style="display:none; margin-bottom:1.5rem; padding:1.5rem; border-radius:6px; background:rgba(128,128,128,0.08);">
+          <p style="margin:0 0 1.2rem; line-height:1.9;">This is a 2.4 GHz Cantenna designed for Wi-Fi range extension. It's especially useful for those seeking much needed longer range, and it's ideal for pentesters (penetration testing, ethical hackers, white hat hackers). Or anyone else looking for range out of their Wi-Fi adapter.</p>
+          <p style="margin:0 0 1.2rem; line-height:1.9;">It works very well, providing great range and excellent penetration through walls for a reliable connection. Built personally to ensure a professional finish.</p>
+          <p style="margin:0 0 1.2rem; line-height:1.9;">Connection Type: Female N-type connector. You will need a Male N-type to SMA connector for your Wi-Fi card. This cantenna is accurately built, adhering to the 1/4 wavelength guide for the can's diameter. This ensures precise functionality — it's not just a can with a random metal pole placed inside.</p>
+          <p style="margin:0 0 1.2rem; line-height:1.9;">This 2.4GHz Cantenna is designed to connect to signals up to 300 meters away. It has a 14dBi gain that concentrates the signal into a narrow 22-degree beam, making it highly directional and requiring precise aiming at the access point. Despite the narrow beam, it performs well through obstacles like trees, making it effective even without a direct line of sight.</p>
+          <p style="margin:0 0 0.5rem;"><strong><u>Package Includes:</u></strong></p>
+          <ul style="margin:0 0 0; padding-left:1.4rem; line-height:2.1;">
+            <li>Custom built 2.4GHz Cantenna BLACK (as shown in pictures)</li>
+            <li>No tripod included &mdash; NOTE: Cantenna takes a 1/4th thread for mounting, NOT 3/8ths</li>
+          </ul>
+        </div>
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:1rem;">
+          <a href="https://www.tiktok.com/@kgthetech/video/7588687310019956023" target="_blank" style="font-size:0.78rem; padding:0.3rem 0.75rem; border:1px solid; border-radius:4px; opacity:0.65; text-decoration:none; color:inherit;">&#x25B6; Cantenna Build</a>
+          <a href="https://www.tiktok.com/@kgthetech/video/7570463042387971383" target="_blank" style="font-size:0.78rem; padding:0.3rem 0.75rem; border:1px solid; border-radius:4px; opacity:0.65; text-decoration:none; color:inherit;">&#x25B6; DIY Cantenna Guide</a>
+        </div>
+        <p style="margin:0 0 1.5rem; font-size:0.78rem; opacity:0.5;">2.4 GHz &nbsp;&middot;&nbsp; 14 dBi &nbsp;&middot;&nbsp; 22&deg; Beam &nbsp;&middot;&nbsp; 300m Range &nbsp;&middot;&nbsp; N-Connector</p>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center; margin-top:1.25rem;">
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kgthetech%40gmail.com&item_name=Cantenna+Standard&amount=50.00&currency_code=USD&no_shipping=0" target="_blank" style="display:inline-block; padding:0.85rem 2rem; font-weight:700; text-decoration:none; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Buy Now via PayPal &rarr;</a>
+        <button onclick="addToCart('Cantenna Standard', 50.0)" style="padding:0.85rem 1.5rem; font-weight:700; cursor:pointer; background:transparent; border:1px solid rgba(128,128,128,0.4); border-radius:6px; color:inherit; font-size:0.88rem;">+ Add to Cart</button>
+      </div>
+      </div>
+
+      <!-- PRODUCT 2 -->
+      <div class="store-card" style="border-radius:10px; padding:2rem; margin-bottom:2.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+          <div>
+            <p class="store-cat" style="margin:0 0 0.25rem; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.12em;">RF Hardware &middot; Heavy Duty</p>
+            <h2 style="margin:0;">Cantenna — Heavy Duty</h2>
+          </div>
+          <span class="store-price-tag" style="font-size:2rem; font-weight:700;">$150</span>
+        </div>
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kgthetech%40gmail.com&item_name=Cantenna+Heavy+Duty&amount=150.00&currency_code=USD&no_shipping=0" target="_blank" style="display:block; text-decoration:none; margin-bottom:1.5rem; cursor:pointer;" title="Click to buy — Cantenna Heavy Duty">
+          <img src="images/products/cantenna-24ghz/cantenna-05.jpg" alt="Cantenna Heavy Duty — 3mm steel 2.4GHz directional antenna" style="width:100%; height:220px; object-fit:cover; display:block;">
+        </a>
+        <p style="margin:0 0 1.2rem; line-height:1.9;">Heavy-duty 2.4GHz directional antenna built from 3mm car exhaust pipe. Extremely durable. 14dBi, 22&deg; beam, 300m range. Tripod and custom wire included.</p>
+        <button onclick="toggleAcc(this)" style="cursor:pointer; padding:0.5rem 1.25rem; font-size:0.85rem; font-weight:700; border:1px solid currentColor; background:transparent; color:inherit; border-radius:4px; margin-bottom:1.2rem;">+ Full Description</button>
+        <div style="display:none; margin-bottom:1.5rem; padding:1.5rem; border-radius:6px; background:rgba(128,128,128,0.08);">
+          <p style="margin:0 0 1.2rem; line-height:1.9;">This is a 2.4 GHz Cantenna designed for Wi-Fi range extension. It's especially useful for those seeking much needed longer range, and it's ideal for pentesters (penetration testing, ethical, white hat, and red team). Or anyone else looking for range out of their Wi-Fi adapter.</p>
+          <p style="margin:0 0 1.2rem; line-height:1.9;">It works very well, providing great range and excellent penetration through walls for a reliable connection. Built personally to ensure a professional finish.</p>
+          <p style="margin:0 0 1.2rem; line-height:1.9;">Connection Type: Female N-type connector. You will need a Male N-type to SMA connector for your Wi-Fi card. This cantenna is accurately built, adhering to the 1/4 wavelength guide for the can's diameter. This ensures precise functionality — it's not just a can with a random metal pole placed inside.</p>
+          <p style="margin:0 0 1.2rem; line-height:1.9;">This version of the cantenna is made out of heavy material 3mm thick, and very durable. All custom made. Comes with a very high quality tripod (as shown in pictures and video).</p>
+          <p style="margin:0 0 1.2rem; line-height:1.9;">This 2.4GHz Cantenna is designed to connect to signals up to 300 meters away. It has a 14dBi gain that concentrates the signal into a narrow 22-degree beam, making it highly directional and requiring precise aiming at the access point. Despite the narrow beam, it performs well through obstacles like trees, making it effective even without a direct line of sight.</p>
+          <p style="margin:0 0 0.5rem;"><strong><u>Package Includes:</u></strong></p>
+          <ul style="margin:0 0 0; padding-left:1.4rem; line-height:2.1;">
+            <li>Custom built 2.4GHz Cantenna &mdash; 3mm thick heavy material, extremely durable</li>
+            <li>1 high quality tripod (refer to photos)</li>
+            <li>1 wire (custom made)</li>
+          </ul>
+        </div>
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:1rem;">
+          <a href="https://www.tiktok.com/@kgthetech/video/7588687310019956023" target="_blank" style="font-size:0.78rem; padding:0.3rem 0.75rem; border:1px solid; border-radius:4px; opacity:0.65; text-decoration:none; color:inherit;">&#x25B6; Cantenna Build</a>
+          <a href="https://www.tiktok.com/@kgthetech/video/7570463042387971383" target="_blank" style="font-size:0.78rem; padding:0.3rem 0.75rem; border:1px solid; border-radius:4px; opacity:0.65; text-decoration:none; color:inherit;">&#x25B6; DIY Cantenna Guide</a>
+        </div>
+        <p style="margin:0 0 1.5rem; font-size:0.78rem; opacity:0.5;">2.4 GHz &nbsp;&middot;&nbsp; 14 dBi &nbsp;&middot;&nbsp; 3mm Steel &nbsp;&middot;&nbsp; Tripod Included &nbsp;&middot;&nbsp; Custom Wire</p>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center; margin-top:1.25rem;">
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kgthetech%40gmail.com&item_name=Cantenna+Heavy+Duty&amount=150.00&currency_code=USD&no_shipping=0" target="_blank" style="display:inline-block; padding:0.85rem 2rem; font-weight:700; text-decoration:none; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Buy Now via PayPal &rarr;</a>
+        <button onclick="addToCart('Cantenna Heavy Duty', 150.0)" style="padding:0.85rem 1.5rem; font-weight:700; cursor:pointer; background:transparent; border:1px solid rgba(128,128,128,0.4); border-radius:6px; color:inherit; font-size:0.88rem;">+ Add to Cart</button>
+      </div>
+      </div>
+
+      <!-- PRODUCT 3 -->
+      <div class="store-card" style="border-radius:10px; padding:2rem; margin-bottom:2.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+          <div>
+            <p class="store-cat" style="margin:0 0 0.25rem; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.12em;">Security Hardware</p>
+            <h2 style="margin:0;">ESP32 Wardriver Kit</h2>
+          </div>
+          <span class="store-price-tag" style="font-size:2rem; font-weight:700;">$150</span>
+        </div>
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kgthetech%40gmail.com&item_name=ESP32+Wardriver+Kit&amount=150.00&currency_code=USD&no_shipping=0" target="_blank" style="display:block; text-decoration:none; margin-bottom:1.5rem; cursor:pointer;" title="Click to buy — ESP32 Wardriver Kit">
+          <img src="images/products/wardriver/KGPL7082.png" alt="ESP32 Wardriver Kit — custom-assembled wardriving platform" style="width:100%; height:220px; object-fit:cover; display:block;">
+        </a>
+        <p style="margin:0 0 1.2rem; line-height:1.9;">Custom-assembled ESP32 wardriving platform. Dual Wi-Fi antennas, GPS, NRF24, MicroSD on one board. C++ firmware writes Wigle.net-compatible records to SD. No phone, no cloud, fully standalone.</p>
+        <button onclick="toggleAcc(this)" style="cursor:pointer; padding:0.5rem 1.25rem; font-size:0.85rem; font-weight:700; border:1px solid currentColor; background:transparent; color:inherit; border-radius:4px; margin-bottom:1.2rem;">+ Full Description</button>
+        <div style="display:none; margin-bottom:1.5rem; padding:1.5rem; border-radius:6px; background:rgba(128,128,128,0.08);">
+          <p style="margin:0 0 1.2rem; line-height:1.9;">This ESP32 Wi-Fi Signal Survey &amp; Developer Kit is an open-hardware electronics kit for hobbyists, educators, and RF/IoT developers. It's ideal for learning about wireless signals, prototype development, and lab-based signal-strength experiments.</p>
+          <p style="margin:0 0 1.2rem; line-height:1.9;">The kit contains an ESP32-based board with antenna connectors, a MicroSD socket for user-controlled logging, and a GPS antenna connector for timestamp/location experiments you have legal permission to run. Ships as a development kit with minimal demonstration firmware to help you get started.</p>
+          <p style="margin:0 0 1.2rem; line-height:1.9;">The firmware handles simultaneous Wi-Fi scanning and GPS fix acquisition, writing timestamped, GPS-tagged signal records directly to the SD card in Wigle.net-compatible format. No phone required, no cloud dependency — the device operates fully standalone in the field.</p>
+          <p style="margin:0 0 1.2rem; line-height:1.9;">Every unit is hand-assembled and tested. Antenna placements, connector types, and firmware configuration chosen for real-world signal survey work — not a hobbyist breadboard prototype.</p>
+          <p style="margin:0 0 0.5rem;"><strong><u>What's Included:</u></strong></p>
+          <ul style="margin:0 0 1.2rem; padding-left:1.4rem; line-height:2.1;">
+            <li>ESP32 development board (assembled) &mdash; minimal demo firmware</li>
+            <li>1x GPS antenna connector (antenna included)</li>
+            <li>2x Wi-Fi antenna connectors (antennas included)</li>
+            <li>1x MicroSD socket (card included; formatted for user data)</li>
+            <li>Wiring harness &amp; quickstart sheet</li>
+          </ul>
+          <p style="margin:0; font-size:0.82rem; opacity:0.65; line-height:1.8;"><strong>Legal Notice:</strong> Intended for authorized signal testing, academic lab use, and electronics hobby projects only. Do not use to scan, log, map, or access networks you do not own or have explicit permission to test. Buyer solely responsible for compliance with all applicable laws.</p>
+        </div>
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:1rem;">
+          <a href="https://www.tiktok.com/@kgthetech/video/7576932074850946359" target="_blank" style="font-size:0.78rem; padding:0.3rem 0.75rem; border:1px solid; border-radius:4px; opacity:0.65; text-decoration:none; color:inherit;">&#x25B6; Wardriver Done Differently</a>
+          <a href="https://www.tiktok.com/@kgthetech/video/7569744930575355191" target="_blank" style="font-size:0.78rem; padding:0.3rem 0.75rem; border:1px solid; border-radius:4px; opacity:0.65; text-decoration:none; color:inherit;">&#x25B6; What's In the Kit</a>
+          <a href="https://www.tiktok.com/@kgthetech/video/7570028760683072781" target="_blank" style="font-size:0.78rem; padding:0.3rem 0.75rem; border:1px solid; border-radius:4px; opacity:0.65; text-decoration:none; color:inherit;">&#x25B6; Wigle.net Enabled</a>
+        </div>
+        <p style="margin:0 0 1.5rem; font-size:0.78rem; opacity:0.5;">ESP32 &nbsp;&middot;&nbsp; GPS &nbsp;&middot;&nbsp; Dual Wi-Fi &nbsp;&middot;&nbsp; MicroSD &nbsp;&middot;&nbsp; NRF24 &nbsp;&middot;&nbsp; Wigle.net</p>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center; margin-top:1.25rem;">
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kgthetech%40gmail.com&item_name=ESP32+Wardriver+Kit&amount=150.00&currency_code=USD&no_shipping=0" target="_blank" style="display:inline-block; padding:0.85rem 2rem; font-weight:700; text-decoration:none; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Buy Now via PayPal &rarr;</a>
+        <button onclick="addToCart('ESP32 Wardriver Kit', 150.0)" style="padding:0.85rem 1.5rem; font-weight:700; cursor:pointer; background:transparent; border:1px solid rgba(128,128,128,0.4); border-radius:6px; color:inherit; font-size:0.88rem;">+ Add to Cart</button>
+      </div>
+      </div>
+
+      <div style="padding:1.25rem 1.5rem; border:1px solid rgba(200,100,0,0.4); border-radius:8px; font-size:0.82rem; line-height:1.85; opacity:0.75;">
+        <strong>Legal Notice:</strong> All products sold by KGTheTech LLC are intended exclusively for authorized testing, educational purposes, and lawful use on networks and systems the buyer owns or has explicit written permission to test. Buyer assumes full legal responsibility. Unauthorized access to networks or communications is a federal crime.
+      </div>
+  <!-- MERCH -->
+  <div style="max-width:960px; margin:3rem auto 0; padding:0 2rem 1rem; border-top:1px solid rgba(128,128,128,0.2);">
+    <h1 style="margin:2.5rem 0 0.5rem;">LAB MERCHANDISE</h1>
+    <p style="margin:0 0 0.5rem; opacity:0.7;">Cybersecurity hardware lab apparel. Print-on-demand &mdash; zero waste, fresh print every order.</p>
+    <p style="margin:0 0 2.5rem; font-size:0.82rem; opacity:0.5;">Ships US + Canada &nbsp;&middot;&nbsp; Free shipping over $50 &nbsp;&middot;&nbsp; 7-day returns</p>
+    <div style="text-align:center; padding:1.5rem; border:1px solid rgba(128,128,128,0.2); border-radius:10px; margin-bottom:2.5rem;"><p style="font-size:1.1rem; font-weight:700; margin:0 0 0.35rem;">COMING SOON</p><p style="margin:0; opacity:0.6; font-size:0.88rem;">Merch is in production. Subscribe to get notified when it drops.</p></div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1.5rem;">
+      <div class="merch-card" style="border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden;"><div style="height:180px; display:flex; align-items:center; justify-content:center; opacity:0.25; border-bottom:1px solid rgba(128,128,128,0.2); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;">[ CANTENNA TEE ]</div><div style="padding:1.25rem;"><h3 style="margin:0 0 0.35rem; font-size:1rem;">Cantenna Tee</h3><p style="margin:0 0 0.25rem; opacity:0.6; font-size:0.82rem;">2.4 GHz, 14 dBi gain, blueprint print.</p><p style="margin:0.75rem 0 1rem; font-size:1.2rem; font-weight:800;">$29</p><a href="mailto:kg@kgthetech.com?subject=Order: Cantenna Tee ($29)" style="display:block; padding:0.65rem; font-weight:700; text-decoration:none; text-align:center; color:inherit; border:1px solid currentColor; border-radius:6px; font-size:0.82rem;">Order &rarr;</a></div></div>
+      <div class="merch-card" style="border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden;"><div style="height:180px; display:flex; align-items:center; justify-content:center; opacity:0.25; border-bottom:1px solid rgba(128,128,128,0.2); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;">[ HOB TEE ]</div><div style="padding:1.25rem;"><h3 style="margin:0 0 0.35rem; font-size:1rem;">Hacking on a Budget Tee</h3><p style="margin:0 0 0.25rem; opacity:0.6; font-size:0.82rem;">The brand slogan. Bold front print.</p><p style="margin:0.75rem 0 1rem; font-size:1.2rem; font-weight:800;">$29</p><a href="mailto:kg@kgthetech.com?subject=Order: Hacking on a Budget Tee ($29)" style="display:block; padding:0.65rem; font-weight:700; text-decoration:none; text-align:center; color:inherit; border:1px solid currentColor; border-radius:6px; font-size:0.82rem;">Order &rarr;</a></div></div>
+      <div class="merch-card" style="border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden;"><div style="height:180px; display:flex; align-items:center; justify-content:center; opacity:0.25; border-bottom:1px solid rgba(128,128,128,0.2); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;">[ ESP32 PINOUT TEE ]</div><div style="padding:1.25rem;"><h3 style="margin:0 0 0.35rem; font-size:1rem;">ESP32 Pinout Tee</h3><p style="margin:0 0 0.25rem; opacity:0.6; font-size:0.82rem;">Full pinout diagram on the back.</p><p style="margin:0.75rem 0 1rem; font-size:1.2rem; font-weight:800;">$29</p><a href="mailto:kg@kgthetech.com?subject=Order: ESP32 Pinout Tee ($29)" style="display:block; padding:0.65rem; font-weight:700; text-decoration:none; text-align:center; color:inherit; border:1px solid currentColor; border-radius:6px; font-size:0.82rem;">Order &rarr;</a></div></div>
+      <div class="merch-card" style="border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden;"><div style="height:180px; display:flex; align-items:center; justify-content:center; opacity:0.25; border-bottom:1px solid rgba(128,128,128,0.2); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;">[ KGTHETECH HOODIE ]</div><div style="padding:1.25rem;"><h3 style="margin:0 0 0.35rem; font-size:1rem;">KGTHETECH Hoodie</h3><p style="margin:0 0 0.25rem; opacity:0.6; font-size:0.82rem;">Embroidered logo. Premium heavyweight fleece.</p><p style="margin:0.75rem 0 1rem; font-size:1.2rem; font-weight:800;">$55</p><a href="mailto:kg@kgthetech.com?subject=Order: KGTHETECH Hoodie ($55)" style="display:block; padding:0.65rem; font-weight:700; text-decoration:none; text-align:center; color:inherit; border:1px solid currentColor; border-radius:6px; font-size:0.82rem;">Order &rarr;</a></div></div>
+            <div class="merch-card" style="border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden;"><div style="height:180px; display:flex; align-items:center; justify-content:center; opacity:0.25; border-bottom:1px solid rgba(128,128,128,0.2); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;">[ KGTHETECH STICKER PACK ]</div><div style="padding:1.25rem;"><h3 style="margin:0 0 0.35rem; font-size:1rem;">Lab Sticker Pack</h3><p style="margin:0 0 0.25rem; opacity:0.6; font-size:0.82rem;">5 die-cut stickers. Cantenna, ESP32, wardriver logos.</p><p style="margin:0.75rem 0 1rem; font-size:1.2rem; font-weight:800;">$8</p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kgthetech%40gmail.com&item_name=Lab+Sticker+Pack&amount=8.00&currency_code=USD&no_shipping=0" target="_blank" style="display:block; padding:0.65rem; font-weight:700; text-decoration:none; text-align:center; color:inherit; border:1px solid currentColor; border-radius:6px; font-size:0.82rem;">Order &rarr;</a></div></div>
+      <div class="merch-card" style="border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden;"><div style="height:180px; display:flex; align-items:center; justify-content:center; opacity:0.25; border-bottom:1px solid rgba(128,128,128,0.2); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;">[ KGTHETECH CAP ]</div><div style="padding:1.25rem;"><h3 style="margin:0 0 0.35rem; font-size:1rem;">KGTHETECH 5-Panel Cap</h3><p style="margin:0 0 0.25rem; opacity:0.6; font-size:0.82rem;">Embroidered logo. Structured fit. Black.</p><p style="margin:0.75rem 0 1rem; font-size:1.2rem; font-weight:800;">$35</p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kgthetech%40gmail.com&item_name=KGTHETECH+5-Panel+Cap&amount=35.00&currency_code=USD&no_shipping=0" target="_blank" style="display:block; padding:0.65rem; font-weight:700; text-decoration:none; text-align:center; color:inherit; border:1px solid currentColor; border-radius:6px; font-size:0.82rem;">Order &rarr;</a></div></div>
+    </div>
+  </div>
+
     </div>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1 class="tagline">HACKING ON A BUDGET</h1>
-                <p class="subtitle">Handmade Cybersecurity Tools & Ethical Hacking Hardware</p>
-                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 0 auto var(--spacing-md);">
-                    Custom-built Wi-Fi antennas, signal survey kits, and penetration testing hardware. Every piece handmade by KGTHETECH in Aurora, Colorado. No factory lines. No mass production. Built from scratch, built to last.
-                </p>
-                <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
-                    <a href="store.html" class="btn btn-primary pulse">Shop Now</a>
-                    <a href="about.html" class="btn btn-secondary">My Story</a>
-                    <a href="videos.html" class="btn btn-tertiary">Watch Builds</a>
-                </div>
-            </div>
-        </section>
+</div>
 
-        <!-- What We Build -->
-        <section>
-            <h2 style="text-align: center;">WHAT WE BUILD</h2>
-            <p style="text-align: center; font-size: 1.1rem; margin-bottom: var(--spacing-lg); color: rgba(255, 255, 255, 0.8);">
-                Every tool is designed, assembled, and tested by hand. These are real tools for real work.
-            </p>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-content">
-                        <img src="images/products/wardriver/KGPL7082.png" alt="ESP32 Wi-Fi Signal Survey Kit assembled" style="width:100%; height:250px; object-fit:cover; border-radius:var(--radius-md); border:2px solid var(--gold); margin-bottom:var(--spacing-sm);">
-                        <h3>ESP32 Wi-Fi Signal Survey Kit</h3>
-                        <p>Open-hardware development kit for RF/IoT hobbyists and educators. ESP32 board, GPS antenna, dual Wi-Fi antennas, MicroSD logging. Ready out of the box.</p>
-                        <p class="card-price">$150</p>
-                        <a href="store.html#product-esp32" class="btn btn-primary" style="width: 100%;">View Details</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <img src="images/products/cantenna-24ghz/cantenna-01.jpg" alt="2.4GHz Cantenna Standard" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius-md); border: 2px solid var(--gold); margin-bottom: var(--spacing-sm);">
-                        <h3>Cantenna Standard</h3>
-                        <p>2.4 GHz directional Wi-Fi antenna. 14dBi gain, 22-degree beam, up to 300m range. Accurately built to 1/4 wavelength specs. Tripod and cable included.</p>
-                        <p class="card-price">$50</p>
-                        <a href="store.html#product-cantenna-standard" class="btn btn-primary" style="width: 100%;">View Details</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <img src="images/products/cantenna-24ghz/cantenna-05.jpg" alt="Cantenna Heavy Duty" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius-md); border: 2px solid var(--gold); margin-bottom: var(--spacing-sm);">
-                        <h3>Cantenna Heavy Duty</h3>
-                        <p>The tank-built version. Same specs as the standard, but constructed from thick car exhaust pipe tubing. Virtually indestructible. Professional grade.</p>
-                        <p class="card-price">$150</p>
-                        <a href="store.html#product-cantenna-heavy" class="btn btn-primary" style="width: 100%;">View Details</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Why KG The Tech -->
-        <section style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%); border: 2px solid var(--gold); border-radius: var(--radius-lg); padding: var(--spacing-lg);">
-            <h2 style="text-align: center;">WHY KG THE TECH</h2>
-            <div class="card-grid" style="margin-top: var(--spacing-md);">
-                <div style="text-align: center;">
-                    <div style="font-size: 3rem;">🔨</div>
-                    <h3 style="color: var(--gold);">Handmade</h3>
-                    <p>Every device is built by hand, one at a time. No assembly lines, no overseas factories. You get something real.</p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 3rem;">📐</div>
-                    <h3 style="color: var(--gold);">Precision-Built</h3>
-                    <p>Cantennas are built to exact 1/4 wavelength specifications. Not a random pole in a can. Engineering matters.</p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 3rem;">✅</div>
-                    <h3 style="color: var(--gold);">Ready to Use</h3>
-                    <p>Fully assembled, tested, and shipped. No soldering, no configuration. Plug in and go.</p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 3rem;">💰</div>
-                    <h3 style="color: var(--gold);">Budget-Friendly</h3>
-                    <p>Professional-grade tools without professional-grade prices. Cybersecurity hardware shouldn't cost a fortune.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- About KGTHETECH (Brief) -->
-        <section style="background: rgba(57, 255, 20, 0.05); border: 2px solid var(--neon-green); border-radius: var(--radius-lg); padding: var(--spacing-lg);">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <h2 style="text-align: center;">BUILT BY KG THE TECH</h2>
-                <p style="font-size: 1.1rem; text-align: center; color: rgba(255, 255, 255, 0.9);">
-                    Self-taught since 2004. 20+ years in networking and system administration. From New York, now building in Aurora, Colorado. Every dollar from sales goes toward parts, certifications, equipment, and survival. This is real — no corporate backing, no investors, just hustle.
-                </p>
-                <p style="text-align: center; margin-top: var(--spacing-md);">
-                    <a href="about.html" class="btn btn-secondary">Read the Full Story</a>
-                </p>
-            </div>
-        </section>
-
-        <!-- Legal Notice (Brief) -->
-        <section class="disclaimer">
-            <h4>LEGAL NOTICE</h4>
-            <p>All products sold by KG The Tech / KGTheTech LLC are intended exclusively for authorized testing, educational purposes, and lawful use on networks and systems the buyer owns or has explicit written permission to test. Buyer assumes full legal responsibility for use. Unauthorized access to networks or communications is a federal crime. <a href="store.html#disclaimer" style="color: var(--cyan);">Read full legal disclaimer.</a></p>
-            <div class="social-links" style="margin-top:var(--spacing-md);">
-                <a href="https://www.tiktok.com/@kgthetech" target="_blank" class="social-link">
-                    <span>🎵</span> TikTok: @kgthetech
-                </a>
-                <a href="https://www.instagram.com/kgphotographylov3" target="_blank" class="social-link">
-                    <span>📸</span> Instagram: @kgphotographylov3
-                </a>
-                <a href="https://beacons.ai/kgthetech" target="_blank" class="social-link">
-                    <span>🔗</span> Beacons
-                </a>
-                <a href="mailto:kg@kgthetech.com" class="social-link">
-                    <span>✉️</span> kg@kgthetech.com
-                </a>
-            </div>
-            <p style="text-align: center; margin-top: var(--spacing-sm); font-size: 0.9rem; color: rgba(255,255,255,0.5);">
-                LinkedIn: <a href="https://www.linkedin.com/in/kennygee" target="_blank" style="color: rgba(255,255,255,0.6);">/in/kennygee</a>
-                &nbsp;·&nbsp;
-                GitHub: <a href="https://github.com/zzeronerzz" target="_blank" style="color: rgba(255,255,255,0.6);">@zzeronerzz</a>
-            </p>
-        </section>
-
-        <!-- Newsletter -->
-        <section class="newsletter">
-            <h3>STAY IN THE LOOP</h3>
-            <p>Get notified about new builds, restocks, and tutorials.</p>
-            <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
-                <input type="email" placeholder="Your email address" required>
-                <button type="submit" class="btn btn-tertiary">Subscribe</button>
-            </form>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>KG THE TECH</h4>
-                <p>Hacking on a Budget</p>
-                <p>Aurora, Colorado</p>
-                <p>KGTheTech LLC</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="store.html">Store</a></li>
-                                <li><a href="guides/index.html">Guides</a></li>
-                <li><a href="videos.html">Videos</a></li>
-                    <li><a href="subscribe.html">Subscribe</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <ul>
-                    <li><a href="https://www.tiktok.com/@kgthetech" target="_blank">TikTok: @kgthetech</a></li>
-                    <li><a href="https://beacons.ai/kgthetech" target="_blank">Beacons</a></li>
-                    <li><a href="https://www.linkedin.com/in/kennygee" target="_blank">LinkedIn</a></li>
-                    <li><a href="https://github.com/zzeronerzz" target="_blank">GitHub</a></li>
-                    <li><a href="mailto:kg@kgthetech.com">Email</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="store.html#disclaimer">Legal Disclaimer</a></li>
-                    <li><a href="about.html">About KGTHETECH</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-                <p style="margin-top: var(--spacing-sm);">All products are for authorized testing and educational use only.</p>
-            </div>
+<!-- PORTFOLIO -->
+<div id="page-portfolio" class="page">
+  <div class="port-header-urb">
+    <h1>PROJECT<br><span class="y">PORTFOLIO</span></h1>
+    <p>Real builds. No prototypes, no mockups.</p>
+  </div>
+  <div class="port-sec-urb">
+    <h2>HARDWARE PROJECTS</h2>
+    <div class="port-grid-urb">
+      <div class="port-card-urb">
+        <div style="height:120px; background:#0a0a0a; border-bottom:2px solid var(--yellow); display:flex; align-items:center; justify-content:center; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:#333; margin:-1.5rem -1.5rem 0.75rem -1.5rem;">ESP32 WARDRIVER</div>
+        <div class="port-card-head-urb"><div class="port-card-name-urb">ESP32 Wardriver</div><div class="port-status-urb">FOR SALE</div></div>
+        <p class="port-desc-urb">Signature build. ESP32, dual 2.4GHz radios, GPS, NRF24, MicroSD. C++ firmware from scratch. Wigle.net compatible. No cloud, no phone.</p>
+        <div style="margin-bottom:0.65rem;">
+          <a href="https://www.tiktok.com/@kgthetech/video/7576932074850946359" target="_blank" style="display:block; font-size:0.68rem; color:var(--yellow); font-weight:900; text-transform:uppercase; letter-spacing:0.05em; padding:0.1rem 0; text-decoration:none;">&#9654; Wardriver Done Differently</a>
+          <a href="https://www.tiktok.com/@kgthetech/video/7569744930575355191" target="_blank" style="display:block; font-size:0.68rem; color:var(--yellow); font-weight:900; text-transform:uppercase; letter-spacing:0.05em; padding:0.1rem 0; text-decoration:none;">&#9654; What's In the Kit</a>
+          <a href="https://www.tiktok.com/@kgthetech/video/7570028760683072781" target="_blank" style="display:block; font-size:0.68rem; color:var(--yellow); font-weight:900; text-transform:uppercase; letter-spacing:0.05em; padding:0.1rem 0; text-decoration:none;">&#9654; Wigle.net Enabled</a>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 KGTheTech LLC. All rights reserved. | Built from the hood, for the culture.</p>
+        <div class="port-tags-urb"><span class="port-tag-urb">ESP32</span><span class="port-tag-urb">Dual Radio</span><span class="port-tag-urb">GPS</span><span class="port-tag-urb">NRF24</span><span class="port-tag-urb">MicroSD</span><span class="port-tag-urb">C++ Firmware</span></div>
+      </div>
+      <div class="port-card-urb">
+        <div style="height:120px; background:#0a0a0a; border-bottom:2px solid var(--yellow); display:flex; align-items:center; justify-content:center; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:#333; margin:-1.5rem -1.5rem 0.75rem -1.5rem;">SDR CYBERDECK</div>
+        <div class="port-card-head-urb"><div class="port-card-name-urb">SDR Cyberdeck</div><div class="port-status-urb" style="background:#3b82f6;color:#fff;">ACTIVE BUILD</div></div>
+        <p class="port-desc-urb">Raspberry Pi 5 + NVMe HAT. Kali Linux, RTL-SDR, multiple wireless interfaces. Portable autonomous security research platform.</p>
+        <div style="margin-bottom:0.65rem;">
+          <a href="https://www.tiktok.com/@kgthetech" target="_blank" style="display:block; font-size:0.68rem; color:var(--yellow); font-weight:900; text-transform:uppercase; letter-spacing:0.05em; padding:0.1rem 0; text-decoration:none;">&#9654; SDR Cyberdeck Explained</a>
+          <a href="https://www.tiktok.com/@kgthetech" target="_blank" style="display:block; font-size:0.68rem; color:var(--yellow); font-weight:900; text-transform:uppercase; letter-spacing:0.05em; padding:0.1rem 0; text-decoration:none;">&#9654; Progress Update</a>
         </div>
-    </footer>
+        <div class="port-tags-urb"><span class="port-tag-urb">RPi5</span><span class="port-tag-urb">NVMe HAT</span><span class="port-tag-urb">Kali</span><span class="port-tag-urb">SDR-RTL</span><span class="port-tag-urb">Monitor Mode</span></div>
+      </div>
+      <div class="port-card-urb">
+        <div style="height:120px; background:#0a0a0a; border-bottom:2px solid var(--yellow); display:flex; align-items:center; justify-content:center; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:#333; margin:-1.5rem -1.5rem 0.75rem -1.5rem;">CANTENNA HEAVY DUTY</div>
+        <div class="port-card-head-urb"><div class="port-card-name-urb">Cantenna Heavy Duty</div><div class="port-status-urb">CUSTOM BUILD</div></div>
+        <p class="port-desc-urb">Custom-fabricated 2.4GHz directional from 3mm car exhaust pipe. 14dBi, 22° beam, 300m range. Exact 1/4 wavelength spec.</p>
+        <div style="margin-bottom:0.65rem;">
+          <a href="https://www.tiktok.com/@kgthetech/video/7588687310019956023" target="_blank" style="display:block; font-size:0.68rem; color:var(--yellow); font-weight:900; text-transform:uppercase; letter-spacing:0.05em; padding:0.1rem 0; text-decoration:none;">&#9654; Cantenna Build</a>
+          <a href="https://www.tiktok.com/@kgthetech/video/7570463042387971383" target="_blank" style="display:block; font-size:0.68rem; color:var(--yellow); font-weight:900; text-transform:uppercase; letter-spacing:0.05em; padding:0.1rem 0; text-decoration:none;">&#9654; DIY Cantenna Guide</a>
+        </div>
+        <div class="port-tags-urb"><span class="port-tag-urb">2.4GHz</span><span class="port-tag-urb">14dBi</span><span class="port-tag-urb">22° Beam</span><span class="port-tag-urb">300m</span><span class="port-tag-urb">3mm Steel</span></div>
+      </div>
+      <div class="port-card-urb">
+        <div style="height:120px; background:#0a0a0a; border-bottom:2px solid var(--yellow); display:flex; align-items:center; justify-content:center; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:#333; margin:-1.5rem -1.5rem 0.75rem -1.5rem;">ESP32 MARAUDER</div>
+        <div class="port-card-head-urb"><div class="port-card-name-urb">ESP32 Marauder</div><div class="port-status-urb">BUILT</div></div>
+        <p class="port-desc-urb">Configured for authorized WiFi recon, deauth testing, and network monitoring in lab environments.</p>
+        <div class="port-tags-urb"><span class="port-tag-urb">ESP32</span><span class="port-tag-urb">WiFi Recon</span><span class="port-tag-urb">Deauth</span><span class="port-tag-urb">Firmware</span></div>
+      </div>
+      <div class="port-card-urb">
+        <div style="height:120px; background:#0a0a0a; border-bottom:2px solid var(--yellow); display:flex; align-items:center; justify-content:center; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:#333; margin:-1.5rem -1.5rem 0.75rem -1.5rem;">DISCRETE WIFI PINEAPPLE</div>
+        <div class="port-card-head-urb"><div class="port-card-name-urb">Discrete DIY WiFi Pineapple</div><div class="port-status-urb">COMPACT BUILD</div></div>
+        <p class="port-desc-urb">GL.iNet router, 30 modules. Captive portals, rogue AP. Portable. Costs a fraction of a Hak5.</p>
+        <div style="margin-bottom:0.65rem;">
+          <a href="https://www.tiktok.com/@kgthetech" target="_blank" style="display:block; font-size:0.68rem; color:var(--yellow); font-weight:900; text-transform:uppercase; letter-spacing:0.05em; padding:0.1rem 0; text-decoration:none;">&#9654; Pineapple vs Hak5 $240</a>
+        </div>
+        <div class="port-tags-urb"><span class="port-tag-urb">GL.iNet</span><span class="port-tag-urb">30 Modules</span><span class="port-tag-urb">Captive Portal</span><span class="port-tag-urb">Rogue AP</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="port-sec-urb" style="border-bottom:none;">
+    <h2>SOFTWARE &amp; AI</h2>
+    <div class="port-grid-urb">
+      <div class="port-card-urb">
+        <div style="height:120px; background:#0a0a0a; border-bottom:2px solid var(--yellow); display:flex; align-items:center; justify-content:center; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:#333; margin:-1.5rem -1.5rem 0.75rem -1.5rem;">SAM.GOV TOOL</div>
+        <div class="port-card-head-urb"><div class="port-card-name-urb">SAM.gov Contract Intelligence</div><div class="port-status-urb" style="background:#22c55e;color:#000;">LIVE</div></div>
+        <p class="port-desc-urb">AI-powered contracting workflow. SAM.gov search, email parsing, AI proposals, SOW builder, USASpending research.</p>
+        <div class="port-tags-urb"><span class="port-tag-urb">SAM.gov API</span><span class="port-tag-urb">AI Proposals</span><span class="port-tag-urb">Gmail</span><span class="port-tag-urb">Live</span></div>
+      </div>
+      <div class="port-card-urb">
+        <div style="height:120px; background:#0a0a0a; border-bottom:2px solid var(--yellow); display:flex; align-items:center; justify-content:center; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:#333; margin:-1.5rem -1.5rem 0.75rem -1.5rem;">PHOTO CONVERTER</div>
+        <div class="port-card-head-urb"><div class="port-card-name-urb">Photo &amp; File Converter</div><div class="port-status-urb">AVAILABLE</div></div>
+        <p class="port-desc-urb">Batch converter. CR2, HEIC, PSD, RAW, PDF → PNG, JPG, TIFF. Drag-drop, multi-threaded. Offline Windows app.</p>
+        <div class="port-tags-urb"><span class="port-tag-urb">Python</span><span class="port-tag-urb">Batch</span><span class="port-tag-urb">RAW</span><span class="port-tag-urb">HEIC</span><span class="port-tag-urb">Desktop</span></div>
+      </div>
+      <div class="port-card-urb">
+        <div style="height:120px; background:#0a0a0a; border-bottom:2px solid var(--yellow); display:flex; align-items:center; justify-content:center; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:#333; margin:-1.5rem -1.5rem 0.75rem -1.5rem;">ESP32 KIT FIRMWARE</div>
+        <div class="port-card-head-urb"><div class="port-card-name-urb">ESP32 Wardriver Firmware</div><div class="port-status-urb">CUSTOM</div></div>
+        <p class="port-desc-urb">Dual Wi-Fi, GPS, NRF24, MicroSD. C++ firmware. Wigle.net compatible. Hand-assembled and tested.</p>
+        <div class="port-tags-urb"><span class="port-tag-urb">C++</span><span class="port-tag-urb">ESP32</span><span class="port-tag-urb">GPS</span><span class="port-tag-urb">NRF24</span><span class="port-tag-urb">Wigle.net</span></div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <script src="js/main.js"></script>
+<!-- GALLERY -->
+<div id="page-gallery" class="page">
+  <div class="gallery-header-urb">
+    <h1>PROJECT<br><span class="y">GALLERY</span></h1>
+    <p>Product photos and project builds — all shot and built by KGTHETECH.</p>
+  </div>
+
+  <div class="gallery-sec-urb">
+    <div class="gallery-sec-head-urb"><h2>CANTENNA STANDARD</h2><span class="gallery-price-urb">$50</span></div>
+    <p class="gallery-desc-urb">14dBi, 22° beam, 300m.</p>
+    <div class="photo-grid-urb">
+      <div class="img-placeholder">CANTENNA 1</div><div class="img-placeholder">CANTENNA 2</div>
+      <div class="img-placeholder">CANTENNA 3</div><div class="img-placeholder">CANTENNA 4</div>
+      <div class="img-placeholder">CANTENNA 5</div><div class="img-placeholder">CANTENNA 6</div>
+      <div class="img-placeholder">CANTENNA 7</div><div class="img-placeholder">CANTENNA 8</div>
+      <div class="img-placeholder">CANTENNA 9</div><div class="img-placeholder">CANTENNA 10</div>
+      <div class="img-placeholder">CANTENNA 11</div><div class="img-placeholder">CANTENNA 12</div>
+      <div class="img-placeholder">CANTENNA 13</div>
+    </div>
+    <div class="gallery-btn-urb"><a onclick="showPage('store',this)" class="btn-yellow">VIEW IN STORE</a></div>
+  </div>
+
+  <div class="gallery-sec-urb">
+    <div class="gallery-sec-head-urb"><h2>ESP32 WARDRIVER KIT</h2><span class="gallery-price-urb">$150</span></div>
+    <p class="gallery-desc-urb">GPS, dual WiFi, NRF24, MicroSD.</p>
+    <div class="photo-grid-urb">
+      <div class="img-placeholder">WARDRIVER 1</div><div class="img-placeholder">WARDRIVER 2</div>
+      <div class="img-placeholder">WARDRIVER 3</div><div class="img-placeholder">WARDRIVER 4</div>
+      <div class="img-placeholder">WARDRIVER 5</div><div class="img-placeholder">WARDRIVER 6</div>
+      <div class="img-placeholder">WARDRIVER 7</div><div class="img-placeholder">WARDRIVER 8</div>
+      <div class="img-placeholder">WARDRIVER 9</div><div class="img-placeholder">WARDRIVER 10</div>
+      <div class="img-placeholder">WARDRIVER 11</div><div class="img-placeholder">WARDRIVER 12</div>
+      <div class="img-placeholder">WARDRIVER 13</div><div class="img-placeholder">WARDRIVER 14</div>
+      <div class="img-placeholder">WARDRIVER 15</div><div class="img-placeholder">WARDRIVER 16</div>
+      <div class="img-placeholder">WARDRIVER 17</div><div class="img-placeholder">WARDRIVER 18</div>
+      <div class="img-placeholder">WARDRIVER 19</div><div class="img-placeholder">WARDRIVER 20</div>
+      <div class="img-placeholder">WARDRIVER 21</div>
+    </div>
+    <div class="gallery-btn-urb"><a onclick="showPage('store',this)" class="btn-yellow">VIEW IN STORE</a></div>
+  </div>
+
+  <div class="gallery-sec-urb">
+    <div class="gallery-sec-head-urb"><h2>CANTENNA HEAVY DUTY</h2><span class="gallery-price-urb">$150</span></div>
+    <p class="gallery-desc-urb">Photos coming soon.</p>
+    <div class="gallery-btn-urb"><a onclick="showPage('store',this)" class="btn-yellow">VIEW IN STORE</a></div>
+  </div>
+
+  <div class="gallery-sec-urb" style="border-bottom:none;">
+    <div class="gallery-sec-head-urb"><h2>5G COPPER PATCH ANTENNA</h2><span class="gallery-price-urb">CREATION</span></div>
+    <p class="gallery-desc-urb">Custom 5G cellular patch antenna. Copper ground plane, N-type, hand-soldered.</p>
+    <div class="photo-grid-urb">
+      <div class="img-placeholder">5G PATCH 1</div><div class="img-placeholder">5G PATCH 2</div>
+      <div class="img-placeholder">5G PATCH 3</div><div class="img-placeholder">5G PATCH 4</div>
+      <div class="img-placeholder">5G PATCH 5</div><div class="img-placeholder">5G PATCH 6</div>
+      <div class="img-placeholder">5G PATCH 7</div><div class="img-placeholder">5G PATCH 8</div>
+      <div class="img-placeholder">5G PATCH 9</div><div class="img-placeholder">5G PATCH 10</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="page-about" class="page">
+
+    <div style="max-width:820px; margin:0 auto; padding:3rem 2rem;">
+
+      <div style="text-align:center; margin-bottom:3rem;">
+        <h1>ABOUT KGTHETECH</h1>
+        <p style="font-size:1.15rem; margin:0.5rem 0 0; opacity:0.7;"><em>From the hood to the tech world. Building cybersecurity tools from nothing.</em></p>
+      </div>
+
+      <blockquote style="font-size:1.05rem; font-style:italic; line-height:1.95; padding:1.5rem 2rem; margin:0 0 3.5rem; border-left:4px solid currentColor;">
+        "I've been networking and doing system administration since 2004 — before I even knew the vocabulary for it. I learned TCP/IP 20+ years ago by just clicking around and figuring things out. I build things because it keeps me going. It's not just about the tools — it's about proving that you can create something from nothing, even when life tries to break you."
+        <br><br><strong>— KGTHETECH</strong>
+      </blockquote>
+
+      <h2 style="margin:0 0 2rem;">THE STORY</h2>
+
+      <h3 style="margin:0 0 0.75rem;">Self-Taught Since 2004</h3>
+
+      <p style="margin:0 0 1.5rem; line-height:1.95;">KGTHETECH is a 40-year-old self-taught cybersecurity specialist and hardware maker from New York, now based in Aurora, Colorado. Working with networks and systems since 2004 — back when the proper terms weren't even known. TCP/IP learned 20+ years ago by clicking around, breaking things, fixing them, and figuring it out.</p>
+
+      <p style="margin:0 0 3rem; line-height:1.95;">KG The Tech was founded as a one-man operation focused on IT services, cybersecurity tools, graphic design, and commercial photography. Over the years: PC Tech at Insight Global/Deutsche Bank, stints at Home Depot and Top Shelf Electric, investor relations at DF King/Fidelity. Attended City Tech CUNY studying architecture, graduated from High School of Art &amp; Design in New York.</p>
+
+      <h3 style="margin:0 0 0.75rem;">Life Has Been a Roller Coaster</h3>
+
+      <p style="margin:0 0 1.5rem; line-height:1.95;">The last 34 years have been rough. Homelessness, financial struggles, anger, and gaps in life that most people can't imagine. Been broke, frustrated, and at times completely defeated.</p>
+
+      <p style="margin:0 0 1.5rem; line-height:1.95;">In <strong>2022</strong>, a car accident caused a severe back injury. In <strong>2023</strong>, the injury was re-aggravated in Oklahoma. Then, while working at King Soopers in Colorado, another back injury caused temporary paralysis — with zero compensation. Chronic back pain is a daily reality to this day.</p>
+
+      <p style="margin:0 0 3rem; line-height:1.95;">To make income, plasma donations fill the gap — a process that takes a physical toll but provides just enough to survive. The Amazon Vine program helped source parts for builds, though that's no longer active. Parts now come from AliExpress and wherever deals can be found.</p>
+
+      <h3 style="margin:0 0 0.75rem;">Building for Mental Health</h3>
+
+      <p style="margin:0 0 1.5rem; line-height:1.95;">Building cybersecurity tools, ethical hacking devices, cyberdecks, antennas, and electronics isn't just a hobby or a side hustle — it's therapy. It's proof that even when the world is crashing down, something functional, valuable, and real can still be created.</p>
+
+      <p style="margin:0 0 1.5rem; line-height:1.95;">Cantennas built from soup cans and car exhaust pipes. ESP32 signal survey kits. Cyberdecks running Raspberry Pi, Kali Linux, SDR-RTL, and wireless adapters. Even a complete FPV drone — though the goggles to fly it still aren't affordable yet.</p>
+
+      <p style="margin:0 0 3rem; line-height:1.95;">All of it documented on TikTok at <strong>@KGTheTech</strong> — raw process, no hand-holding, no fancy editing. Just the journey.</p>
+
+      <h3 style="margin:0 0 0.75rem;">From New York, Grew Up in Poverty</h3>
+
+      <p style="margin:0 0 1.5rem; line-height:1.95;">From New York. Grew up <strong>in poverty</strong>. <strong>Black.</strong> Representing <strong>hip-hop culture</strong> and the streets. This isn't a curated brand identity — this is real. <strong>"Hacking on a Budget"</strong> is literal: no 3D printer, so materials get made from ABS plastic by hand. No professional photography budget, but trained as a commercial photographer — so it gets done.</p>
+
+      <p style="margin:0 0 3rem; line-height:1.95;"><strong>Building from nothing, creating something, and making it work — no matter what.</strong></p>
+
+      <h3 style="margin:0 0 0.75rem;">The Goal: Professional Cybersecurity</h3>
+
+      <p style="margin:0 0 1.5rem; line-height:1.95;">Working toward <strong>CompTIA Network+, Security+, and CySA+</strong> certifications. Active on <strong>TryHackMe</strong>, constantly practicing. A portfolio of real-world skills built through doing — signal analysis, RF development, network security, and hardware hacking.</p>
+
+      <p style="margin:0 0 3rem; line-height:1.95;">Every dollar from product sales, subscriptions, and donations goes directly toward: <strong>parts, certifications, equipment, and survival</strong>.</p>
+
+      <h3 style="margin:0 0 0.75rem;">The Message</h3>
+
+      <p style="margin:0 0 3.5rem; line-height:1.95; font-size:1.05rem;"><strong>You don't need money to be great.</strong> You don't need perfect circumstances. You don't need to come from privilege. You need <strong>hustle, skill, and the refusal to quit</strong>. That's hacking on a budget. That's the culture. That's KGTHETECH.</p>
+
+      <h2 style="margin:0 0 1.5rem;">TIMELINE</h2>
+
+      <ul style="list-style:none; padding:0; margin:0 0 3.5rem;">
+        <li style="padding:0.9rem 0; border-bottom:1px solid rgba(128,128,128,0.2); line-height:1.8;"><strong>2004</strong> — Started self-teaching networking, Linux, and systems administration. NYC roots.</li>
+        <li style="padding:0.9rem 0; border-bottom:1px solid rgba(128,128,128,0.2); line-height:1.8;"><strong>Early 2000s</strong> — Learned TCP/IP by clicking around and figuring things out.</li>
+        <li style="padding:0.9rem 0; border-bottom:1px solid rgba(128,128,128,0.2); line-height:1.8;"><strong>2009</strong> — Built first cantenna from a coffee can. Started Wi-Fi range experiments.</li>
+        <li style="padding:0.9rem 0; border-bottom:1px solid rgba(128,128,128,0.2); line-height:1.8;"><strong>2022</strong> — Car accident causes severe back injury.</li>
+        <li style="padding:0.9rem 0; border-bottom:1px solid rgba(128,128,128,0.2); line-height:1.8;"><strong>2023</strong> — Re-aggravated back in Oklahoma. Kept building despite pain.</li>
+        <li style="padding:0.9rem 0; border-bottom:1px solid rgba(128,128,128,0.2); line-height:1.8;"><strong>2024</strong> — King Soopers injury (temporary paralysis). Launched TikTok @KGTheTech. Started selling custom builds online.</li>
+        <li style="padding:0.9rem 0; line-height:1.8;"><strong>Now (2026)</strong> — Building kgthetech.com. Working toward CompTIA certs. Active on TryHackMe. Aurora, Colorado.</li>
+      </ul>
+
+      <h2 style="margin:0 0 1.5rem;">SKILLS &amp; EXPERTISE</h2>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1.5rem; margin:0 0 3.5rem;">
+        <div>
+          <h3 style="margin:0 0 0.75rem;">Cybersecurity</h3>
+          <ul style="margin:0; padding-left:1.2rem; line-height:2.1;">
+            <li>Ethical hacking &amp; penetration testing</li>
+            <li>Network security &amp; TCP/IP</li>
+            <li>Wireless security &amp; RF analysis</li>
+            <li>Kali Linux &amp; security tools</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin:0 0 0.75rem;">Hardware Development</h3>
+          <ul style="margin:0; padding-left:1.2rem; line-height:2.1;">
+            <li>ESP32 &amp; Arduino development</li>
+            <li>Raspberry Pi projects</li>
+            <li>RF antenna design &amp; construction</li>
+            <li>Custom electronics builds</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin:0 0 0.75rem;">IT &amp; Systems</h3>
+          <ul style="margin:0; padding-left:1.2rem; line-height:2.1;">
+            <li>System administration (20+ years)</li>
+            <li>Network configuration</li>
+            <li>PC tech support</li>
+            <li>Linux &amp; Windows environments</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin:0 0 0.75rem;">Creative &amp; Design</h3>
+          <ul style="margin:0; padding-left:1.2rem; line-height:2.1;">
+            <li>Graphic design</li>
+            <li>Commercial photography</li>
+            <li>Product photography</li>
+            <li>Content creation (TikTok)</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 style="margin:0 0 1.5rem;">NOTABLE PROJECTS</h2>
+
+      <p style="margin:0 0 0.4rem; line-height:1.9;"><strong>Cyberdeck (Portable Hacking Station)</strong></p>
+      <p style="margin:0 0 2rem; line-height:1.9;">Custom-built portable hacking station — car head unit stereo housing, Raspberry Pi 4 + Pi 5, NVMe HAT, Kali Linux, SDR-RTL, wireless adapter with monitor mode + injection, DIY Wi-Fi Pineapple integration, and dual-button power system. Currently working on custom ABS plastic lid.</p>
+
+      <p style="margin:0 0 0.4rem; line-height:1.9;"><strong>ESP32 Wi-Fi Signal Survey Kit</strong></p>
+      <p style="margin:0 0 2rem; line-height:1.9;">Open-hardware development kit for RF/IoT hobbyists and educators. ESP32 board, GPS antenna, Wi-Fi antennas, MicroSD logging, quickstart guide. Built for lab-based signal strength experiments and authorized testing.</p>
+
+      <p style="margin:0 0 0.4rem; line-height:1.9;"><strong>Cantenna Collection</strong></p>
+      <p style="margin:0 0 2rem; line-height:1.9;">From 2009 coffee can designs to current car exhaust pipe builds. 2.4 GHz directional antennas. 14dBi gain, 22° beam, 300m range. Handbuilt, tuned to exact 1/4 wavelength specs.</p>
+
+      <p style="margin:0 0 0.4rem; line-height:1.9;"><strong>FPV Drone (Complete)</strong></p>
+      <p style="margin:0 0 3.5rem; line-height:1.9;">Fully assembled FPV racing drone. Complete build, ready to fly — but the goggles aren't affordable yet. This represents both the skill and the struggle: capable of building professional-grade equipment, held back by finances.</p>
+
+      <h2 style="margin:0 0 2rem;">CURRENT GOALS</h2>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:0; margin:0 0 3.5rem; border:3px solid #222;">
+        <div style="padding:1.5rem; border-right:3px solid #222;">
+          <div style="font-size:1.5rem; margin-bottom:0.75rem;">🎓</div>
+          <h3 style="margin:0 0 0.5rem; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--yellow);">CompTIA Certifications</h3>
+          <p style="margin:0; font-family:Arial,sans-serif; font-size:0.82rem; color:#666; line-height:1.7;">Network+, Security+, CySA+ — building credentials for professional cybersecurity work.</p>
+        </div>
+        <div style="padding:1.5rem; border-right:3px solid #222;">
+          <div style="font-size:1.5rem; margin-bottom:0.75rem;">💼</div>
+          <h3 style="margin:0 0 0.5rem; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--yellow);">Professional Role</h3>
+          <p style="margin:0; font-family:Arial,sans-serif; font-size:0.82rem; color:#666; line-height:1.7;">Land a full-time position in ethical hacking, penetration testing, or security research.</p>
+        </div>
+        <div style="padding:1.5rem; border-right:3px solid #222;">
+          <div style="font-size:1.5rem; margin-bottom:0.75rem;">🛠️</div>
+          <h3 style="margin:0 0 0.5rem; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--yellow);">Better Equipment</h3>
+          <p style="margin:0; font-family:Arial,sans-serif; font-size:0.82rem; color:#666; line-height:1.7;">3D printer, proper desk and chair, more build materials, and FPV goggles.</p>
+        </div>
+        <div style="padding:1.5rem;">
+          <div style="font-size:1.5rem; margin-bottom:0.75rem;">🏠</div>
+          <h3 style="margin:0 0 0.5rem; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--yellow);">Stability</h3>
+          <p style="margin:0; font-family:Arial,sans-serif; font-size:0.82rem; color:#666; line-height:1.7;">Financial stability, consistent housing, and the ability to focus full-time on cybersecurity.</p>
+        </div>
+      </div>
+
+      <div style="background:var(--yellow); padding:3rem; margin:0 -2rem 3.5rem; text-align:center;">
+        <h2 style="color:var(--black); margin:0 0 0.75rem; font-size:1.5rem;">SUPPORT THE JOURNEY</h2>
+        <p style="color:#333; font-family:Arial,sans-serif; font-size:0.95rem; margin:0 0 2rem; line-height:1.7; max-width:560px; margin-left:auto; margin-right:auto;">Every purchase, subscription, and donation helps KGTHETECH move closer to his goals. You're not just buying a tool — you're investing in someone's future. That's real.</p>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+          <a onclick="showPage('store',this)" style="background:var(--black); color:var(--yellow); padding:0.9rem 2rem; font-size:0.78rem; font-weight:900; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; display:inline-block; text-decoration:none;">BUY A TOOL</a>
+          <a onclick="showPage('subscribe',this)" style="background:var(--black); color:var(--yellow); padding:0.9rem 2rem; font-size:0.78rem; font-weight:900; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; display:inline-block; text-decoration:none;">SUBSCRIBE FOR TUTORIALS</a>
+          <a onclick="showPage('donate',this)" style="background:var(--black); color:var(--yellow); padding:0.9rem 2rem; font-size:0.78rem; font-weight:900; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; display:inline-block; text-decoration:none;">MAKE A DONATION</a>
+        </div>
+      </div>
+
+      <h2 style="margin:0 0 1.5rem;">CONNECT</h2>
+
+      <ul style="list-style:none; padding:0; line-height:3;">
+        <li>TikTok: <a href="https://www.tiktok.com/@kgthetech" target="_blank">@kgthetech</a></li>
+        <li>Instagram: <a href="https://www.instagram.com/kgphotographylov3" target="_blank">@kgphotographylov3</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/kgthetech" target="_blank">/in/kgthetech</a></li>
+        <li>GitHub: <a href="https://github.com/zzeronerzz" target="_blank">@zzeronerzz</a></li>
+        <li>Beacons: <a href="https://beacons.ai/kgthetech" target="_blank">beacons.ai/kgthetech</a></li>
+        <li>Email: <a href="mailto:kg@kgthetech.com">kg@kgthetech.com</a></li>
+      </ul>
+
+    </div>
+</div>
+<div id="page-videos" class="page">
+<div style="max-width:1060px; margin:0 auto; padding:3rem 2rem;">
+  <h1 style="margin:0 0 0.5rem;">Build Documentation &amp; Technical Tutorials</h1>
+  <p style="margin:0 0 2.5rem; opacity:0.6; font-size:0.95rem;">All videos on TikTok @KGTheTech. Click any card to watch.</p>
+
+  <h2 style="font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.55; margin:0 0 1.25rem; padding-bottom:0.6rem; border-bottom:1px solid rgba(128,128,128,0.2);">Cantenna Builds</h2>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.25rem; margin-bottom:3rem;">
+    <a href="https://www.tiktok.com/@kgthetech/video/7570455966328655118" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
+      <div style="height:140px; background:rgba(128,128,128,0.08); display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(128,128,128,0.15);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="rgba(128,128,128,0.4)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.93a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.36z"/></svg>
+      </div>
+      <div style="padding:1rem;">
+        <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">Enhance Your WiFi Signal with a Cantenna</p>
+        <p style="margin:0; font-size:0.78rem; opacity:0.55;">Cantenna Build &nbsp;&#9654;&nbsp; TikTok</p>
+      </div>
+    </a>
+    <a href="https://www.tiktok.com/@kgthetech/video/7570463042387971383" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
+      <div style="height:140px; background:rgba(128,128,128,0.08); display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(128,128,128,0.15);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="rgba(128,128,128,0.4)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.93a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.36z"/></svg>
+      </div>
+      <div style="padding:1rem;">
+        <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">DIY Cantenna: Build Your Own WiFi Enhancer</p>
+        <p style="margin:0; font-size:0.78rem; opacity:0.55;">DIY Build Guide &nbsp;&#9654;&nbsp; TikTok</p>
+      </div>
+    </a>
+    <a href="https://www.tiktok.com/@kgthetech/video/7570473082721144077" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
+      <div style="height:140px; background:rgba(128,128,128,0.08); display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(128,128,128,0.15);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="rgba(128,128,128,0.4)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.93a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.36z"/></svg>
+      </div>
+      <div style="padding:1rem;">
+        <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">DIY Cantenna for Better WiFi Networking</p>
+        <p style="margin:0; font-size:0.78rem; opacity:0.55;">Build Series &nbsp;&#9654;&nbsp; TikTok</p>
+      </div>
+    </a>
+    <a href="https://www.tiktok.com/@kgthetech/video/7588687310019956023" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
+      <div style="height:140px; background:rgba(128,128,128,0.08); display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(128,128,128,0.15);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="rgba(128,128,128,0.4)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.93a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.36z"/></svg>
+      </div>
+      <div style="padding:1rem;">
+        <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">Full Cantenna Build Process — Start to Finish</p>
+        <p style="margin:0; font-size:0.78rem; opacity:0.55;">Full Build &nbsp;&#9654;&nbsp; TikTok</p>
+      </div>
+    </a>
+  </div>
+
+  <h2 style="font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.55; margin:0 0 1.25rem; padding-bottom:0.6rem; border-bottom:1px solid rgba(128,128,128,0.2);">ESP32 Wardriver Builds</h2>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.25rem; margin-bottom:3rem;">
+    <a href="https://www.tiktok.com/@kgthetech/video/7576932074850946359" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
+      <div style="height:140px; background:rgba(128,128,128,0.08); display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(128,128,128,0.15);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="rgba(128,128,128,0.4)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.93a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.36z"/></svg>
+      </div>
+      <div style="padding:1rem;">
+        <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">Wardriver Done Differently</p>
+        <p style="margin:0; font-size:0.78rem; opacity:0.55;">ESP32 Build &nbsp;&#9654;&nbsp; TikTok</p>
+      </div>
+    </a>
+    <a href="https://www.tiktok.com/@kgthetech/video/7569744930575355191" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
+      <div style="height:140px; background:rgba(128,128,128,0.08); display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(128,128,128,0.15);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="rgba(128,128,128,0.4)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.93a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.36z"/></svg>
+      </div>
+      <div style="padding:1rem;">
+        <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">What's In the Kit</p>
+        <p style="margin:0; font-size:0.78rem; opacity:0.55;">Kit Breakdown &nbsp;&#9654;&nbsp; TikTok</p>
+      </div>
+    </a>
+    <a href="https://www.tiktok.com/@kgthetech/video/7570028760683072781" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
+      <div style="height:140px; background:rgba(128,128,128,0.08); display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(128,128,128,0.15);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="rgba(128,128,128,0.4)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.93a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.36z"/></svg>
+      </div>
+      <div style="padding:1rem;">
+        <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">Wigle.net Enabled — Automatic Logging</p>
+        <p style="margin:0; font-size:0.78rem; opacity:0.55;">Firmware Demo &nbsp;&#9654;&nbsp; TikTok</p>
+      </div>
+    </a>
+  </div>
+
+  <h2 style="font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.55; margin:0 0 1.25rem; padding-bottom:0.6rem; border-bottom:1px solid rgba(128,128,128,0.2);">RF &amp; Antenna Builds</h2>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.25rem; margin-bottom:3rem;">
+    <a href="https://www.tiktok.com/@kgthetech/photo/7535676906302197047" target="_blank" style="display:block; text-decoration:none; color:inherit; border:1px solid rgba(128,128,128,0.25); border-radius:10px; overflow:hidden; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(212,175,55,0.6)'" onmouseout="this.style.borderColor='rgba(128,128,128,0.25)'">
+      <div style="height:140px; background:rgba(128,128,128,0.08); display:flex; align-items:center; justify-content:center; border-bottom:1px solid rgba(128,128,128,0.15);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="rgba(128,128,128,0.4)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.93a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.36z"/></svg>
+      </div>
+      <div style="padding:1rem;">
+        <p style="margin:0 0 0.35rem; font-weight:700; font-size:0.92rem;">5G Copper Patch Antenna Build</p>
+        <p style="margin:0; font-size:0.78rem; opacity:0.55;">RF Build &nbsp;&#9654;&nbsp; TikTok</p>
+      </div>
+    </a>
+  </div>
+
+  <div style="padding:2rem; border:1px solid rgba(128,128,128,0.25); border-radius:10px; text-align:center;">
+    <p style="margin:0 0 1rem; opacity:0.75;">More builds posted regularly. Follow to stay updated.</p>
+    <a href="https://www.tiktok.com/@kgthetech" target="_blank" style="display:inline-block; padding:0.85rem 2rem; font-weight:700; text-decoration:none; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Follow @KGTheTech on TikTok &rarr;</a>
+  </div>
+</div>
+</div>
+<div id="page-guides" class="page">
+<div style="max-width:960px; margin:0 auto; padding:3rem 2rem;">
+  <h1 style="margin:0 0 0.75rem;">Field Guides</h1>
+  <p style="margin:0 0 3rem; opacity:0.7; font-size:1.05rem;">Working operator guides &mdash; cantenna builds, ESP32 wardriving, Kali recon workflows. No fluff, no filler.</p>
+
+  <h2 style="margin:0 0 1rem;">AI-ASSISTED SECURITY WORKFLOWS</h2>
+  <ul style="margin:0 0 3rem; padding-left:1.25rem; line-height:2.4;">
+    <li><a href="https://kgthetech.com/guides/claude-vs-chatgpt-for-pentesting.html" target="_blank" style="text-decoration:none; opacity:0.85;">Claude vs ChatGPT for Pentest Workflows</a></li>
+    <li><a href="https://kgthetech.com/guides/local-llama-for-air-gapped-audits.html" target="_blank" style="text-decoration:none; opacity:0.85;">Running Local Llama for Air-Gapped Security Audits</a></li>
+    <li><a href="https://kgthetech.com/guides/prompts-for-vulnerability-write-ups.html" target="_blank" style="text-decoration:none; opacity:0.85;">Prompts That Actually Help With Vulnerability Write-Ups</a></li>
+    <li><a href="https://kgthetech.com/guides/ai-recon-prompt-chaining.html" target="_blank" style="text-decoration:none; opacity:0.85;">AI Recon Prompt Chaining: Stop Re-Pasting Output</a></li>
+  </ul>
+
+  <h2 style="margin:0 0 1rem;">ESP32 WARDRIVING &amp; WI-FI SURVEY</h2>
+  <ul style="margin:0 0 3rem; padding-left:1.25rem; line-height:2.4;">
+    <li><a href="https://kgthetech.com/guides/esp32-wardriving-build-guide.html" target="_blank" style="text-decoration:none; opacity:0.85;">ESP32 Wardriving: Build a Pocket Wi-Fi Survey Rig in One Evening</a></li>
+    <li><a href="https://kgthetech.com/guides/esp32-vs-pwnagotchi-vs-flipper-zero.html" target="_blank" style="text-decoration:none; opacity:0.85;">ESP32 vs Pwnagotchi vs Flipper Zero for Wi-Fi Recon</a></li>
+    <li><a href="https://kgthetech.com/guides/war-driving-laws-by-state-us.html" target="_blank" style="text-decoration:none; opacity:0.85;">Wardriving Laws by US State &mdash; What Counts as Legal Survey</a></li>
+    <li><a href="https://kgthetech.com/guides/marauder-firmware-feature-tour.html" target="_blank" style="text-decoration:none; opacity:0.85;">ESP32 Marauder Firmware: Feature Tour for Field Operators</a></li>
+  </ul>
+
+  <h2 style="margin:0 0 1rem;">KALI LINUX RECON &amp; AUDIT</h2>
+  <ul style="margin:0 0 3rem; padding-left:1.25rem; line-height:2.4;">
+    <li><a href="https://kgthetech.com/guides/nmap-fast-scan-cheatsheet.html" target="_blank" style="text-decoration:none; opacity:0.85;">Nmap Fast-Scan Cheatsheet for Authorized Pentests</a></li>
+    <li><a href="https://kgthetech.com/guides/gobuster-vs-ffuf-vs-feroxbuster.html" target="_blank" style="text-decoration:none; opacity:0.85;">Gobuster vs FFUF vs Feroxbuster &mdash; 2026 Tool Comparison</a></li>
+    <li><a href="https://kgthetech.com/guides/burp-suite-extensions-pentester-loadout.html" target="_blank" style="text-decoration:none; opacity:0.85;">Burp Suite Extensions: The Pentester Loadout</a></li>
+    <li><a href="https://kgthetech.com/guides/kali-vs-parrot-vs-blackarch.html" target="_blank" style="text-decoration:none; opacity:0.85;">Kali vs Parrot vs BlackArch &mdash; Choosing a Pentest Distro</a></li>
+  </ul>
+
+  <h2 style="margin:0 0 1rem;">ONE-PERSON PENTEST PRACTICE</h2>
+  <ul style="margin:0 0 3rem; padding-left:1.25rem; line-height:2.4;">
+    <li><a href="https://kgthetech.com/guides/notion-templates-for-pentest-engagements.html" target="_blank" style="text-decoration:none; opacity:0.85;">Notion Templates for Pentest Engagements That Actually Work</a></li>
+    <li><a href="https://kgthetech.com/guides/scoping-a-pentest-engagement-checklist.html" target="_blank" style="text-decoration:none; opacity:0.85;">Scoping a Pentest Engagement: The KGTHETECH Checklist</a></li>
+    <li><a href="https://kgthetech.com/guides/pentest-pricing-day-rate-vs-fixed.html" target="_blank" style="text-decoration:none; opacity:0.85;">Pentest Pricing: Day Rate vs Fixed-Fee</a></li>
+    <li><a href="https://kgthetech.com/guides/writing-the-executive-summary-pentest-report.html" target="_blank" style="text-decoration:none; opacity:0.85;">Writing the Executive Summary of a Pentest Report</a></li>
+  </ul>
+
+  <div style="padding:2rem; border:1px solid rgba(128,128,128,0.3); border-radius:10px; text-align:center;">
+    <a href="https://kgthetech.com/guides/" target="_blank" style="display:inline-block; padding:0.85rem 2rem; font-weight:700; text-decoration:none; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Browse All Guides at kgthetech.com &rarr;</a>
+  </div>
+</div>
+</div>
+<div id="page-subscribe" class="page">
+<div style="max-width:900px; margin:0 auto; padding:3rem 2rem;">
+  <h1 style="margin:0 0 0.5rem; text-align:center;">Premium Build Documentation</h1>
+  <p style="margin:0 0 0.5rem; opacity:0.65; font-size:1rem; text-align:center; max-width:600px; margin-left:auto; margin-right:auto;">Exclusive tutorials, behind-the-scenes builds, and step-by-step guides. Support the mission.</p>
+  <div style="text-align:center; margin-bottom:2.5rem;">
+    <span style="display:inline-block; padding:0.5rem 1.25rem; border:1px solid rgba(220,50,50,0.4); border-radius:6px; font-size:0.78rem; color:#e05555;">&#9888;&nbsp; All subscriptions are non-refundable. Access is granted immediately upon payment. Cancel future billing at any time — no partial refunds.</span>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.5rem; margin-bottom:3rem;">
+
+    <!-- TIER 1 -->
+    <div style="border:1px solid rgba(128,128,128,0.3); border-radius:10px; padding:2rem;">
+      <h3 style="margin:0 0 0.3rem;">Behind The Build</h3>
+      <p style="margin:0 0 1rem; font-size:1.8rem; font-weight:800;">$5<span style="font-size:1rem; font-weight:400; opacity:0.6;">/month</span></p>
+      <p style="margin:0 0 0.5rem; opacity:0.55; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em;">Entertainment / Community</p>
+      <ul style="margin:1rem 0 1.5rem; padding-left:1.2rem; line-height:2.1; opacity:0.85;">
+        <li>Watch KGTHETECH work in real-time</li>
+        <li>Progress videos and the build process</li>
+        <li>Raw, unedited content</li>
+        <li>See the journey, challenges, wins</li>
+        <li>Community access and updates</li>
+      </ul>
+      <div style="display:grid; gap:0.65rem;">
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kgthetech%40gmail.com&item_name=Behind+The+Build+Subscription+%245%2Fmonth&amount=5.00&currency_code=USD&no_shipping=1" target="_blank" style="display:block; padding:0.75rem 1.25rem; font-weight:700; text-decoration:none; text-align:center; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.88rem;">Pay Monthly — $5</a>
+        <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-BTB5MONTHLY" target="_blank" style="display:block; padding:0.75rem 1.25rem; font-weight:600; text-decoration:none; text-align:center; color:inherit; border:1px solid rgba(128,128,128,0.3); border-radius:6px; font-size:0.85rem; opacity:0.8;">Auto-Subscribe — $5/mo</a>
+      </div>
+    </div>
+
+    <!-- TIER 2 (MOST POPULAR) -->
+    <div style="border:2px solid currentColor; border-radius:10px; padding:2rem; position:relative;">
+      <span style="position:absolute; top:-0.75rem; left:1.25rem; font-size:0.7rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; padding:0.2rem 0.65rem; background:#d4af37; color:#000; border-radius:3px;">MOST POPULAR</span>
+      <h3 style="margin:0 0 0.3rem;">Full Tutorial Access</h3>
+      <p style="margin:0 0 1rem; font-size:1.8rem; font-weight:800;">$10<span style="font-size:1rem; font-weight:400; opacity:0.6;">/month</span></p>
+      <p style="margin:0 0 0.5rem; opacity:0.55; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em;">Education / Value</p>
+      <ul style="margin:1rem 0 1.5rem; padding-left:1.2rem; line-height:2.1; opacity:0.85;">
+        <li>Everything in Behind The Build</li>
+        <li>Full step-by-step build tutorials</li>
+        <li>Parts lists and sourcing guides</li>
+        <li>Firmware and software setup</li>
+        <li>Early access to new builds</li>
+      </ul>
+      <div style="display:grid; gap:0.65rem;">
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kgthetech%40gmail.com&item_name=Full+Tutorial+Access+Subscription+%2410%2Fmonth&amount=10.00&currency_code=USD&no_shipping=1" target="_blank" style="display:block; padding:0.75rem 1.25rem; font-weight:700; text-decoration:none; text-align:center; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.88rem;">Pay Monthly — $10</a>
+        <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-FTA10MONTHLY" target="_blank" style="display:block; padding:0.75rem 1.25rem; font-weight:600; text-decoration:none; text-align:center; color:inherit; border:1px solid rgba(128,128,128,0.3); border-radius:6px; font-size:0.85rem; opacity:0.8;">Auto-Subscribe — $10/mo</a>
+      </div>
+    </div>
+
+    <!-- TIER 3 -->
+    <div style="border:1px solid rgba(128,128,128,0.3); border-radius:10px; padding:2rem;">
+      <h3 style="margin:0 0 0.3rem;">Priority Access</h3>
+      <p style="margin:0 0 1rem; font-size:1.8rem; font-weight:800;">$20<span style="font-size:1rem; font-weight:400; opacity:0.6;">/month</span></p>
+      <p style="margin:0 0 0.5rem; opacity:0.55; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em;">Direct Access</p>
+      <ul style="margin:1rem 0 1.5rem; padding-left:1.2rem; line-height:2.1; opacity:0.85;">
+        <li>Everything in Full Tutorial Access</li>
+        <li>Priority Q&amp;A with KGTHETECH</li>
+        <li>Vote on upcoming builds</li>
+        <li>Custom build consultation (1/mo)</li>
+        <li>Discord direct access</li>
+      </ul>
+      <div style="display:grid; gap:0.65rem;">
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kgthetech%40gmail.com&item_name=Priority+Access+Subscription+%2420%2Fmonth&amount=20.00&currency_code=USD&no_shipping=1" target="_blank" style="display:block; padding:0.75rem 1.25rem; font-weight:700; text-decoration:none; text-align:center; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.88rem;">Pay Monthly — $20</a>
+        <a href="https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-PA20MONTHLY" target="_blank" style="display:block; padding:0.75rem 1.25rem; font-weight:600; text-decoration:none; text-align:center; color:inherit; border:1px solid rgba(128,128,128,0.3); border-radius:6px; font-size:0.85rem; opacity:0.8;">Auto-Subscribe — $20/mo</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="padding:1.25rem 1.75rem; border:1px solid rgba(128,128,128,0.2); border-radius:8px; font-size:0.8rem; line-height:1.85; opacity:0.65; text-align:center;">
+    <strong>Pay Monthly</strong> — one-time payment, access expires end of month, you choose to renew.<br>
+    <strong>Auto-Subscribe</strong> — automatic monthly billing via PayPal until cancelled. Cancel anytime in PayPal settings.<br>
+    All subscriptions non-refundable. &nbsp;&middot;&nbsp; Contact kg@kgthetech.com with access issues.
+  </div>
+</div>
+</div>
+<div id="page-donate" class="page">
+<div style="max-width:860px; margin:0 auto; padding:3rem 2rem; text-align:center;">
+  <h1 style="margin:0 0 0.75rem;">Support Independent Cybersecurity Research</h1>
+  <p style="margin:0 0 3.5rem; opacity:0.65; font-size:1rem; max-width:580px; margin-left:auto; margin-right:auto; line-height:1.8;">Every dollar goes directly toward building the future of KG The Tech. No middleman. No platform cuts. Real impact.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:3.5rem; text-align:left; max-width:600px; margin-left:auto; margin-right:auto;">
+    <div style="border:1px solid rgba(128,128,128,0.3); border-radius:10px; padding:2rem; text-align:center;">
+      <div style="font-size:2rem; margin-bottom:0.5rem;">&#9733;</div>
+      <h2 style="margin:0 0 0.5rem; font-size:1.3rem;">Cash App</h2>
+      <p style="margin:0 0 1.5rem; opacity:0.6; font-size:0.88rem; line-height:1.7;">100% direct. Open Cash App and search for KG The Tech to send any amount.</p>
+      <a href="https://cash.app/$GilliamTELLC" target="_blank" style="display:block; padding:0.85rem 1.5rem; font-weight:700; text-decoration:none; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Donate via Cash App &rarr;</a>
+    </div>
+    <div style="border:1px solid rgba(128,128,128,0.3); border-radius:10px; padding:2rem; text-align:center;">
+      <div style="font-size:2rem; margin-bottom:0.5rem;">&#9654;</div>
+      <h2 style="margin:0 0 0.5rem; font-size:1.3rem;">PayPal</h2>
+      <p style="margin:0 0 1.5rem; opacity:0.6; font-size:0.88rem; line-height:1.7;">Send any amount via PayPal. Friends &amp; Family preferred to avoid fees.</p>
+      <a href="https://www.paypal.com/paypalme/kgthetech" target="_blank" style="display:block; padding:0.85rem 1.5rem; font-weight:700; text-decoration:none; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Donate via PayPal &rarr;</a>
+    </div>
+  </div>
+
+  <h2 style="margin:0 0 1.5rem; text-align:left; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.15em; opacity:0.6;">Where Your Donation Goes</h2>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-bottom:3rem; text-align:left;">
+    <div style="padding:1.25rem; border:1px solid rgba(128,128,128,0.2); border-radius:8px;">
+      <strong>CompTIA Certifications</strong>
+      <p style="margin:0.5rem 0 0; opacity:0.6; font-size:0.85rem; line-height:1.7;">Network+, Security+, CySA+ &mdash; building credentials for professional cybersecurity work.</p>
+    </div>
+    <div style="padding:1.25rem; border:1px solid rgba(128,128,128,0.2); border-radius:8px;">
+      <strong>Build Equipment &amp; Parts</strong>
+      <p style="margin:0.5rem 0 0; opacity:0.6; font-size:0.85rem; line-height:1.7;">3D printer, electronics components, cables, PCB materials, soldering supplies.</p>
+    </div>
+    <div style="padding:1.25rem; border:1px solid rgba(128,128,128,0.2); border-radius:8px;">
+      <strong>Survival</strong>
+      <p style="margin:0.5rem 0 0; opacity:0.6; font-size:0.85rem; line-height:1.7;">Housing stability and basic needs so the work can continue.</p>
+    </div>
+  </div>
+
+  <h2 style="margin:0 0 1.5rem; text-align:left; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.15em; opacity:0.6;">Wishlist</h2>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-bottom:3rem; text-align:left;">
+    <div style="padding:1.25rem; border:1px solid rgba(128,128,128,0.2); border-radius:8px;">
+      <strong>RTL-SDR v4 Bundle</strong>
+      <p style="margin:0.5rem 0 0; opacity:0.6; font-size:0.85rem; line-height:1.7;">Software-defined radio setup for RF signal analysis and spectrum monitoring.</p>
+    </div>
+    <div style="padding:1.25rem; border:1px solid rgba(128,128,128,0.2); border-radius:8px;">
+      <strong>Oscilloscope</strong>
+      <p style="margin:0.5rem 0 0; opacity:0.6; font-size:0.85rem; line-height:1.7;">For advanced hardware debugging, signal analysis, and professional electronics work.</p>
+    </div>
+    <div style="padding:1.25rem; border:1px solid rgba(128,128,128,0.2); border-radius:8px;">
+      <strong>Resin 3D Printer</strong>
+      <p style="margin:0.5rem 0 0; opacity:0.6; font-size:0.85rem; line-height:1.7;">High-resolution printing for precision custom enclosures and antenna components.</p>
+    </div>
+    <div style="padding:1.25rem; border:1px solid rgba(128,128,128,0.2); border-radius:8px;">
+      <strong>Lab Workstation Upgrade</strong>
+      <p style="margin:0.5rem 0 0; opacity:0.6; font-size:0.85rem; line-height:1.7;">Additional NVMe storage, RAM upgrade, and dedicated lab monitor for build documentation.</p>
+    </div>
+  </div>
+
+  <p style="opacity:0.5; font-size:0.88rem;">Thank you. &nbsp;&middot;&nbsp; KGTheTech LLC &nbsp;&middot;&nbsp; Aurora, Colorado</p>
+</div>
+</div>
+<div id="page-contact" class="page">
+<div style="max-width:1100px; margin:0 auto; padding:3rem 2rem;">
+  <h1 style="margin:0 0 2.5rem;">Contact KGTHETECH</h1>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:2.5rem; margin-bottom:3rem;">
+
+    <!-- SEND A MESSAGE -->
+    <div>
+      <h2 style="margin:0 0 1.5rem; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; opacity:0.5; border-bottom:1px solid rgba(128,128,128,0.2); padding-bottom:0.6rem;">Send a Message</h2>
+      <form onsubmit="(function(e){e.preventDefault();var n=e.target.querySelector('[name=name]').value;var s=e.target.querySelector('[name=subject]').value;var m=e.target.querySelector('[name=message]').value;window.location.href='mailto:kg@kgthetech.com?subject='+encodeURIComponent(s+' — '+n)+'&body='+encodeURIComponent('Name: '+n+'\n\n'+m);})(event)">
+        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Your Name</label><input type="text" name="name" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"></div>
+        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Subject</label><select name="subject" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"><option value="">-- Select --</option><option>Product Inquiry</option><option>Order Support</option><option>Business Inquiry / Partnership</option><option>Custom Build Request</option><option>Technical Support</option><option>Media / Press</option><option>Feedback</option><option>Other</option></select></div>
+        <div style="margin-bottom:1.25rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Message</label><textarea name="message" rows="5" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem; resize:vertical;"></textarea></div>
+        <button type="submit" style="width:100%; padding:0.85rem; font-weight:700; cursor:pointer; background:transparent; border:2px solid currentColor; border-radius:6px; color:inherit; font-size:0.88rem;">Send Message &rarr;</button>
+      </form>
+    </div>
+
+    <!-- CONNECT -->
+    <div>
+      <h2 style="margin:0 0 1.5rem; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; opacity:0.5; border-bottom:1px solid rgba(128,128,128,0.2); padding-bottom:0.6rem;">Connect</h2>
+      <ul style="list-style:none; padding:0; margin:0;">
+        <li style="padding:0.7rem 0; border-bottom:1px solid rgba(128,128,128,0.1);">
+          <a href="https://www.tiktok.com/@kgthetech" target="_blank" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="#777"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.93a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.36z"/></svg><span style="color:#d4af37; font-weight:600; font-size:0.9rem;">@kgthetech</span></a>
+        </li>
+        <li style="padding:0.7rem 0; border-bottom:1px solid rgba(128,128,128,0.1);">
+          <a href="https://www.instagram.com/kgphotographylov3" target="_blank" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="#777"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span style="color:#d4af37; font-weight:600; font-size:0.9rem;">@kgphotographylov3</span></a>
+        </li>
+        <li style="padding:0.7rem 0; border-bottom:1px solid rgba(128,128,128,0.1);">
+          <a href="https://www.linkedin.com/in/kgthetech" target="_blank" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="#777"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span style="color:#d4af37; font-weight:600; font-size:0.9rem;">/in/kgthetech</span></a>
+        </li>
+        <li style="padding:0.7rem 0; border-bottom:1px solid rgba(128,128,128,0.1);">
+          <a href="https://github.com/zzeronerzz" target="_blank" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="#777"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg><span style="color:#d4af37; font-weight:600; font-size:0.9rem;">@zzeronerzz</span></a>
+        </li>
+        <li style="padding:0.7rem 0; border-bottom:1px solid rgba(128,128,128,0.1);">
+          <a href="https://beacons.ai/kgthetech" target="_blank" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="#777"><circle cx="12" cy="12" r="10" stroke="#777" stroke-width="2" fill="none"/><path d="M8 12h8M12 8v8" stroke="#777" stroke-width="2" stroke-linecap="round"/></svg><span style="color:#d4af37; font-weight:600; font-size:0.9rem;">beacons.ai/kgthetech</span></a>
+        </li>
+        <li style="padding:0.7rem 0;">
+          <a href="mailto:kg@kgthetech.com" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#777" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,14 22,4"/></svg><span style="color:#d4af37; font-weight:600; font-size:0.9rem;">kg@kgthetech.com</span></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- BUSINESS INQUIRIES -->
+    <div>
+      <h2 style="margin:0 0 1.5rem; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; opacity:0.5; border-bottom:1px solid rgba(128,128,128,0.2); padding-bottom:0.6rem;">Business Inquiries</h2>
+      <div style="display:grid; gap:0.9rem;">
+        <div style="padding:1rem 1.25rem; border:1px solid rgba(128,128,128,0.2); border-radius:8px;">
+          <strong style="font-size:0.9rem;">Partnerships &amp; Collaborations</strong>
+          <p style="margin:0.4rem 0 0; opacity:0.6; font-size:0.82rem; line-height:1.65;">Brand deals, sponsored builds, affiliate partnerships, co-branded hardware.</p>
+        </div>
+        <div style="padding:1rem 1.25rem; border:1px solid rgba(128,128,128,0.2); border-radius:8px;">
+          <strong style="font-size:0.9rem;">Custom Builds &amp; Commissions</strong>
+          <p style="margin:0.4rem 0 0; opacity:0.6; font-size:0.82rem; line-height:1.65;">Custom cybersecurity hardware, antennas, RF devices, ESP32 builds to spec.</p>
+        </div>
+        <div style="padding:1rem 1.25rem; border:1px solid rgba(128,128,128,0.2); border-radius:8px;">
+          <strong style="font-size:0.9rem;">Cybersecurity Consulting</strong>
+          <p style="margin:0.4rem 0 0; opacity:0.6; font-size:0.82rem; line-height:1.65;">Independent security assessments, IT consulting, authorized penetration testing.</p>
+        </div>
+        <div style="padding:1rem 1.25rem; border:1px solid rgba(128,128,128,0.2); border-radius:8px;">
+          <strong style="font-size:0.9rem;">Media &amp; Press</strong>
+          <p style="margin:0.4rem 0 0; opacity:0.6; font-size:0.82rem; line-height:1.65;">Interviews, podcast appearances, features, editorial coverage.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div style="padding:1.25rem 1.75rem; border:1px solid rgba(128,128,128,0.15); border-radius:8px; font-size:0.78rem; opacity:0.55; line-height:1.8; text-align:center;">
+    &copy; 2026 KGTheTech LLC &nbsp;&middot;&nbsp; Aurora, Colorado &nbsp;&middot;&nbsp; All products for authorized testing and educational use only.
+  </div>
+</div>
+</div>
+
+<div id="page-cart" class="page">
+<div style="max-width:720px; margin:0 auto; padding:3rem 2rem;">
+  <h1 style="margin:0 0 0.5rem;">Your Cart</h1>
+  <p style="margin:0 0 2.5rem; opacity:0.5; font-size:0.88rem;">Add items from the Store page. Items are not reserved until checkout is complete.</p>
+  <div id="cart-items">
+    <p style="opacity:0.45; text-align:center; padding:3rem 0; border:1px dashed rgba(128,128,128,0.3); border-radius:8px;">Cart is empty &mdash; add items from the Store page.</p>
+  </div>
+  <div id="cart-total-area" style="display:none; padding-top:1.5rem; border-top:2px solid rgba(128,128,128,0.25); margin-top:0.5rem;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+      <span style="font-size:1rem; font-weight:700;">Total</span>
+      <span style="font-size:1.5rem; font-weight:800;">$<span id="cart-total-amount">0.00</span></span>
+    </div>
+    <a id="cart-paypal-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_cart&upload=1&business=kgthetech%40gmail.com" target="_blank" style="display:block; padding:1rem 1.5rem; font-weight:700; text-decoration:none; text-align:center; color:inherit; border:2px solid currentColor; border-radius:8px; font-size:0.95rem; margin-bottom:0.75rem;">Checkout via PayPal &rarr;</a>
+    <p style="text-align:center; font-size:0.78rem; opacity:0.5; margin:0;">You will be redirected to PayPal to complete your purchase securely.</p>
+  </div>
+</div>
+</div>
+
+<footer style="margin-top:6rem; padding:2rem 5rem; border-top:1px solid rgba(128,128,128,0.15); text-align:center; font-size:0.8rem; opacity:0.5;">
+  &copy; 2026 KGTheTech LLC &nbsp;&middot;&nbsp; Aurora, Colorado &nbsp;&middot;&nbsp; Built from the hood, for the culture. &nbsp;&middot;&nbsp; PayPal: kgthetech@gmail.com &nbsp;&middot;&nbsp; Cash App
+</footer>
+
+<script>
+function showPage(name, el) {
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+    var pg = document.getElementById('page-' + name);
+    if (pg) pg.classList.add('active');
+    document.querySelectorAll('nav a, .kgt-cart-btn').forEach(function(a) { a.classList.remove('nav-active'); });
+    if (el) el.classList.add('nav-active');
+    window.scrollTo(0, 0);
+}
+function toggleAcc(btn) {
+    var body = btn.nextElementSibling;
+    if (!body) return;
+    var open = body.style.display === 'block';
+    body.style.display = open ? 'none' : 'block';
+    if (btn.textContent.indexOf('Full Description') !== -1 || btn.textContent.indexOf('Hide Description') !== -1) {
+        btn.textContent = open ? '+ Full Description' : '- Hide Description';
+    }
+}
+
+var cart = {};
+function addToCart(name, price) {
+  if (cart[name]) { cart[name].qty++; }
+  else { cart[name] = { price: parseFloat(price), qty: 1 }; }
+  updateCartCount(); renderCart();
+  var btn = event && event.target;
+  if (btn) { var orig = btn.textContent; btn.textContent = 'Added!'; setTimeout(function(){ btn.textContent = orig; }, 900); }
+}
+function updateCartCount() {
+  var total = 0;
+  Object.values(cart).forEach(function(i){ total += i.qty; });
+  var el = document.getElementById('cart-count');
+  if (el) el.textContent = total;
+}
+function renderCart() {
+  var container = document.getElementById('cart-items');
+  if (!container) return;
+  var keys = Object.keys(cart);
+  if (keys.length === 0) {
+    container.innerHTML = '<p style="opacity:0.45; text-align:center; padding:3rem 0; border:1px dashed rgba(128,128,128,0.3); border-radius:8px;">Cart is empty &mdash; add items from the Store page.</p>';
+    var ta = document.getElementById('cart-total-area');
+    if (ta) ta.style.display = 'none';
+    return;
+  }
+  var html = '';
+  var total = 0;
+  keys.forEach(function(name) {
+    var item = cart[name];
+    var sub = item.price * item.qty;
+    total += sub;
+    html += '<div style="display:flex; align-items:center; justify-content:space-between; padding:1rem 0; border-bottom:1px solid rgba(128,128,128,0.15);">';
+    html += '<div><div style="font-weight:700;">' + name + '</div><div style="opacity:0.55; font-size:0.82rem;">$' + item.price.toFixed(2) + ' each</div></div>';
+    html += '<div style="display:flex; align-items:center; gap:0.65rem;">';
+    html += '<button onclick="changeQty(&#39;' + name.replace(/'/g,'&#39;') + '&#39;,-1)" style="width:2rem; height:2rem; border:1px solid rgba(128,128,128,0.35); background:transparent; color:inherit; cursor:pointer; border-radius:4px; font-size:1rem; display:flex; align-items:center; justify-content:center;">&minus;</button>';
+    html += '<span style="min-width:1.5rem; text-align:center; font-weight:700;">' + item.qty + '</span>';
+    html += '<button onclick="changeQty(&#39;' + name.replace(/'/g,'&#39;') + '&#39;,1)" style="width:2rem; height:2rem; border:1px solid rgba(128,128,128,0.35); background:transparent; color:inherit; cursor:pointer; border-radius:4px; font-size:1rem; display:flex; align-items:center; justify-content:center;">+</button>';
+    html += '<span style="min-width:4rem; text-align:right; font-weight:700;">$' + sub.toFixed(2) + '</span>';
+    html += '</div></div>';
+  });
+  container.innerHTML = html;
+  var tam = document.getElementById('cart-total-amount');
+  if (tam) tam.textContent = total.toFixed(2);
+  var ta = document.getElementById('cart-total-area');
+  if (ta) ta.style.display = 'block';
+  var pplink = document.getElementById('cart-paypal-link');
+  if (pplink) {
+    var params = 'cmd=_cart&upload=1&business=kgthetech%40gmail.com&currency_code=USD&no_shipping=0';
+    var i = 1;
+    Object.keys(cart).forEach(function(n) {
+      params += '&item_name_' + i + '=' + encodeURIComponent(n);
+      params += '&amount_' + i + '=' + cart[n].price.toFixed(2);
+      params += '&quantity_' + i + '=' + cart[n].qty;
+      i++;
+    });
+    pplink.href = 'https://www.paypal.com/cgi-bin/webscr?' + params;
+  }
+}
+function changeQty(name, delta) {
+  if (!cart[name]) return;
+  cart[name].qty += delta;
+  if (cart[name].qty <= 0) delete cart[name];
+  updateCartCount(); renderCart();
+}
+</script>
 </body>
 </html>
