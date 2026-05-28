@@ -236,15 +236,18 @@
 .co-change { background:none; border:none; color:#444; font-size:0.75rem; cursor:pointer; margin-top:0.75rem; width:100%; text-align:left; font-family:Arial,sans-serif; padding:0; }
 
 /* ── MOBILE ── */
+@media (min-width: 769px) {
+  #nav-burger { display:none !important; }
+}
 @media (max-width: 768px) {
   #nav-burger { display:block !important; }
-  #nav-links { display:none; width:100%; flex-direction:column; order:3; border-top:1px solid #222; padding:0.25rem 0; gap:0 !important; }
-  #nav-links.open { display:flex !important; }
-  nav { padding:0.9rem 1.25rem; flex-wrap:wrap; }
-  nav.nav-open { flex-wrap:wrap; }
-  .logo { font-size:1.2rem; }
+  #nav-links { display:none !important; width:100%; flex-direction:column; order:3; border-top:1px solid #222; padding:0.25rem 0; gap:0 !important; background:var(--black); }
+  #nav-links.open { display:flex !important; flex-direction:column; }
+  nav { padding:0.9rem 1.25rem; flex-wrap:wrap; align-items:center; }
+  .logo { font-size:1.2rem; flex:1; }
   .kgt-cart-btn { padding-left:0.75rem; }
-  #nav-links li a { padding:0.7rem 1.25rem !important; font-size:0.72rem !important; }
+  #nav-links li { width:100%; }
+  #nav-links li a { display:block; width:100%; padding:0.7rem 1.25rem !important; font-size:0.72rem !important; border-bottom:1px solid #1a1a1a; }
 
   .hero h1 { font-size:3.2rem; }
   .hero-main { padding:2rem 1.5rem 3rem; }
@@ -372,7 +375,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
     <li><a onclick="showPage('donate',this)">DONATE</a></li>
 <li><a onclick="showPage('contact',this)">CONTACT</a></li>
   </ul>
-  <button id="nav-burger" onclick="toggleNav()" style="display:none; background:none; border:none; color:#888; font-size:1.5rem; cursor:pointer; padding:0.3rem 0.6rem; flex-shrink:0; line-height:1;">&#9776;</button>
+  <button id="nav-burger" onclick="toggleNav()" style="background:none; border:none; color:#888; font-size:1.5rem; cursor:pointer; padding:0.3rem 0.6rem; flex-shrink:0; line-height:1;">&#9776;</button>
   <button class="kgt-cart-btn" onclick="showPage('cart',null)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
     <span class="kgt-cart-label">Cart</span>
@@ -384,7 +387,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
 <div id="page-home" class="page active">
   <section class="hero">
     <div class="hero-top">
-      <div class="location">Aurora, Colorado — Est. KG The Tech — NYC Roots</div>
+      <div class="location">NYC Roots — Est. KG The Tech</div>
     </div>
     <div class="hero-main">
       <h1>
@@ -393,7 +396,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
         <span class="stroke">BUDGET</span>
       </h1>
       <div class="hero-sub">Handmade Cybersecurity Tools &amp; Ethical Hacking Hardware</div>
-      <p class="hero-desc">Custom-built Wi-Fi antennas, signal survey kits, and penetration testing hardware. Every piece handmade by KGTHETECH in Aurora, Colorado. No factory lines. No mass production. Built from scratch, built to last.</p>
+      <p class="hero-desc">Custom-built Wi-Fi antennas, signal survey kits, and penetration testing hardware. Every piece handmade by KGTHETECH. No factory lines. No mass production. Built from scratch, built to last.</p>
       <div class="hero-btns">
         <a onclick="showPage('store',this)" class="btn-yellow">SHOP NOW</a>
         <a onclick="showPage('about',this)" class="btn-outline-w">MY STORY</a>
@@ -497,7 +500,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
   </section>
 
   <section class="founder-urb">
-    <blockquote>"Self-taught since 2004. 20+ years networking and sysadmin. From New York, now Aurora CO. No corporate backing, no investors. Just hustle."</blockquote>
+    <blockquote>"Self-taught since 2004. 20+ years networking and sysadmin. New York built. No corporate backing, no investors. Just hustle."</blockquote>
     <div class="founder-urb-btn">
       <a onclick="showPage('about',this)" class="btn-yellow">READ FULL STORY</a>
     </div>
@@ -1260,7 +1263,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
       <h2 style="margin:0 0 1.5rem; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; opacity:0.5; border-bottom:1px solid rgba(128,128,128,0.2); padding-bottom:0.6rem;">Send a Message</h2>
       <form onsubmit="(function(e){e.preventDefault();var n=e.target.querySelector('[name=name]').value;var s=e.target.querySelector('[name=subject]').value;var m=e.target.querySelector('[name=message]').value;window.location.href='mailto:kg@kgthetech.com?subject='+encodeURIComponent(s+' — '+n)+'&body='+encodeURIComponent('Name: '+n+'\n\n'+m);})(event)">
         <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Your Name</label><input type="text" name="name" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"></div>
-        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Subject</label><select name="subject" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"><option value="">-- Select --</option><option>Product Inquiry</option><option>Order Support</option><option>Business Inquiry / Partnership</option><option>Custom Build Request</option><option>Technical Support</option><option>Media / Press</option><option>Feedback</option><option>Other</option></select></div>
+        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Subject</label><select name="subject" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"><option value="">-- Select --</option><option>Government Contracts</option><option>Product Inquiry</option><option>Order Support</option><option>Business Inquiry / Partnership</option><option>Custom Build Request</option><option>Technical Support</option><option>Media / Press</option><option>Feedback</option><option>Other</option></select></div>
         <div style="margin-bottom:1.25rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Message</label><textarea name="message" rows="5" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem; resize:vertical;"></textarea></div>
         <button type="submit" style="width:100%; padding:0.85rem; font-weight:700; cursor:pointer; background:transparent; border:2px solid currentColor; border-radius:6px; color:inherit; font-size:0.88rem;">Send Message &rarr;</button>
       </form>
@@ -1316,7 +1319,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
 
   </div>
   <div style="padding:1.25rem 1.75rem; border:1px solid rgba(128,128,128,0.15); border-radius:8px; font-size:0.78rem; opacity:0.55; line-height:1.8; text-align:center;">
-    &copy; 2026 KGTheTech LLC &nbsp;&middot;&nbsp; Aurora, Colorado &nbsp;&middot;&nbsp; All products for authorized testing and educational use only.
+    &copy; 2026 KGTheTech LLC &nbsp;&middot;&nbsp; All products for authorized testing and educational use only.
   </div>
 </div>
 </div>
@@ -1345,8 +1348,8 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
   <div id="checkout-inner"></div>
 </div>
 
-<footer style="margin-top:6rem; padding:2rem 5rem; border-top:1px solid rgba(128,128,128,0.15); text-align:center; font-size:0.8rem; opacity:0.5;">
-  &copy; 2026 KGTheTech LLC &nbsp;&middot;&nbsp; Aurora, Colorado &nbsp;&middot;&nbsp; Built from the hood, for the culture. &nbsp;&middot;&nbsp; PayPal: gilliamtradesenterprises@gmail.com &nbsp;&middot;&nbsp; Cash App
+<footer style="margin-top:6rem; padding:2rem; border-top:1px solid rgba(128,128,128,0.15); text-align:center; font-size:0.78rem; opacity:0.5; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+  &copy; 2026 KGTheTech LLC &nbsp;&middot;&nbsp; Built from the hood, for the culture. &nbsp;&middot;&nbsp; All sales final.
 </footer>
 
 <script>
@@ -1357,7 +1360,25 @@ function showPage(name, el) {
     document.querySelectorAll('nav a, .kgt-cart-btn').forEach(function(a) { a.classList.remove('nav-active'); });
     if (el) el.classList.add('nav-active');
     window.scrollTo(0, 0);
+    try { history.replaceState(null, '', window.location.pathname + (name !== 'home' ? '#' + name : '')); } catch(e){}
 }
+// On load: restore page from URL hash
+(function(){
+  var h = window.location.hash.replace('#','');
+  var valid = ['home','store','portfolio','videos','guides','subscribe','gallery','about','donate','contact','cart'];
+  if (h && valid.indexOf(h) !== -1) {
+    var pg = document.getElementById('page-' + h);
+    if (pg) {
+      document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+      pg.classList.add('active');
+      var navLink = document.querySelector('nav a[onclick*="\'' + h + '\'"]');
+      if (navLink) {
+        document.querySelectorAll('nav a').forEach(function(a){ a.classList.remove('nav-active'); });
+        navLink.classList.add('nav-active');
+      }
+    }
+  }
+})();
 function toggleAcc(btn) {
     var body = btn.nextElementSibling;
     if (!body) return;
@@ -1458,7 +1479,7 @@ function changeQty(name, delta) {
         '<p class="co-price">' + amt + '</p>' +
         (c.isSub
           ? '<p class="co-note">Digital access &mdash; delivered to your email after payment confirmation. Non-refundable.</p>'
-          : '<p class="co-note">Handbuilt and shipped from Aurora, Colorado. Allow 3&ndash;6 weeks. Buyer pays shipping. All sales final.</p>') +
+          : '<p class="co-note">Handbuilt and shipped from the lab. Allow 3&ndash;6 weeks. Buyer pays shipping. All sales final.</p>') +
         '<div class="co-btns"><button class="co-btn-back" onclick="closeCheckout()">Cancel</button><button class="co-btn-go" onclick="_coNext()">Continue &rarr;</button></div>';
 
     } else if (c.step === 2) {
@@ -1491,27 +1512,25 @@ function changeQty(name, delta) {
         body =
           '<p class="co-step">PAY WITH PAYPAL</p>' +
           '<p class="co-price">' + amt2 + '</p>' +
-          '<div class="co-instr"><p style="margin:0 0 0.4rem; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">PAYPAL EMAIL</p><span class="co-contact-big">gilliamtradesenterprises@gmail.com</span></div>' +
-          '<a href="' + ppUrl + '" target="_blank" class="co-btn-pay" onclick="setTimeout(function(){_coConfirm(\'PayPal\')},1500)">Open PayPal &rarr;</a>' +
-          '<div class="co-divider">After payment completes, confirm below</div>' +
-          '<button class="co-btn-done" onclick="_coConfirm(\'PayPal\')">I\'ve Completed Payment &checkmark;</button>';
+          '<p class="co-note">You will be taken to PayPal to complete payment securely. PayPal or any debit/credit card accepted.</p>' +
+          '<a href="' + ppUrl + '" target="_blank" class="co-btn-pay" onclick="_coConfirm(\'PayPal\')">Complete Payment via PayPal &rarr;</a>' +
+          '<button class="co-change" onclick="_coBack()">&larr; Change payment method</button>';
       } else if (c.method === 'zelle') {
         body =
           '<p class="co-step">PAY WITH ZELLE</p>' +
           '<p class="co-price">' + amt2 + '</p>' +
-          '<div class="co-instr"><p style="margin:0 0 0.25rem; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">OPEN BANK APP &rarr; ZELLE &rarr; SEND TO</p><span class="co-contact-big">917-518-4458</span><p style="margin:0.5rem 0 0; font-size:0.75rem; color:#555;">Memo: ' + c.name + '</p></div>' +
-          '<div class="co-divider">After sending, confirm below</div>' +
-          '<button class="co-btn-pay" onclick="_coConfirm(\'Zelle\')">I\'ve Sent Payment &checkmark;</button>';
+          '<div class="co-instr"><p style="margin:0 0 0.25rem; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">OPEN YOUR BANK APP &rarr; ZELLE &rarr; SEND TO:</p><span class="co-contact-big">917-518-4458</span><p style="margin:0.5rem 0 0; font-size:0.75rem; color:#555;">Add memo: ' + c.name + '</p></div>' +
+          '<a href="zelle://?" class="co-btn-pay" style="margin-top:1rem;" onclick="_coConfirm(\'Zelle\')">Open Zelle &rarr;</a>' +
+          '<button class="co-change" onclick="_coBack()">&larr; Change payment method</button>';
       } else if (c.method === 'cashapp') {
         body =
           '<p class="co-step">PAY WITH CASH APP</p>' +
           '<p class="co-price">' + amt2 + '</p>' +
-          '<div class="co-instr"><p style="margin:0 0 0.25rem; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">OPEN CASH APP &rarr; SEARCH</p><span class="co-contact-big">$GilliamTELLC</span><p style="margin:0.5rem 0 0; font-size:0.75rem; color:#555;">Note: ' + c.name + ' &middot; ' + amt2 + '</p></div>' +
-          '<a href="https://cash.app/$GilliamTELLC" target="_blank" class="co-btn-pay" onclick="setTimeout(function(){},500)">Open Cash App &rarr;</a>' +
-          '<div class="co-divider">After sending, confirm below</div>' +
-          '<button class="co-btn-done" onclick="_coConfirm(\'Cash App\')">I\'ve Sent Payment &checkmark;</button>';
+          '<div class="co-instr"><p style="margin:0 0 0.25rem; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">SEND TO:</p><span class="co-contact-big">$GilliamTELLC</span><p style="margin:0.5rem 0 0; font-size:0.75rem; color:#555;">Note: ' + c.name + ' &middot; ' + amt2 + '</p></div>' +
+          '<a href="https://cash.app/$GilliamTELLC" target="_blank" class="co-btn-pay" style="margin-top:1rem;" onclick="_coConfirm(\'Cash App\')">Open Cash App &rarr;</a>' +
+          '<button class="co-change" onclick="_coBack()">&larr; Change payment method</button>';
       }
-      inner.innerHTML = body + '<button class="co-change" onclick="_coBack()">&larr; Change payment method</button>';
+      inner.innerHTML = body;
     }
   }
 
@@ -1540,27 +1559,54 @@ function changeQty(name, delta) {
   }
   function _coMethod(m) { _co.method = m; _co.step = 4; _renderCo(); }
 
+  // Web3Forms access key — get yours free at web3forms.com (enter kg@kgthetech.com)
+  var _W3F_KEY = 'PASTE_YOUR_WEB3FORMS_KEY_HERE';
+
   function _coConfirm(method) {
     var c = _co;
     var amt2 = '$' + (c.amount % 1 === 0 ? parseInt(c.amount) : c.amount.toFixed(2)) + (c.isSub ? '/mo' : '');
-    var subj = encodeURIComponent('NEW ORDER: ' + c.name + ' — ' + (c.cName || 'Customer'));
-    var body = 'NEW ORDER RECEIVED%0A%0A';
-    body += 'ITEM: ' + encodeURIComponent(c.name) + '%0A';
-    body += 'AMOUNT: ' + encodeURIComponent(amt2) + '%0A';
-    body += 'PAYMENT METHOD: ' + encodeURIComponent(method) + '%0A%0A';
-    body += 'CUSTOMER INFO%0A';
-    body += 'Name: ' + encodeURIComponent(c.cName) + '%0A';
-    body += 'Email: ' + encodeURIComponent(c.cEmail) + '%0A';
-    if (c.cPhone) body += 'Phone: ' + encodeURIComponent(c.cPhone) + '%0A';
-    if (c.cAddr) body += 'Ship to: ' + encodeURIComponent(c.cAddr + ', ' + c.cCity) + '%0A';
-    body += '%0ADate: ' + encodeURIComponent(new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}));
-    window.open('mailto:kg@kgthetech.com?subject=' + subj + '&body=' + body);
+    var dateStr = new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    var msgLines = [
+      'NEW ORDER — ' + dateStr,
+      '',
+      'ITEM: ' + c.name,
+      'AMOUNT: ' + amt2,
+      'PAYMENT: ' + method,
+      '',
+      'CUSTOMER',
+      'Name: ' + c.cName,
+      'Email: ' + c.cEmail,
+      c.cPhone ? 'Phone: ' + c.cPhone : '',
+      c.cAddr ? 'Ship to: ' + c.cAddr + ', ' + c.cCity : ''
+    ].filter(Boolean).join('\n');
+
+    // Fire order notification via Web3Forms (instant email to kg@kgthetech.com)
+    if (_W3F_KEY && _W3F_KEY !== 'PASTE_YOUR_WEB3FORMS_KEY_HERE') {
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: _W3F_KEY,
+          subject: 'NEW ORDER: ' + c.name + ' — ' + c.cName,
+          from_name: c.cName + ' (via kgthetech.com)',
+          email: c.cEmail,
+          message: msgLines
+        })
+      }).catch(function(){});
+    }
+
+    // Show confirmation screen
+    var instrMap = {
+      'PayPal': 'Your PayPal payment window is open. Complete payment there — you are done.',
+      'Zelle': 'Send ' + amt2 + ' via Zelle to 917-518-4458. Your order is logged.',
+      'Cash App': 'Send ' + amt2 + ' via Cash App to $GilliamTELLC. Your order is logged.'
+    };
     document.getElementById('checkout-inner').innerHTML =
       '<div style="text-align:center; padding:2rem 0;">' +
-      '<div style="font-size:2.5rem; margin-bottom:1rem; color:var(--yellow);">✓</div>' +
-      '<h2 style="margin:0 0 0.75rem; font-size:1.2rem;">Order Confirmed</h2>' +
-      '<p style="font-family:Arial,sans-serif; color:#666; line-height:1.8; margin:0 0 1.5rem; font-size:0.88rem;">An order summary has been opened in your email. Send it to kg@kgthetech.com to complete your order. You\'ll hear back within 24–48 hours.</p>' +
-      '<button class="co-btn-go" onclick="closeCheckout()" style="width:100%;">Done</button>' +
+      '<div style="font-size:2.5rem; margin-bottom:1rem; color:var(--yellow);">&#10003;</div>' +
+      '<h2 style="margin:0 0 0.75rem; font-size:1.2rem;">Order Received</h2>' +
+      '<p style="font-family:Arial,sans-serif; color:#888; line-height:1.8; margin:0 0 1.5rem; font-size:0.88rem;">' + (instrMap[method]||'') + '<br><br>A confirmation will be sent to ' + c.cEmail + '.</p>' +
+      '<button class="co-btn-go" onclick="closeCheckout()" style="width:100%;">Close</button>' +
       '</div>';
   }
 
