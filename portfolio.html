@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="KGTHETECH Project Portfolio — ESP32 wardrivers, local AI systems, cyberdeck, security hardware builds.">
-    <meta name="keywords" content="KGTHETECH portfolio, ESP32 wardriver, cyberdeck, local AI, cybersecurity hardware, Kenny AI, cantenna build">
+    <meta name="keywords" content="KGTHETECH portfolio, ESP32 wardriver, cyberdeck, local AI, cybersecurity hardware, cantenna build">
     <meta name="author" content="KG The Tech">
 
     <meta property="og:type" content="website">
@@ -134,6 +134,35 @@
             max-width: 900px;
         }
         .linkedin-note a { color: var(--gold); }
+        .btn-tt {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            text-decoration: none;
+            background: transparent;
+            border: 1px solid;
+            transition: background 0.2s, color 0.2s;
+            cursor: pointer;
+        }
+        .btn-tt-cyan {
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+        .btn-tt-cyan:hover {
+            background: var(--cyan);
+            color: #000;
+        }
+        .btn-tt-gold {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .btn-tt-gold:hover {
+            background: var(--gold);
+            color: #000;
+        }
     </style>
 </head>
 <body>
@@ -186,9 +215,9 @@
                 <img src="images/products/wardriver/KGPL7096.png" alt="PCB detail">
             </div>
             <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin: 1rem 0;">
-                <a href="https://www.tiktok.com/@kgthetech/video/7576932074850946359" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--gold);color:var(--gold);">&#x25B6; Wardriver Done Differently</a>
-                <a href="https://www.tiktok.com/@kgthetech/video/7569744930575355191" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--gold);color:var(--gold);">&#x25B6; What's In the Kit</a>
-                <a href="https://www.tiktok.com/@kgthetech/video/7570028760683072781" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--gold);color:var(--gold);">&#x25B6; Wigle.net Enabled</a>
+                <a href="https://www.tiktok.com/@kgthetech/video/7576932074850946359" target="_blank" class="btn-tt btn-tt-gold">&#x25B6; Wardriver Done Differently</a>
+                <a href="https://www.tiktok.com/@kgthetech/video/7569744930575355191" target="_blank" class="btn-tt btn-tt-gold">&#x25B6; What's In the Kit</a>
+                <a href="https://www.tiktok.com/@kgthetech/video/7570028760683072781" target="_blank" class="btn-tt btn-tt-gold">&#x25B6; Wigle.net Enabled</a>
             </div>
             <p style="margin-top:0.75rem;"><a href="store.html" class="btn btn-primary" style="display:inline-block;">View in Store &rarr;</a></p>
         </section>
@@ -208,8 +237,8 @@
                 <p>Car head unit stereo as the main screen with 2 functions: the stereo's backup camera for analog video input, and a Raspberry Pi 4 feeding video output. Raspberry Pi 5 integrated with NVMe HAT — no SD cards. Kali Linux as the OS.</p>
                 <p>Dedicated SDR-RTL and a wireless USB adapter (monitor mode + injection on 2.4/5 GHz). Button-based fan control: both switches must be on to power the 12V fan + Pi simultaneously. DIY WiFi Pineapple integration in progress (not Hak5 — custom).</p>
                 <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin: 1rem 0;">
-                    <a href="https://www.tiktok.com/@kgthetech/video/7552245643163585847" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--cyan);color:var(--cyan);">&#x25B6; SDR Cyberdeck Explained</a>
-                    <a href="https://www.tiktok.com/@kgthetech/video/7543506948562357517" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--cyan);color:var(--cyan);">&#x25B6; INNP Progress Update</a>
+                    <a href="https://www.tiktok.com/@kgthetech/video/7552245643163585847" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; SDR Cyberdeck Explained</a>
+                    <a href="https://www.tiktok.com/@kgthetech/video/7543506948562357517" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; INNP Progress Update</a>
                 </div>
                 <div class="portfolio-tags">
                     <span class="ptag">Raspberry Pi 5</span>
@@ -228,9 +257,9 @@
                 <p>Building and optimizing custom WiFi antennas since 2009. Started with coffee can designs, upgraded to car exhaust tubing for durability. Extends 2.4 GHz signal range for authorized lab testing and network assessments. 5 GHz variants in experimentation.</p>
                 <p>Constructed with copper wire, N-connectors, screws, and heat-shrink tubing. Practical RF design, assembly, and signal testing in a controlled lab environment. Available as KGTHETECH hardware product.</p>
                 <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin: 1rem 0;">
-                    <a href="https://www.tiktok.com/@kgthetech/video/7588687310019956023" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--cyan);color:var(--cyan);">&#x25B6; Cantenna Build</a>
-                    <a href="https://www.tiktok.com/@kgthetech/video/7570463042387971383" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--cyan);color:var(--cyan);">&#x25B6; DIY Cantenna Guide</a>
-                    <a href="https://www.tiktok.com/@kgthetech/photo/7535676906302197047" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--cyan);color:var(--cyan);">&#x1F4F7; 5G Antenna</a>
+                    <a href="https://www.tiktok.com/@kgthetech/video/7588687310019956023" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; Cantenna Build</a>
+                    <a href="https://www.tiktok.com/@kgthetech/video/7570463042387971383" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; DIY Cantenna Guide</a>
+                    <a href="https://www.tiktok.com/@kgthetech/photo/7535676906302197047" target="_blank" class="btn-tt btn-tt-cyan">&#x1F4F7; 5G Antenna</a>
                 </div>
                 <div class="portfolio-tags">
                     <span class="ptag">2.4 GHz</span>
@@ -248,7 +277,7 @@
                 <p>Compact WiFi pentesting platform built on a GL.iNet router, configured with 30 modules for network reconnaissance and testing in a controlled lab environment. Compact version of the original for maximum portability.</p>
                 <p>Hands-on experience with wireless network auditing, captive portals, and rogue AP simulation. Authorized field testing configuration.</p>
                 <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin: 1rem 0;">
-                    <a href="https://www.tiktok.com/@kgthetech/video/7582630527153245495" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--cyan);color:var(--cyan);">&#x25B6; Pineapple vs Hak5 $240</a>
+                    <a href="https://www.tiktok.com/@kgthetech/video/7582630527153245495" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; Pineapple vs Hak5 $240</a>
                 </div>
                 <div class="portfolio-tags">
                     <span class="ptag">GL.iNet</span>
@@ -266,7 +295,7 @@
                 <p>Full-size WiFi pentesting platform using a GL.iNet router, configured with 30 modules for network reconnaissance and testing. Wireless network auditing, captive portals, and rogue AP simulation in authorized lab environments.</p>
                 <p>Compact portable version prototyped separately (see Discrete build above). Both versions built from scratch — no Hak5 hardware.</p>
                 <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin: 1rem 0;">
-                    <a href="https://www.tiktok.com/@kgthetech/video/7629739252997229838" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--cyan);color:var(--cyan);">&#x25B6; DIY WiFi Pineapple Build</a>
+                    <a href="https://www.tiktok.com/@kgthetech/video/7629739252997229838" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; DIY WiFi Pineapple Build</a>
                 </div>
                 <div class="portfolio-tags">
                     <span class="ptag">GL.iNet</span>
@@ -318,29 +347,14 @@
         <div class="portfolio-grid">
 
             <div class="portfolio-card">
-                <p class="portfolio-category">AI Systems</p>
-                <span class="status-live">&#x25CF; LIVE</span>
-                <h2>Kenny AI — Local AI Stack</h2>
-                <p>Full-stack local AI assistant running on dedicated hardware. 585+ indexed capability modules across network defense, OSINT, trading, government contracting, health monitoring, and business operations. Voice + text ingress. No cloud dependencies. Canonical memory, lookup-first resolver. Runs 24/7 on-premise.</p>
-                <p style="font-size:0.85rem;">Architecture: 8B parameter LLM + Python control plane + 249 compiled rules + 138 laws + tool registry. Built on 6STAX policy engine.</p>
-                <div class="portfolio-tags">
-                    <span class="ptag">Python</span>
-                    <span class="ptag">Local LLM</span>
-                    <span class="ptag">Voice</span>
-                    <span class="ptag">No Cloud</span>
-                    <span class="ptag-gold">In Production</span>
-                </div>
-            </div>
-
-            <div class="portfolio-card">
                 <p class="portfolio-category">Security Hardware</p>
                 <span class="status-live">&#x25CF; IN PRODUCTION</span>
                 <h2>ESP32 Wardriver — WiFi Recon Platform</h2>
                 <p>Custom passive WiFi + multi-radio recon system built on ESP32-S3. NRF24L01+ 2.4 GHz radio, GPS module with SD logging, OLED status display, custom firmware. Captures SSIDs, BSSIDs, channel, RSSI, GPS coordinates. Hand-assembled, field-tested, currently sold as KGTHETECH hardware.</p>
                 <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin: 1rem 0;">
-                    <a href="https://www.tiktok.com/@kgthetech/video/7576932074850946359" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--cyan);color:var(--cyan);">&#x25B6; Wardriver Done Differently</a>
-                    <a href="https://www.tiktok.com/@kgthetech/video/7569744930575355191" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--cyan);color:var(--cyan);">&#x25B6; What's In the Kit</a>
-                    <a href="https://www.tiktok.com/@kgthetech/video/7570028760683072781" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--cyan);color:var(--cyan);">&#x25B6; Wigle.net Enabled</a>
+                    <a href="https://www.tiktok.com/@kgthetech/video/7576932074850946359" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; Wardriver Done Differently</a>
+                    <a href="https://www.tiktok.com/@kgthetech/video/7569744930575355191" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; What's In the Kit</a>
+                    <a href="https://www.tiktok.com/@kgthetech/video/7570028760683072781" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; Wigle.net Enabled</a>
                 </div>
                 <div class="portfolio-tags">
                     <span class="ptag">ESP32</span>
@@ -357,8 +371,8 @@
                 <h2>Cantenna — Directional 2.4/5 GHz</h2>
                 <p>Hand-built directional WiFi antenna. 13–14 dBi gain, 22-degree beam, up to 300m range. Built to exact 1/4 wavelength specifications. SMA connector with pigtail. Standard and Heavy Duty (car exhaust pipe construction) variants. Tripod and cable included on HD version.</p>
                 <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin: 1rem 0;">
-                    <a href="https://www.tiktok.com/@kgthetech/video/7588687310019956023" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--cyan);color:var(--cyan);">&#x25B6; Cantenna Build</a>
-                    <a href="https://www.tiktok.com/@kgthetech/video/7570463042387971383" target="_blank" class="btn btn-secondary btn-sm" style="border-color:var(--cyan);color:var(--cyan);">&#x25B6; DIY Cantenna Guide</a>
+                    <a href="https://www.tiktok.com/@kgthetech/video/7588687310019956023" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; Cantenna Build</a>
+                    <a href="https://www.tiktok.com/@kgthetech/video/7570463042387971383" target="_blank" class="btn-tt btn-tt-cyan">&#x25B6; DIY Cantenna Guide</a>
                 </div>
                 <div class="portfolio-tags">
                     <span class="ptag">RF Hardware</span>
@@ -372,7 +386,7 @@
                 <p class="portfolio-category">Gov Contracting · AI</p>
                 <span class="status-live">&#x25CF; LIVE</span>
                 <h2>SAM.gov Contract Intelligence Tool</h2>
-                <p>AI-powered government contracting workflow system integrated into Kenny AI. Real-time SAM.gov opportunity search, email alert parsing (SAM.gov + Grants.gov), AI proposal generator, subcontractor SOW builder, USASpending.gov past-pricing research, and contract pipeline tracker. Built for KGTHETECH's own federal contracting workflow.</p>
+                <p>AI-powered government contracting workflow system. Real-time SAM.gov opportunity search, email alert parsing (SAM.gov + Grants.gov), AI proposal generator, subcontractor SOW builder, USASpending.gov past-pricing research, and contract pipeline tracker. Built for KGTHETECH's own federal contracting workflow.</p>
                 <div class="portfolio-tags">
                     <span class="ptag">SAM.gov API</span>
                     <span class="ptag">AI Proposals</span>
@@ -399,7 +413,7 @@
                 <p class="portfolio-category">Health · Biometrics</p>
                 <span class="status-live">&#x25CF; LIVE</span>
                 <h2>Garmin Vitals — Local Integration (No Cloud)</h2>
-                <p>Local-only Garmin Forerunner 265 integration for real-time health monitoring inside Kenny AI. USB .FIT file reader with WPD COM interface — no Garmin Connect app, no cloud sync ever. Decodes HR, SpO2, HRV, respiration rate from proprietary binary fields. Live BPM overlay on Kenny UI dashboard. 100% offline.</p>
+                <p>Local-only Garmin Forerunner 265 integration for real-time health monitoring. USB .FIT file reader with WPD COM interface — no Garmin Connect app, no cloud sync ever. Decodes HR, SpO2, HRV, respiration rate from proprietary binary fields. Live BPM dashboard overlay. 100% offline.</p>
                 <div class="portfolio-tags">
                     <span class="ptag">WPD / COM</span>
                     <span class="ptag">fitparse</span>
@@ -413,7 +427,7 @@
                 <p class="portfolio-category">Trading · Finance</p>
                 <span class="status-live">&#x25CF; LIVE</span>
                 <h2>Live Trading Intelligence Panel</h2>
-                <p>Real-time trading dashboard in Kenny AI. Live account data (Alpaca API), AI pre-trade verdict engine, candle analysis, Trump signal sentiment panel, crypto market feed, news aggregation. Live mode only — no paper trading. AI buy/skip/hold recommendation before every trade execution.</p>
+                <p>Real-time trading dashboard. Live account data (Alpaca API), AI pre-trade verdict engine, candle analysis, Trump signal sentiment panel, crypto market feed, news aggregation. Live mode only — no paper trading. AI buy/skip/hold recommendation before every trade execution.</p>
                 <div class="portfolio-tags">
                     <span class="ptag">Alpaca API</span>
                     <span class="ptag">AI Signals</span>
