@@ -35,7 +35,7 @@
   .hero { position: relative; overflow: hidden; padding: 0; min-height: 90vh; display: flex; flex-direction: column; }
   .hero-top { background: var(--yellow); padding: 5px 3rem; display: flex; align-items: center; }
   .hero-top .location { font-size: 0.7rem; font-weight: 900; letter-spacing: 0.3em; text-transform: uppercase; color: #555; margin: 0; }
-  .hero-top .brand-logo { height: 54px; width: 54px; object-fit: contain; margin-left: 20px; display: block; flex-shrink: 0; }
+  .nav-token { height: 46px; width: 46px; object-fit: contain; margin-left: 16px; display: block; flex-shrink: 0; }
   .hero-main { background: var(--black); flex: 1; padding: 3rem 3rem 4rem; position: relative; overflow: hidden; }
   .hero-main::before {
     content: 'KG'; position: absolute; right: -1rem; top: -3rem;
@@ -43,10 +43,10 @@
     line-height: 1; pointer-events: none; user-select: none;
   }
   .hero-main-logo {
-    position: absolute; left: 50%; top: 3rem;
-    transform: translateX(-50%);
-    height: calc(8rem * 0.9 * 3); width: auto;
-    opacity: 0.18; pointer-events: none; z-index: 1;
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    height: 22rem; width: auto;
+    opacity: 1; pointer-events: none; z-index: 1;
     display: block;
   }
   .hero-content { position: relative; z-index: 2; }
@@ -373,6 +373,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
 
 <nav>
   <div class="logo">KG<span class="y">THE</span>TECH</div>
+  <img src="images/kgthetech-logo.png" alt="KGTheTech" class="nav-token">
   <ul id="nav-links">
     <li><a onclick="showPage('home',this)" class="nav-active">HOME</a></li>
     <li><a onclick="showPage('store',this)">STORE</a></li>
@@ -398,7 +399,6 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
   <section class="hero">
     <div class="hero-top">
       <div class="location">NYC Roots &nbsp;·&nbsp; Est. 2004</div>
-      <img src="images/kgthetech-logo.png" alt="KGTheTech Logo" class="brand-logo">
     </div>
     <div class="hero-main">
       <img src="images/kgthetech-logo.png" alt="" class="hero-main-logo">
