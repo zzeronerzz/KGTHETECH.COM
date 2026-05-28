@@ -7,12 +7,14 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --yellow: #FFE600; --gold: #d4af37; --black: #000; --white: #fff; --gray: #111; }
-  body { background: var(--black); color: var(--white); font-family: 'Arial Black', 'Impact', 'Helvetica Neue', Arial, sans-serif; line-height: 1.1; overflow-x: hidden; }
+  body { background: var(--black); color: var(--white); font-family: 'Arial Black', 'Impact', 'Helvetica Neue', Arial, sans-serif; line-height: 1.1; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
   a { color: inherit; text-decoration: none; }
 
   /* PAGE SYSTEM */
   .page { display: none; }
-  .page.active { display: block; }
+  .page.active { display: block; flex: 1; }
+  nav { flex-shrink: 0; }
+  footer { flex-shrink: 0; margin-top: auto; }
   .img-placeholder { background: #1a1a1a; display: flex; align-items: center; justify-content: center; color: #333; font-size: 0.72rem; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; min-height: 200px; border: 1px solid #222; }
 
   nav {
@@ -43,9 +45,9 @@
     line-height: 1; pointer-events: none; user-select: none;
   }
   .hero-main-logo {
-    position: absolute; left: 50%; top: 50%;
-    transform: translate(-50%, -50%);
-    height: 22rem; width: auto;
+    position: absolute; left: 50%; top: 3rem;
+    transform: translateX(-50%);
+    height: calc(8rem * 2.7); width: auto;
     opacity: 1; pointer-events: none; z-index: 1;
     display: block;
   }
@@ -423,7 +425,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
     <span style="font-size:0.65rem; opacity:0.5; margin-left:0.2rem;">&#9660;</span>
   </button>
   <div style="display:none; margin-top:0.6rem; padding:1rem 1.25rem; border:1px solid rgba(200,0,0,0.25); border-radius:6px; font-size:0.76rem; line-height:1.9; opacity:0.78;">
-    All products sold by KGTheTech LLC are for authorized testing and educational use only. Purchase, possession, and use of RF hardware and penetration testing tools may be restricted by federal, state, or local laws. Buyer is solely responsible for compliance with all applicable laws. Unauthorized interception of wireless communications is a federal crime under 18 U.S.C. &sect; 2511. KGTheTech LLC assumes no liability for misuse. All sales are final. No refunds on custom-built hardware. Buyer confirms they are 18 years of age or older and authorized to purchase and possess this equipment.
+    All products sold by KGTHETECH LLC are for authorized testing and educational use only. Purchase, possession, and use of RF hardware and penetration testing tools may be restricted by federal, state, or local laws. Buyer is solely responsible for compliance with all applicable laws. Unauthorized interception of wireless communications is a federal crime under 18 U.S.C. &sect; 2511. KGTHETECH LLC assumes no liability for misuse. All sales are final. No refunds on custom-built hardware. Buyer confirms they are 18 years of age or older and authorized to purchase and possess this equipment.
   </div>
 </div>
       </div>
@@ -658,7 +660,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
       </div>
 
       <div style="padding:1.25rem 1.5rem; border:1px solid rgba(200,100,0,0.4); border-radius:8px; font-size:0.82rem; line-height:1.85; opacity:0.75;">
-        <strong>Legal Notice:</strong> All products sold by KGTheTech LLC are intended exclusively for authorized testing, educational purposes, and lawful use on networks and systems the buyer owns or has explicit written permission to test. Buyer assumes full legal responsibility. Unauthorized access to networks or communications is a federal crime.
+        <strong>Legal Notice:</strong> All products sold by KGTHETECH LLC are intended exclusively for authorized testing, educational purposes, and lawful use on networks and systems the buyer owns or has explicit written permission to test. Buyer assumes full legal responsibility. Unauthorized access to networks or communications is a federal crime.
       </div>
   <!-- MERCH -->
   <div style="max-width:960px; margin:3rem auto 0; padding:0 2rem 1rem; border-top:1px solid rgba(128,128,128,0.2);">
@@ -864,7 +866,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
 
       <p style="margin:0 0 1.5rem; line-height:1.95;">KGTHETECH is a 40-year-old self-taught cybersecurity specialist and hardware maker from New York, now based in Aurora, Colorado. Working with networks and systems since 2004 — back when the proper terms weren't even known. TCP/IP learned 20+ years ago by clicking around, breaking things, fixing them, and figuring it out.</p>
 
-      <p style="margin:0 0 3rem; line-height:1.95;">KG The Tech was founded as a one-man operation focused on IT services, cybersecurity tools, graphic design, and commercial photography. Over the years: PC Tech at Insight Global/Deutsche Bank, stints at Home Depot and Top Shelf Electric, investor relations at DF King/Fidelity. Attended City Tech CUNY studying architecture, graduated from High School of Art &amp; Design in New York.</p>
+      <p style="margin:0 0 3rem; line-height:1.95;">KGTHETECH was founded as a one-man operation focused on IT services, cybersecurity tools, graphic design, and commercial photography. Over the years: PC Tech at Insight Global/Deutsche Bank, stints at Home Depot and Top Shelf Electric, investor relations at DF King/Fidelity. Attended City Tech CUNY studying architecture, graduated from High School of Art &amp; Design in New York.</p>
 
       <h3 style="margin:0 0 0.75rem;">Life Has Been a Roller Coaster</h3>
 
@@ -1201,7 +1203,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
 <div id="page-donate" class="page">
 <div style="max-width:860px; margin:0 auto; padding:3rem 2rem; text-align:center;">
   <h1 style="margin:0 0 0.75rem;">Support Independent Cybersecurity Research</h1>
-  <p style="margin:0 0 3.5rem; opacity:0.65; font-size:1rem; max-width:580px; margin-left:auto; margin-right:auto; line-height:1.8;">Every dollar goes directly toward building the future of KG The Tech. No middleman. No platform cuts. Real impact.</p>
+  <p style="margin:0 0 3.5rem; opacity:0.65; font-size:1rem; max-width:580px; margin-left:auto; margin-right:auto; line-height:1.8;">Every dollar goes directly toward building the future of KGTHETECH. No middleman. No platform cuts. Real impact.</p>
 
   <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.25rem; margin-bottom:3.5rem; text-align:left; max-width:780px; margin-left:auto; margin-right:auto;">
     <div style="border:1px solid rgba(128,128,128,0.25); padding:2rem; text-align:center;">
@@ -1264,7 +1266,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
     </div>
   </div>
 
-  <p style="opacity:0.5; font-size:0.88rem;">Thank you. &nbsp;&middot;&nbsp; KGTheTech LLC &nbsp;&middot;&nbsp; Aurora, Colorado</p>
+  <p style="opacity:0.5; font-size:0.88rem;">Thank you. &nbsp;&middot;&nbsp; KGTHETECH LLC</p>
 </div>
 </div>
 <div id="page-contact" class="page">
@@ -1275,15 +1277,13 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
     <!-- SEND A MESSAGE -->
     <div>
       <h2 style="margin:0 0 1.5rem; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; opacity:0.5; border-bottom:1px solid rgba(128,128,128,0.2); padding-bottom:0.6rem;">Send a Message</h2>
-      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="7c94a151-5d03-420a-94f6-1e9098883494">
-        <input type="hidden" name="redirect" value="https://kgthetech.com/#contact">
-        <input type="hidden" name="subject" value="KGTHETECH Contact Form Submission">
-        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Your Name</label><input type="text" name="name" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"></div>
-        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Your Email</label><input type="email" name="email" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"></div>
-        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Topic</label><select name="topic" required style="width:100%; padding:0.65rem 0.9rem; background:#0a0a0a; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"><option value="">-- Select --</option><option>Government Contracts</option><option>Product Inquiry</option><option>Order Support</option><option>Business Inquiry / Partnership</option><option>Custom Build Request</option><option>Technical Support</option><option>Media / Press</option><option>Feedback</option><option>Other</option></select></div>
-        <div style="margin-bottom:1.25rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Message</label><textarea name="message" rows="5" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem; resize:vertical;"></textarea></div>
-        <button type="submit" style="width:100%; padding:0.85rem; font-weight:700; cursor:pointer; background:var(--yellow); border:none; border-radius:6px; color:#000; font-size:0.88rem;">Send Message &rarr;</button>
+      <form id="contact-form">
+        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Your Name</label><input type="text" id="cf-name" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"></div>
+        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Your Email</label><input type="email" id="cf-email" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"></div>
+        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Topic</label><select id="cf-topic" required style="width:100%; padding:0.65rem 0.9rem; background:#0a0a0a; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"><option value="">-- Select --</option><option>Government Contracts</option><option>Product Inquiry</option><option>Order Support</option><option>Business Inquiry / Partnership</option><option>Custom Build Request</option><option>Technical Support</option><option>Media / Press</option><option>Feedback</option><option>Other</option></select></div>
+        <div style="margin-bottom:1.25rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Message</label><textarea id="cf-msg" rows="5" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem; resize:vertical;"></textarea></div>
+        <button id="cf-btn" type="button" onclick="_cfSubmit()" style="width:100%; padding:0.85rem; font-weight:700; cursor:pointer; background:var(--yellow); border:none; border-radius:6px; color:#000; font-size:0.88rem;">Send Message &rarr;</button>
+        <div id="cf-result" style="display:none; margin-top:1rem; padding:0.85rem; border-radius:6px; font-size:0.82rem; font-weight:700; text-align:center;"></div>
       </form>
     </div>
 
@@ -1364,7 +1364,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
 </div>
 
 <footer style="margin-top:4rem; padding:2rem 2rem 3.5rem; border-top:1px solid rgba(128,128,128,0.15); text-align:center; font-size:0.78rem; opacity:0.5;">
-  &copy; 2026 KGTheTech LLC &nbsp;&middot;&nbsp; Built from the hood, for the culture. &nbsp;&middot;&nbsp; All sales final.
+  &copy; 2026 KGTHETECH LLC &nbsp;&middot;&nbsp; Built from the hood, for the culture. &nbsp;&middot;&nbsp; All sales final.
 </footer>
 
 <script>
@@ -1487,7 +1487,7 @@ function changeQty(name, delta) {
     if (c.step === 1) {
       inner.innerHTML =
         '<p class="co-step">STEP 1 OF 3 &nbsp;&mdash;&nbsp; ORDER SUMMARY</p>' +
-        '<span class="co-label">' + (c.label||'KG The Tech') + '</span>' +
+        '<span class="co-label">' + (c.label||'KGTHETECH') + '</span>' +
         '<h2 class="co-title">' + c.name + '</h2>' +
         '<p class="co-price">' + amt + '</p>' +
         (c.isSub
@@ -1625,7 +1625,7 @@ function changeQty(name, delta) {
       D,
       '  SELLER',
       D,
-      '  KGTheTech LLC',
+      '  KGTHETECH LLC',
       '  kgthetech.com  |  kg@kgthetech.com',
       '',
       D,
@@ -1673,7 +1673,7 @@ function changeQty(name, delta) {
       '  it as "Not Spam" to receive future order updates.',
       '',
       D,
-      '  KGTheTech LLC — Built from the hood, for the culture.',
+      '  KGTHETECH LLC — Built from the hood, for the culture.',
       D
     ].join('\n');
 
@@ -1682,8 +1682,8 @@ function changeQty(name, delta) {
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
         access_key: _W3F_KEY,
-        subject: 'Your Order ' + orderNum + ' — KGTheTech LLC',
-        from_name: 'KGTheTech LLC',
+        subject: 'Your Order ' + orderNum + ' — KGTHETECH LLC',
+        from_name: 'KGTHETECH LLC',
         email: c.cEmail,
         replyto: 'kg@kgthetech.com',
         cc: c.cEmail,
@@ -1712,6 +1712,52 @@ function changeQty(name, delta) {
     // Notify KG then navigate to PayPal in same tab (no popup)
     _coConfirm('PayPal');
     setTimeout(function(){ window.location.href = url; }, 1200);
+  }
+  function _cfSubmit() {
+    var name  = document.getElementById('cf-name');
+    var email = document.getElementById('cf-email');
+    var topic = document.getElementById('cf-topic');
+    var msg   = document.getElementById('cf-msg');
+    var btn   = document.getElementById('cf-btn');
+    var res   = document.getElementById('cf-result');
+    if (!name  || !name.value.trim())  { name.focus();  return; }
+    if (!email || !email.value.trim() || email.value.indexOf('@') === -1) { email.focus(); return; }
+    if (!topic || !topic.value)        { topic.focus(); return; }
+    if (!msg   || !msg.value.trim())   { msg.focus();   return; }
+    btn.textContent = 'Sending...'; btn.disabled = true; res.style.display = 'none';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '7c94a151-5d03-420a-94f6-1e9098883494',
+        subject: 'KGTHETECH Contact: ' + topic.value + ' — ' + name.value,
+        from_name: name.value + ' via KGTHETECH.com',
+        email: email.value,
+        message: 'Name: ' + name.value + '\nEmail: ' + email.value + '\nTopic: ' + topic.value + '\n\n' + msg.value
+      })
+    }).then(function(r) { return r.json(); }).then(function(d) {
+      if (d.success) {
+        res.textContent = 'Message sent. KG will respond within 1–2 business days.';
+        res.style.background = 'rgba(58,255,122,0.1)';
+        res.style.color = '#3aff7a';
+        res.style.border = '1px solid rgba(58,255,122,0.3)';
+        document.getElementById('contact-form').reset();
+      } else {
+        res.textContent = 'Error sending. Try again or email kg@kgthetech.com directly.';
+        res.style.background = 'rgba(255,90,90,0.1)';
+        res.style.color = '#ff5a5a';
+        res.style.border = '1px solid rgba(255,90,90,0.3)';
+      }
+      res.style.display = 'block';
+    }).catch(function() {
+      res.textContent = 'Network error. Email kg@kgthetech.com directly.';
+      res.style.background = 'rgba(255,90,90,0.1)';
+      res.style.color = '#ff5a5a';
+      res.style.border = '1px solid rgba(255,90,90,0.3)';
+      res.style.display = 'block';
+    }).finally(function() {
+      btn.textContent = 'Send Message →'; btn.disabled = false;
+    });
   }
   function showZelleDonate() {
     var el = document.getElementById('zelle-donate-info');
