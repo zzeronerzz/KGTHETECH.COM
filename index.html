@@ -43,19 +43,12 @@
   .hero-top .location { font-size: 0.7rem; font-weight: 900; letter-spacing: 0.3em; text-transform: uppercase; color: #555; margin: 0; }
   .nav-token { height: 46px; width: 46px; object-fit: contain; margin-left: 16px; display: block; flex-shrink: 0; }
   .hero-main { background: var(--black); flex: 1; padding: 3rem 3rem 4rem; position: relative; overflow: hidden; }
-  .hero-main::before {
-    content: 'KG'; position: absolute; right: -1rem; top: -3rem;
-    font-size: 22rem; font-weight: 900; color: rgba(255,230,0,0.04);
-    line-height: 1; pointer-events: none; user-select: none;
-  }
   .hero-main-logo {
     position: absolute;
-    top: 3rem;
-    bottom: 4rem;
-    right: 3rem;
-    height: calc(100% - 7rem);
-    width: auto;
-    max-width: 45%;
+    top: 0; right: 0;
+    height: 100%;
+    width: 52%;
+    object-fit: fill;
     opacity: 1; pointer-events: none; z-index: 1;
     display: block;
   }
