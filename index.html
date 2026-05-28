@@ -52,6 +52,17 @@
     opacity: 1; pointer-events: none; z-index: 1;
     display: block;
   }
+  @media (max-width: 768px) {
+    .hero-main-logo {
+      width: 65%;
+      height: auto;
+      top: auto;
+      bottom: 0;
+      right: 0;
+      object-fit: contain;
+      opacity: 0.55;
+    }
+  }
   .hero-content { position: relative; z-index: 2; }
   .hero h1 {
     font-size: 8rem; font-weight: 900; text-transform: uppercase;
