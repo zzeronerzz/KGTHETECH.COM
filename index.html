@@ -1362,25 +1362,23 @@ function showPage(name, el) {
     document.querySelectorAll('nav a, .kgt-cart-btn').forEach(function(a) { a.classList.remove('nav-active'); });
     if (el) el.classList.add('nav-active');
     window.scrollTo(0, 0);
-    try { history.replaceState(null, '', window.location.pathname + (name !== 'home' ? '#' + name : '')); } catch(e){}
+    try { history.pushState({page: name}, '', window.location.pathname + (name !== 'home' ? '#' + name : '')); } catch(e){}
 }
-// On load: restore page from URL hash
-(function(){
-  var h = window.location.hash.replace('#','');
+// Restore page from hash (on load OR browser back/forward)
+function _showFromHash() {
+  var h = (window.location.hash || '').replace('#', '') || 'home';
   var valid = ['home','store','portfolio','videos','guides','subscribe','gallery','about','donate','contact','cart'];
-  if (h && valid.indexOf(h) !== -1) {
-    var pg = document.getElementById('page-' + h);
-    if (pg) {
-      document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
-      pg.classList.add('active');
-      var navLink = document.querySelector('nav a[onclick*="\'' + h + '\'"]');
-      if (navLink) {
-        document.querySelectorAll('nav a').forEach(function(a){ a.classList.remove('nav-active'); });
-        navLink.classList.add('nav-active');
-      }
-    }
-  }
-})();
+  var name = valid.indexOf(h) !== -1 ? h : 'home';
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var pg = document.getElementById('page-' + name);
+  if (pg) pg.classList.add('active');
+  document.querySelectorAll('nav a').forEach(function(a){ a.classList.remove('nav-active'); });
+  var navLink = document.querySelector('nav a[onclick*="\'' + name + '\'"]');
+  if (navLink) navLink.classList.add('nav-active');
+  window.scrollTo(0, 0);
+}
+_showFromHash();
+window.addEventListener('popstate', _showFromHash);
 function toggleAcc(btn) {
     var body = btn.nextElementSibling;
     if (!body) return;
