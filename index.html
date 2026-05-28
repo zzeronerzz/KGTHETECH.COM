@@ -192,22 +192,48 @@
   footer p, footer a { font-family: Arial, sans-serif; font-size: 0.82rem; color: #555; line-height: 1.7; display: block; font-weight: 400; }
   footer a:hover { color: var(--yellow); }
   .footer-bottom { background: #050505; text-align: center; padding: 1.2rem; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #333; }
+
+/* ── LIGHTBOX ── */
+#lb { display:none; position:fixed; inset:0; z-index:10000; background:rgba(0,0,0,0.97); align-items:center; justify-content:center; }
+#lb.open { display:flex; }
+#lb-img { max-width:90vw; max-height:88vh; object-fit:contain; display:block; }
+#lb-close { position:fixed; top:1.25rem; right:1.5rem; background:none; border:none; color:#fff; font-size:2rem; cursor:pointer; z-index:10001; line-height:1; opacity:0.7; }
+#lb-close:hover { opacity:1; }
+#lb-prev, #lb-next { position:fixed; top:50%; transform:translateY(-50%); background:rgba(255,230,0,0.08); border:1px solid rgba(255,230,0,0.25); color:var(--yellow); font-size:1.5rem; cursor:pointer; padding:0.85rem 1rem; z-index:10001; line-height:1; }
+#lb-prev { left:1rem; }
+#lb-next { right:1rem; }
+#lb-prev:hover, #lb-next:hover { background:rgba(255,230,0,0.2); }
+#lb-caption { position:fixed; bottom:1.25rem; left:50%; transform:translateX(-50%); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555; font-family:Arial,sans-serif; white-space:nowrap; }
+/* ── BACK NAV ── */
+#back-btn { display:none; position:fixed; bottom:1.5rem; left:1.5rem; z-index:8000; background:var(--black); border:1px solid rgba(255,230,0,0.35); color:var(--yellow); font-size:0.72rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; padding:0.65rem 1.1rem; cursor:pointer; font-family:inherit; }
+#back-btn:hover { border-color:var(--yellow); }
 </style>
 
 <style>
-/* ── PAYMENT MODAL ── */
-#pay-modal { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.9); align-items:center; justify-content:center; padding:1rem; }
-#pay-modal-inner { background:#0a0a0a; border:2px solid var(--yellow); max-width:460px; width:100%; padding:2.5rem; position:relative; }
-#pay-close { position:absolute; top:0.9rem; right:1.2rem; background:none; border:none; color:#666; font-size:1.4rem; cursor:pointer; line-height:1; }
-#pay-label { margin:0 0 0.2rem; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:#555; font-family:Arial,sans-serif; }
-#pay-name { margin:0 0 0.2rem; font-size:1.3rem; font-weight:900; }
-#pay-price { margin:0 0 1.75rem; font-size:2.2rem; font-weight:900; color:var(--yellow); }
-.pay-opt { display:flex; align-items:center; gap:1rem; padding:0.9rem 1.1rem; border:1px solid rgba(255,230,0,0.2); text-decoration:none; color:inherit; cursor:pointer; background:none; width:100%; text-align:left; margin-bottom:0.65rem; transition:border-color 0.15s; font-family:inherit; }
-.pay-opt:hover { border-color:var(--yellow); }
-.pay-badge { font-size:0.62rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; padding:0.2rem 0.5rem; border:1px solid rgba(255,230,0,0.4); color:var(--yellow); white-space:nowrap; }
-.pay-opt-name { font-weight:700; font-size:0.9rem; }
-.pay-opt-sub { font-size:0.72rem; color:#555; margin-top:0.1rem; font-family:Arial,sans-serif; font-weight:400; }
-#pay-zelle-panel { display:none; padding:1.25rem; background:#111; border:1px solid rgba(255,230,0,0.15); margin-bottom:0.65rem; font-family:Arial,sans-serif; }
+/* ── CHECKOUT MODAL ── */
+#checkout-modal { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.93); align-items:center; justify-content:center; padding:1rem; }
+#checkout-inner { background:#0a0a0a; border:2px solid var(--yellow); max-width:480px; width:100%; padding:2.5rem; position:relative; max-height:90vh; overflow-y:auto; }
+.co-step { font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:#444; margin:0 0 1.75rem; font-family:Arial,sans-serif; }
+.co-section { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:#555; margin:0 0 0.35rem; font-family:Arial,sans-serif; }
+.co-title { font-size:1.35rem; font-weight:900; margin:0 0 0.2rem; }
+.co-label { font-size:0.7rem; color:var(--gold); text-transform:uppercase; letter-spacing:0.15em; margin:0 0 0.5rem; font-weight:900; display:block; }
+.co-price { font-size:2.2rem; font-weight:900; color:var(--yellow); margin:0 0 1rem; }
+.co-note { font-family:Arial,sans-serif; font-size:0.8rem; color:#555; line-height:1.75; margin:0 0 1.75rem; }
+.co-btns { display:flex; gap:0.65rem; margin-top:1.5rem; }
+.co-btn-go { flex:1; padding:0.95rem 1.5rem; background:var(--yellow); color:var(--black); font-weight:900; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; border:none; cursor:pointer; font-family:inherit; }
+.co-btn-back { padding:0.95rem 1.25rem; background:transparent; color:#666; font-weight:700; font-size:0.78rem; border:1px solid #333; cursor:pointer; font-family:inherit; white-space:nowrap; }
+.co-input { display:block; width:100%; padding:0.85rem 1rem; background:#111; border:1px solid #2a2a2a; color:#fff; font-size:0.88rem; font-family:Arial,sans-serif; margin-bottom:0.55rem; outline:none; box-sizing:border-box; }
+.co-input:focus { border-color:var(--yellow); }
+.co-opt { display:flex; align-items:center; gap:1rem; padding:1rem 1.1rem; border:1px solid #222; color:inherit; cursor:pointer; background:none; width:100%; text-align:left; margin-bottom:0.55rem; font-family:inherit; transition:border-color 0.15s; }
+.co-opt:hover { border-color:var(--yellow); }
+.co-badge { font-size:0.58rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; padding:0.2rem 0.5rem; border:1px solid rgba(255,230,0,0.35); color:var(--yellow); white-space:nowrap; flex-shrink:0; }
+.co-opt-name { font-weight:700; font-size:0.9rem; }
+.co-divider { font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#444; margin:1.25rem 0 0.75rem; font-family:Arial,sans-serif; border-top:1px solid #1a1a1a; padding-top:1.25rem; }
+.co-instr { background:#111; border:1px solid rgba(255,230,0,0.12); padding:1.25rem; margin:0 0 1rem; font-family:Arial,sans-serif; font-size:0.85rem; color:#777; line-height:1.8; }
+.co-contact-big { font-size:1.25rem; font-weight:900; color:var(--yellow); display:block; margin:0.25rem 0; }
+.co-btn-pay { display:block; width:100%; padding:1rem; background:var(--yellow); color:var(--black); font-weight:900; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.12em; border:none; cursor:pointer; font-family:inherit; text-decoration:none; text-align:center; margin-bottom:0.65rem; box-sizing:border-box; }
+.co-btn-done { display:block; width:100%; padding:1rem; background:transparent; color:#888; font-weight:700; font-size:0.82rem; border:1px solid #333; cursor:pointer; font-family:inherit; text-align:center; box-sizing:border-box; }
+.co-change { background:none; border:none; color:#444; font-size:0.75rem; cursor:pointer; margin-top:0.75rem; width:100%; text-align:left; font-family:Arial,sans-serif; padding:0; }
 
 /* ── MOBILE ── */
 @media (max-width: 768px) {
@@ -730,19 +756,19 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
     <div class="gallery-sec-head-urb"><h2>CANTENNA STANDARD</h2><span class="gallery-price-urb">$50</span></div>
     <p class="gallery-desc-urb">14dBi, 22° beam, 300m.</p>
     <div class="photo-grid-urb">
-      <img src="images/products/cantenna-24ghz/cantenna-01.jpg" alt="Cantenna 1" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/cantenna-24ghz/cantenna-02.jpg" alt="Cantenna 2" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/cantenna-24ghz/cantenna-03.jpg" alt="Cantenna 3" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/cantenna-24ghz/cantenna-04.jpg" alt="Cantenna 4" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/cantenna-24ghz/cantenna-05.jpg" alt="Cantenna 5" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/cantenna-24ghz/cantenna-06.jpg" alt="Cantenna 6" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/cantenna-24ghz/cantenna-07.jpg" alt="Cantenna 7" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/cantenna-24ghz/cantenna-08.jpg" alt="Cantenna 8" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/cantenna-24ghz/cantenna-09.jpg" alt="Cantenna 9" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/cantenna-24ghz/cantenna-10.jpg" alt="Cantenna 10" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/cantenna-24ghz/cantenna-11.jpg" alt="Cantenna 11" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/cantenna-24ghz/cantenna-12.jpg" alt="Cantenna 12" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/cantenna-24ghz/cantenna-13.jpg" alt="Cantenna 13" style="width:100%; height:140px; object-fit:cover; display:block;">
+      <img src="images/products/cantenna-24ghz/cantenna-01.jpg" alt="Cantenna 1" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/cantenna-24ghz/cantenna-02.jpg" alt="Cantenna 2" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/cantenna-24ghz/cantenna-03.jpg" alt="Cantenna 3" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/cantenna-24ghz/cantenna-04.jpg" alt="Cantenna 4" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/cantenna-24ghz/cantenna-05.jpg" alt="Cantenna 5" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/cantenna-24ghz/cantenna-06.jpg" alt="Cantenna 6" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/cantenna-24ghz/cantenna-07.jpg" alt="Cantenna 7" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/cantenna-24ghz/cantenna-08.jpg" alt="Cantenna 8" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/cantenna-24ghz/cantenna-09.jpg" alt="Cantenna 9" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/cantenna-24ghz/cantenna-10.jpg" alt="Cantenna 10" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/cantenna-24ghz/cantenna-11.jpg" alt="Cantenna 11" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/cantenna-24ghz/cantenna-12.jpg" alt="Cantenna 12" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/cantenna-24ghz/cantenna-13.jpg" alt="Cantenna 13" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
     </div>
     <div class="gallery-btn-urb"><a onclick="showPage('store',this)" class="btn-yellow">VIEW IN STORE</a></div>
   </div>
@@ -751,27 +777,27 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
     <div class="gallery-sec-head-urb"><h2>ESP32 WARDRIVER KIT</h2><span class="gallery-price-urb">$150</span></div>
     <p class="gallery-desc-urb">GPS, dual WiFi, NRF24, MicroSD.</p>
     <div class="photo-grid-urb">
-      <img src="images/products/wardriver/KGPL7078.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7082.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7083.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7085.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7087.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7088.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7089.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7090.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7091.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7093.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7095.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7096.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7097.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7099.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7100.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7101.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7105.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7106.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7107.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7108.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/products/wardriver/KGPL7109.png" alt="ESP32 Wardriver" style="width:100%; height:140px; object-fit:cover; display:block;">
+      <img src="images/products/wardriver/KGPL7078.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7082.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7083.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7085.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7087.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7088.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7089.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7090.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7091.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7093.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7095.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7096.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7097.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7099.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7100.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7101.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7105.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7106.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7107.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7108.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/products/wardriver/KGPL7109.png" alt="ESP32 Wardriver" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
     </div>
     <div class="gallery-btn-urb"><a onclick="showPage('store',this)" class="btn-yellow">VIEW IN STORE</a></div>
   </div>
@@ -786,16 +812,16 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
     <div class="gallery-sec-head-urb"><h2>5G COPPER PATCH ANTENNA</h2><span class="gallery-price-urb">CREATION</span></div>
     <p class="gallery-desc-urb">Custom 5G cellular patch antenna. Copper ground plane, N-type, hand-soldered.</p>
     <div class="photo-grid-urb">
-      <img src="images/gallery/5g-antenna/5g-antenna-01.jpg" alt="5G Patch 1" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/gallery/5g-antenna/5g-antenna-02.jpg" alt="5G Patch 2" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/gallery/5g-antenna/5g-antenna-03.jpg" alt="5G Patch 3" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/gallery/5g-antenna/5g-antenna-04.jpg" alt="5G Patch 4" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/gallery/5g-antenna/5g-antenna-05.jpg" alt="5G Patch 5" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/gallery/5g-antenna/5g-antenna-06.jpg" alt="5G Patch 6" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/gallery/5g-antenna/5g-antenna-07.jpg" alt="5G Patch 7" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/gallery/5g-antenna/5g-antenna-08.jpg" alt="5G Patch 8" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/gallery/5g-antenna/5g-antenna-09.jpg" alt="5G Patch 9" style="width:100%; height:140px; object-fit:cover; display:block;">
-      <img src="images/gallery/5g-antenna/5g-antenna-10.jpg" alt="5G Patch 10" style="width:100%; height:140px; object-fit:cover; display:block;">
+      <img src="images/gallery/5g-antenna/5g-antenna-01.jpg" alt="5G Patch 1" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/gallery/5g-antenna/5g-antenna-02.jpg" alt="5G Patch 2" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/gallery/5g-antenna/5g-antenna-03.jpg" alt="5G Patch 3" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/gallery/5g-antenna/5g-antenna-04.jpg" alt="5G Patch 4" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/gallery/5g-antenna/5g-antenna-05.jpg" alt="5G Patch 5" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/gallery/5g-antenna/5g-antenna-06.jpg" alt="5G Patch 6" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/gallery/5g-antenna/5g-antenna-07.jpg" alt="5G Patch 7" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/gallery/5g-antenna/5g-antenna-08.jpg" alt="5G Patch 8" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/gallery/5g-antenna/5g-antenna-09.jpg" alt="5G Patch 9" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
+      <img src="images/gallery/5g-antenna/5g-antenna-10.jpg" alt="5G Patch 10" style="cursor:pointer; width:100%; height:140px; object-fit:cover; display:block;" onclick="openLb(this)">
     </div>
   </div>
 </div>
@@ -1160,18 +1186,28 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
   <h1 style="margin:0 0 0.75rem;">Support Independent Cybersecurity Research</h1>
   <p style="margin:0 0 3.5rem; opacity:0.65; font-size:1rem; max-width:580px; margin-left:auto; margin-right:auto; line-height:1.8;">Every dollar goes directly toward building the future of KG The Tech. No middleman. No platform cuts. Real impact.</p>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:3.5rem; text-align:left; max-width:600px; margin-left:auto; margin-right:auto;">
-    <div style="border:1px solid rgba(128,128,128,0.3); border-radius:10px; padding:2rem; text-align:center;">
-      <div style="font-size:2rem; margin-bottom:0.5rem;">&#9733;</div>
-      <h2 style="margin:0 0 0.5rem; font-size:1.3rem;">Cash App</h2>
-      <p style="margin:0 0 1.5rem; opacity:0.6; font-size:0.88rem; line-height:1.7;">100% direct. Open Cash App and search for KG The Tech to send any amount.</p>
-      <a href="https://cash.app/$GilliamTELLC" target="_blank" style="display:block; padding:0.85rem 1.5rem; font-weight:700; text-decoration:none; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Donate via Cash App &rarr;</a>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.25rem; margin-bottom:3.5rem; text-align:left; max-width:780px; margin-left:auto; margin-right:auto;">
+    <div style="border:1px solid rgba(128,128,128,0.25); padding:2rem; text-align:center;">
+      <div style="font-size:2rem; margin-bottom:0.5rem; color:var(--yellow);">$</div>
+      <h2 style="margin:0 0 0.5rem; font-size:1.1rem; font-weight:900; text-transform:uppercase; letter-spacing:0.05em;">Zelle</h2>
+      <p style="margin:0 0 1.5rem; opacity:0.55; font-size:0.82rem; line-height:1.7; font-family:Arial,sans-serif;">Open your bank app. Send any amount directly. 100% goes to KG.</p>
+      <button onclick="showZelleDonate()" style="display:block; width:100%; padding:0.85rem 1rem; font-weight:700; cursor:pointer; color:inherit; background:transparent; border:2px solid rgba(255,230,0,0.35); font-size:0.82rem; font-family:inherit; text-transform:uppercase; letter-spacing:0.08em;">Donate via Zelle</button>
+      <div id="zelle-donate-info" style="display:none; margin-top:1rem; padding:1rem; background:#111; border:1px solid rgba(255,230,0,0.15); font-family:Arial,sans-serif; text-align:left;">
+        <p style="margin:0 0 0.25rem; font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">SEND TO</p>
+        <p style="margin:0; font-size:1.1rem; font-weight:900; color:var(--yellow);">917-518-4458</p>
+      </div>
     </div>
-    <div style="border:1px solid rgba(128,128,128,0.3); border-radius:10px; padding:2rem; text-align:center;">
-      <div style="font-size:2rem; margin-bottom:0.5rem;">&#9654;</div>
-      <h2 style="margin:0 0 0.5rem; font-size:1.3rem;">PayPal</h2>
-      <p style="margin:0 0 1.5rem; opacity:0.6; font-size:0.88rem; line-height:1.7;">Send any amount via PayPal. Friends &amp; Family preferred to avoid fees.</p>
-      <a href="https://www.paypal.com/paypalme/gilliamTELLC" target="_blank" style="display:block; padding:0.85rem 1.5rem; font-weight:700; text-decoration:none; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Donate via PayPal &rarr;</a>
+    <div style="border:1px solid rgba(128,128,128,0.25); padding:2rem; text-align:center;">
+      <div style="font-size:2rem; margin-bottom:0.5rem; color:var(--yellow);">&#9733;</div>
+      <h2 style="margin:0 0 0.5rem; font-size:1.1rem; font-weight:900; text-transform:uppercase; letter-spacing:0.05em;">Cash App</h2>
+      <p style="margin:0 0 1.5rem; opacity:0.55; font-size:0.82rem; line-height:1.7; font-family:Arial,sans-serif;">100% direct. Instant. Open Cash App and send any amount.</p>
+      <a href="https://cash.app/$GilliamTELLC" target="_blank" style="display:block; padding:0.85rem 1rem; font-weight:700; text-decoration:none; color:inherit; border:2px solid rgba(255,230,0,0.35); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em;">Donate via Cash App</a>
+    </div>
+    <div style="border:1px solid rgba(128,128,128,0.25); padding:2rem; text-align:center;">
+      <div style="font-size:2rem; margin-bottom:0.5rem; color:var(--yellow);">&#9654;</div>
+      <h2 style="margin:0 0 0.5rem; font-size:1.1rem; font-weight:900; text-transform:uppercase; letter-spacing:0.05em;">PayPal</h2>
+      <p style="margin:0 0 1.5rem; opacity:0.55; font-size:0.82rem; line-height:1.7; font-family:Arial,sans-serif;">Send any amount via PayPal. Friends &amp; Family to skip fees.</p>
+      <a href="https://www.paypal.com/paypalme/gilliamTELLC" target="_blank" style="display:block; padding:0.85rem 1rem; font-weight:700; text-decoration:none; color:inherit; border:2px solid rgba(255,230,0,0.35); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em;">Donate via PayPal</a>
     </div>
   </div>
 
@@ -1297,50 +1333,16 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
       <span style="font-size:1rem; font-weight:700;">Total</span>
       <span style="font-size:1.5rem; font-weight:800;">$<span id="cart-total-amount">0.00</span></span>
     </div>
-    <a id="cart-paypal-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_cart&upload=1&business=gilliamtradesenterprises%40gmail.com" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:0.75rem; padding:1rem 1.5rem; font-weight:700; text-decoration:none; text-align:center; color:inherit; border:2px solid rgba(255,230,0,0.4); border-radius:8px; font-size:0.9rem; margin-bottom:0.65rem; background:rgba(255,230,0,0.04);"><span style="font-size:0.7rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; padding:0.25rem 0.55rem; border:1px solid rgba(255,230,0,0.4); color:var(--yellow);">PP</span> Checkout via PayPal &rarr;</a>
-    <button onclick="document.getElementById('cart-zelle').style.display=document.getElementById('cart-zelle').style.display==='none'?'block':'none'" style="display:flex; align-items:center; justify-content:center; gap:0.75rem; width:100%; padding:1rem 1.5rem; font-weight:700; cursor:pointer; text-align:center; color:inherit; background:rgba(255,230,0,0.04); border:2px solid rgba(255,230,0,0.4); border-radius:8px; font-size:0.9rem; margin-bottom:0.65rem;"><span style="font-size:0.7rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; padding:0.25rem 0.45rem; border:1px solid rgba(255,230,0,0.4); color:var(--yellow);">Z</span> Pay via Zelle &#8595;</button>
-    <div id="cart-zelle" style="display:none; padding:1.25rem; background:#111; border:1px solid rgba(255,230,0,0.15); border-radius:8px; margin-bottom:0.65rem; font-family:Arial,sans-serif; font-size:0.88rem;">
-      <p style="margin:0 0 0.5rem; font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">ZELLE</p>
-      <p style="margin:0 0 0.5rem; color:#888; line-height:1.8;">Open your bank app → Zelle → Send to:<br><strong style="color:var(--yellow); font-size:1.1rem;">917-518-4458</strong></p>
-      <p style="margin:0; font-size:0.72rem; color:#555;">After sending, email kg@kgthetech.com with your Zelle confirmation.</p>
-    </div>
-    <a href="https://cash.app/$GilliamTELLC" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:0.75rem; padding:1rem 1.5rem; font-weight:700; text-decoration:none; text-align:center; color:inherit; border:2px solid rgba(255,230,0,0.4); border-radius:8px; font-size:0.9rem; margin-bottom:0.75rem; background:rgba(255,230,0,0.04);"><span style="font-size:0.7rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; padding:0.25rem 0.45rem; border:1px solid rgba(255,230,0,0.4); color:var(--yellow);">CA</span> Pay via Cash App &rarr;</a>
-    <p style="text-align:center; font-size:0.75rem; opacity:0.45; margin:0;">PayPal redirects to checkout. Zelle & Cash App: email confirmation after payment.</p>
+    <button onclick="checkoutCart()" style="display:block; width:100%; padding:1rem 1.5rem; font-weight:900; cursor:pointer; text-align:center; background:var(--yellow); color:var(--black); border:none; font-size:0.88rem; text-transform:uppercase; letter-spacing:0.12em; font-family:inherit; margin-bottom:0.65rem;">Proceed to Checkout &rarr;</button>
+    <p style="text-align:center; font-size:0.75rem; opacity:0.45; margin:0;">PayPal &middot; Zelle &middot; Cash App &mdash; your choice at checkout.</p>
   </div>
 </div>
 </div>
 
 
-<!-- PAYMENT MODAL -->
-<div id="pay-modal" onclick="if(event.target===this)closePayment()">
-  <div id="pay-modal-inner">
-    <button id="pay-close" onclick="closePayment()">&times;</button>
-    <p id="pay-label"></p>
-    <h2 id="pay-name"></h2>
-    <p id="pay-price"></p>
-    <p style="margin:0 0 1rem; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:#555;">SELECT PAYMENT METHOD</p>
-    <a id="pay-pp" href="#" target="_blank" class="pay-opt" onclick="closePayment()">
-      <span class="pay-badge">PP</span>
-      <div><div class="pay-opt-name">PayPal</div><div class="pay-opt-sub">gilliamtradesenterprises@gmail.com</div></div>
-      <span style="margin-left:auto; opacity:0.4;">&#8594;</span>
-    </a>
-    <button class="pay-opt" onclick="toggleZelle()">
-      <span class="pay-badge">Z</span>
-      <div><div class="pay-opt-name">Zelle</div><div class="pay-opt-sub">917-518-4458</div></div>
-      <span style="margin-left:auto; opacity:0.4;" id="zelle-arrow">&#8595;</span>
-    </button>
-    <div id="pay-zelle-panel">
-      <p style="margin:0 0 0.4rem; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">ZELLE</p>
-      <p style="margin:0 0 0.65rem; font-size:0.88rem; color:#888; line-height:1.8;">Open your bank app &rarr; Zelle &rarr; Send to:<br><strong style="color:var(--yellow); font-size:1.15rem;">917-518-4458</strong></p>
-      <p style="margin:0 0 0.5rem; font-size:0.88rem; color:#888;">Amount: <strong id="pay-zelle-amt" style="color:var(--yellow);"></strong></p>
-      <p style="margin:0; font-size:0.72rem; color:#555;">Memo: <span id="pay-zelle-memo"></span>. Then email kg@kgthetech.com with Zelle confirmation.</p>
-    </div>
-    <a href="https://cash.app/$GilliamTELLC" target="_blank" class="pay-opt" onclick="closePayment()">
-      <span class="pay-badge">CA</span>
-      <div><div class="pay-opt-name">Cash App</div><div class="pay-opt-sub">$GilliamTELLC</div></div>
-      <span style="margin-left:auto; opacity:0.4;">&#8594;</span>
-    </a>
-  </div>
+<!-- CHECKOUT MODAL -->
+<div id="checkout-modal" onclick="if(event.target===this)closeCheckout()">
+  <div id="checkout-inner"></div>
 </div>
 
 <footer style="margin-top:6rem; padding:2rem 5rem; border-top:1px solid rgba(128,128,128,0.15); text-align:center; font-size:0.8rem; opacity:0.5;">
@@ -1430,25 +1432,141 @@ function changeQty(name, delta) {
   updateCartCount(); renderCart();
 }
 
+  /* ── CHECKOUT STATE ── */
+  var _co = { name:'', amount:0, label:'', isSub:false, step:1, method:'', cName:'', cEmail:'', cPhone:'', cAddr:'', cCity:'' };
+
   function showPayment(name, amount, label) {
-    document.getElementById('pay-label').textContent = label || 'KG The Tech';
-    document.getElementById('pay-name').textContent = name;
-    var amtStr = '$' + (parseFloat(amount) % 1 === 0 ? parseInt(amount) : parseFloat(amount).toFixed(2));
-    if (label && label.indexOf('/mo') !== -1) amtStr += '/mo';
-    document.getElementById('pay-price').textContent = amtStr;
-    document.getElementById('pay-zelle-amt').textContent = '$' + (parseFloat(amount) % 1 === 0 ? parseInt(amount) : parseFloat(amount).toFixed(2));
-    document.getElementById('pay-zelle-memo').textContent = name;
-    document.getElementById('pay-pp').href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=gilliamtradesenterprises%40gmail.com&item_name=' + encodeURIComponent(name) + '&amount=' + parseFloat(amount).toFixed(2) + '&currency_code=USD&no_shipping=0';
-    document.getElementById('pay-zelle-panel').style.display = 'none';
-    document.getElementById('zelle-arrow').textContent = '↓';
-    document.getElementById('pay-modal').style.display = 'flex';
+    _co = { name:name, amount:parseFloat(amount), label:label||'', isSub:(label||'').indexOf('/mo')!==-1, step:1, method:'', cName:'', cEmail:'', cPhone:'', cAddr:'', cCity:'' };
+    _renderCo();
+    document.getElementById('checkout-modal').style.display = 'flex';
   }
-  function closePayment() { document.getElementById('pay-modal').style.display = 'none'; }
-  function toggleZelle() {
-    var p = document.getElementById('pay-zelle-panel');
-    var open = p.style.display === 'block';
-    p.style.display = open ? 'none' : 'block';
-    document.getElementById('zelle-arrow').textContent = open ? '↓' : '↑';
+  function checkoutCart() {
+    var amt = parseFloat(document.getElementById('cart-total-amount').textContent)||0;
+    showPayment('Cart Order', amt, 'Hardware / Physical');
+  }
+  function closeCheckout() { document.getElementById('checkout-modal').style.display = 'none'; }
+
+  function _renderCo() {
+    var c = _co, inner = document.getElementById('checkout-inner');
+    var amt = '$' + (c.amount % 1 === 0 ? parseInt(c.amount) : c.amount.toFixed(2)) + (c.isSub ? '/mo' : '');
+
+    if (c.step === 1) {
+      inner.innerHTML =
+        '<p class="co-step">STEP 1 OF 3 &nbsp;&mdash;&nbsp; ORDER SUMMARY</p>' +
+        '<span class="co-label">' + (c.label||'KG The Tech') + '</span>' +
+        '<h2 class="co-title">' + c.name + '</h2>' +
+        '<p class="co-price">' + amt + '</p>' +
+        (c.isSub
+          ? '<p class="co-note">Digital access &mdash; delivered to your email after payment confirmation. Non-refundable.</p>'
+          : '<p class="co-note">Handbuilt and shipped from Aurora, Colorado. Allow 3&ndash;6 weeks. Buyer pays shipping. All sales final.</p>') +
+        '<div class="co-btns"><button class="co-btn-back" onclick="closeCheckout()">Cancel</button><button class="co-btn-go" onclick="_coNext()">Continue &rarr;</button></div>';
+
+    } else if (c.step === 2) {
+      inner.innerHTML =
+        '<p class="co-step">STEP 2 OF 3 &nbsp;&mdash;&nbsp; YOUR INFO</p>' +
+        '<p class="co-note" style="margin-bottom:1.25rem;">Enter your info so we can confirm and process your order.</p>' +
+        '<input id="co-name" class="co-input" type="text" placeholder="Full Name *" value="' + c.cName + '">' +
+        '<input id="co-email" class="co-input" type="email" placeholder="Email Address *" value="' + c.cEmail + '">' +
+        '<input id="co-phone" class="co-input" type="tel" placeholder="Phone Number" value="' + c.cPhone + '">' +
+        (!c.isSub
+          ? '<input id="co-addr" class="co-input" type="text" placeholder="Street Address *" value="' + c.cAddr + '">' +
+            '<input id="co-city" class="co-input" type="text" placeholder="City, State, ZIP *" value="' + c.cCity + '">'
+          : '') +
+        '<div class="co-btns"><button class="co-btn-back" onclick="_coBack()">&larr; Back</button><button class="co-btn-go" onclick="_coNext()">Continue &rarr;</button></div>';
+
+    } else if (c.step === 3) {
+      inner.innerHTML =
+        '<p class="co-step">STEP 3 OF 3 &nbsp;&mdash;&nbsp; SELECT PAYMENT</p>' +
+        '<p class="co-note" style="margin-bottom:1.25rem;">Choose how you want to pay. Payment details come next.</p>' +
+        '<button class="co-opt" onclick="_coMethod(\'paypal\')"><span class="co-badge">PP</span><span class="co-opt-name">PayPal</span></button>' +
+        '<button class="co-opt" onclick="_coMethod(\'zelle\')"><span class="co-badge">Z</span><span class="co-opt-name">Zelle</span></button>' +
+        '<button class="co-opt" onclick="_coMethod(\'cashapp\')"><span class="co-badge">CA</span><span class="co-opt-name">Cash App</span></button>' +
+        '<div class="co-btns" style="margin-top:1rem;"><button class="co-btn-back" onclick="_coBack()">&larr; Back</button></div>';
+
+    } else if (c.step === 4) {
+      var amt2 = '$' + (c.amount % 1 === 0 ? parseInt(c.amount) : c.amount.toFixed(2));
+      var ppUrl = 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=gilliamtradesenterprises%40gmail.com&item_name=' + encodeURIComponent(c.name) + '&amount=' + c.amount.toFixed(2) + '&currency_code=USD&no_shipping=0';
+      var body = '';
+      if (c.method === 'paypal') {
+        body =
+          '<p class="co-step">PAY WITH PAYPAL</p>' +
+          '<p class="co-price">' + amt2 + '</p>' +
+          '<div class="co-instr"><p style="margin:0 0 0.4rem; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">PAYPAL EMAIL</p><span class="co-contact-big">gilliamtradesenterprises@gmail.com</span></div>' +
+          '<a href="' + ppUrl + '" target="_blank" class="co-btn-pay" onclick="setTimeout(function(){_coConfirm(\'PayPal\')},1500)">Open PayPal &rarr;</a>' +
+          '<div class="co-divider">After payment completes, confirm below</div>' +
+          '<button class="co-btn-done" onclick="_coConfirm(\'PayPal\')">I\'ve Completed Payment &checkmark;</button>';
+      } else if (c.method === 'zelle') {
+        body =
+          '<p class="co-step">PAY WITH ZELLE</p>' +
+          '<p class="co-price">' + amt2 + '</p>' +
+          '<div class="co-instr"><p style="margin:0 0 0.25rem; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">OPEN BANK APP &rarr; ZELLE &rarr; SEND TO</p><span class="co-contact-big">917-518-4458</span><p style="margin:0.5rem 0 0; font-size:0.75rem; color:#555;">Memo: ' + c.name + '</p></div>' +
+          '<div class="co-divider">After sending, confirm below</div>' +
+          '<button class="co-btn-pay" onclick="_coConfirm(\'Zelle\')">I\'ve Sent Payment &checkmark;</button>';
+      } else if (c.method === 'cashapp') {
+        body =
+          '<p class="co-step">PAY WITH CASH APP</p>' +
+          '<p class="co-price">' + amt2 + '</p>' +
+          '<div class="co-instr"><p style="margin:0 0 0.25rem; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">OPEN CASH APP &rarr; SEARCH</p><span class="co-contact-big">$GilliamTELLC</span><p style="margin:0.5rem 0 0; font-size:0.75rem; color:#555;">Note: ' + c.name + ' &middot; ' + amt2 + '</p></div>' +
+          '<a href="https://cash.app/$GilliamTELLC" target="_blank" class="co-btn-pay" onclick="setTimeout(function(){},500)">Open Cash App &rarr;</a>' +
+          '<div class="co-divider">After sending, confirm below</div>' +
+          '<button class="co-btn-done" onclick="_coConfirm(\'Cash App\')">I\'ve Sent Payment &checkmark;</button>';
+      }
+      inner.innerHTML = body + '<button class="co-change" onclick="_coBack()">&larr; Change payment method</button>';
+    }
+  }
+
+  function _coNext() {
+    var c = _co;
+    if (c.step === 2) {
+      var n = document.getElementById('co-name'), e = document.getElementById('co-email');
+      var a = document.getElementById('co-addr'), ci = document.getElementById('co-city');
+      if (!n || !n.value.trim()) { if(n)n.focus(); return; }
+      if (!e || !e.value.trim() || e.value.indexOf('@')===-1) { if(e)e.focus(); return; }
+      if (!c.isSub && a && !a.value.trim()) { a.focus(); return; }
+      if (!c.isSub && ci && !ci.value.trim()) { ci.focus(); return; }
+      c.cName = n ? n.value.trim() : '';
+      c.cEmail = e ? e.value.trim() : '';
+      c.cPhone = document.getElementById('co-phone') ? document.getElementById('co-phone').value.trim() : '';
+      c.cAddr = a ? a.value.trim() : '';
+      c.cCity = ci ? ci.value.trim() : '';
+    }
+    c.step++;
+    _renderCo();
+  }
+  function _coBack() {
+    if (_co.step === 4) _co.step = 3;
+    else if (_co.step > 1) _co.step--;
+    _renderCo();
+  }
+  function _coMethod(m) { _co.method = m; _co.step = 4; _renderCo(); }
+
+  function _coConfirm(method) {
+    var c = _co;
+    var amt2 = '$' + (c.amount % 1 === 0 ? parseInt(c.amount) : c.amount.toFixed(2)) + (c.isSub ? '/mo' : '');
+    var subj = encodeURIComponent('NEW ORDER: ' + c.name + ' — ' + (c.cName || 'Customer'));
+    var body = 'NEW ORDER RECEIVED%0A%0A';
+    body += 'ITEM: ' + encodeURIComponent(c.name) + '%0A';
+    body += 'AMOUNT: ' + encodeURIComponent(amt2) + '%0A';
+    body += 'PAYMENT METHOD: ' + encodeURIComponent(method) + '%0A%0A';
+    body += 'CUSTOMER INFO%0A';
+    body += 'Name: ' + encodeURIComponent(c.cName) + '%0A';
+    body += 'Email: ' + encodeURIComponent(c.cEmail) + '%0A';
+    if (c.cPhone) body += 'Phone: ' + encodeURIComponent(c.cPhone) + '%0A';
+    if (c.cAddr) body += 'Ship to: ' + encodeURIComponent(c.cAddr + ', ' + c.cCity) + '%0A';
+    body += '%0ADate: ' + encodeURIComponent(new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}));
+    window.open('mailto:kg@kgthetech.com?subject=' + subj + '&body=' + body);
+    document.getElementById('checkout-inner').innerHTML =
+      '<div style="text-align:center; padding:2rem 0;">' +
+      '<div style="font-size:2.5rem; margin-bottom:1rem; color:var(--yellow);">✓</div>' +
+      '<h2 style="margin:0 0 0.75rem; font-size:1.2rem;">Order Confirmed</h2>' +
+      '<p style="font-family:Arial,sans-serif; color:#666; line-height:1.8; margin:0 0 1.5rem; font-size:0.88rem;">An order summary has been opened in your email. Send it to kg@kgthetech.com to complete your order. You\'ll hear back within 24–48 hours.</p>' +
+      '<button class="co-btn-go" onclick="closeCheckout()" style="width:100%;">Done</button>' +
+      '</div>';
+  }
+
+  function showZelleDonate() {
+    var el = document.getElementById('zelle-donate-info');
+    if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
   }
   function toggleNav() {
     var nl = document.getElementById('nav-links');
@@ -1456,6 +1574,72 @@ function changeQty(name, delta) {
     nl.classList.toggle('open');
     nav.classList.toggle('nav-open');
   }
+
+  // ── LIGHTBOX ──
+  var _lbImgs = [], _lbIdx = 0;
+  function openLb(imgEl) {
+    // Collect all sibling images in the same photo-grid-urb
+    var grid = imgEl.closest ? imgEl.closest('.photo-grid-urb') : imgEl.parentNode;
+    var imgs = grid ? Array.from(grid.querySelectorAll('img')) : [imgEl];
+    _lbImgs = imgs.map(function(i){ return {src: i.src, alt: i.alt}; });
+    _lbIdx = imgs.indexOf(imgEl);
+    if (_lbIdx < 0) _lbIdx = 0;
+    _lbShow();
+    document.getElementById('lb').classList.add('open');
+    document.addEventListener('keydown', _lbKey);
+  }
+  function _lbShow() {
+    var d = _lbImgs[_lbIdx] || {};
+    document.getElementById('lb-img').src = d.src || '';
+    document.getElementById('lb-img').alt = d.alt || '';
+    document.getElementById('lb-caption').textContent = (_lbIdx+1) + ' / ' + _lbImgs.length;
+    document.getElementById('lb-prev').style.display = _lbImgs.length > 1 ? '' : 'none';
+    document.getElementById('lb-next').style.display = _lbImgs.length > 1 ? '' : 'none';
+  }
+  function lbStep(d) {
+    _lbIdx = (_lbIdx + d + _lbImgs.length) % _lbImgs.length;
+    _lbShow();
+  }
+  function closeLb() {
+    document.getElementById('lb').classList.remove('open');
+    document.removeEventListener('keydown', _lbKey);
+  }
+  function _lbKey(e) {
+    if (e.key === 'ArrowLeft') lbStep(-1);
+    else if (e.key === 'ArrowRight') lbStep(1);
+    else if (e.key === 'Escape') closeLb();
+  }
+
+  // ── NAV HISTORY ──
+  var _navHistory = [];
+  var _origShowPage = showPage;
+  showPage = function(name, el) {
+    var cur = document.querySelector('.page.active');
+    if (cur && cur.id) {
+      var curName = cur.id.replace('page-','');
+      _navHistory.push(curName);
+    }
+    _origShowPage(name, el);
+    document.getElementById('back-btn').style.display = _navHistory.length > 0 ? 'block' : 'none';
+  };
+  function navBack() {
+    if (!_navHistory.length) return;
+    var prev = _navHistory.pop();
+    _origShowPage(prev, null);
+    document.getElementById('back-btn').style.display = _navHistory.length > 0 ? 'block' : 'none';
+  }
+
 </script>
+
+<!-- LIGHTBOX -->
+<div id="lb" onclick="if(event.target===this)closeLb()">
+  <button id="lb-close" onclick="closeLb()">&#10005;</button>
+  <button id="lb-prev" onclick="lbStep(-1)">&#8249;</button>
+  <img id="lb-img" src="" alt="">
+  <button id="lb-next" onclick="lbStep(1)">&#8250;</button>
+  <span id="lb-caption"></span>
+</div>
+<!-- BACK BUTTON -->
+<button id="back-btn" onclick="navBack()">&#8592; BACK</button>
 </body>
 </html>
