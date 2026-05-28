@@ -205,7 +205,7 @@
 #lb-prev:hover, #lb-next:hover { background:rgba(255,230,0,0.2); }
 #lb-caption { position:fixed; bottom:1.25rem; left:50%; transform:translateX(-50%); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555; font-family:Arial,sans-serif; white-space:nowrap; }
 /* ── BACK NAV ── */
-#back-btn { display:none; position:fixed; bottom:1.5rem; left:1.5rem; z-index:8000; background:var(--black); border:1px solid rgba(255,230,0,0.35); color:var(--yellow); font-size:0.72rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; padding:0.65rem 1.1rem; cursor:pointer; font-family:inherit; }
+#back-btn { display:none; position:fixed; bottom:1.5rem; right:1.5rem; z-index:8000; background:var(--black); border:1px solid rgba(255,230,0,0.35); color:var(--yellow); font-size:0.72rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; padding:0.65rem 1.1rem; cursor:pointer; font-family:inherit; }
 #back-btn:hover { border-color:var(--yellow); }
 </style>
 
@@ -1262,13 +1262,15 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
     <!-- SEND A MESSAGE -->
     <div>
       <h2 style="margin:0 0 1.5rem; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.18em; opacity:0.5; border-bottom:1px solid rgba(128,128,128,0.2); padding-bottom:0.6rem;">Send a Message</h2>
-      <form id="contact-form">
+      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="7c94a151-5d03-420a-94f6-1e9098883494">
+        <input type="hidden" name="redirect" value="https://kgthetech.com/#contact">
+        <input type="hidden" name="subject" value="KGTHETECH Contact Form Submission">
         <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Your Name</label><input type="text" name="name" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"></div>
         <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Your Email</label><input type="email" name="email" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"></div>
-        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Subject</label><select name="subject" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem; background-color:#0a0a0a;"><option value="">-- Select --</option><option>Government Contracts</option><option>Product Inquiry</option><option>Order Support</option><option>Business Inquiry / Partnership</option><option>Custom Build Request</option><option>Technical Support</option><option>Media / Press</option><option>Feedback</option><option>Other</option></select></div>
+        <div style="margin-bottom:0.85rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Topic</label><select name="topic" required style="width:100%; padding:0.65rem 0.9rem; background:#0a0a0a; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem;"><option value="">-- Select --</option><option>Government Contracts</option><option>Product Inquiry</option><option>Order Support</option><option>Business Inquiry / Partnership</option><option>Custom Build Request</option><option>Technical Support</option><option>Media / Press</option><option>Feedback</option><option>Other</option></select></div>
         <div style="margin-bottom:1.25rem;"><label style="display:block; font-size:0.75rem; opacity:0.55; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Message</label><textarea name="message" rows="5" required style="width:100%; padding:0.65rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:inherit; font-size:0.88rem; resize:vertical;"></textarea></div>
-        <button id="contact-submit" type="submit" style="width:100%; padding:0.85rem; font-weight:700; cursor:pointer; background:transparent; border:2px solid currentColor; border-radius:6px; color:inherit; font-size:0.88rem;">Send Message &rarr;</button>
-        <p id="contact-result" style="margin:0.75rem 0 0; font-size:0.8rem; text-align:center; display:none;"></p>
+        <button type="submit" style="width:100%; padding:0.85rem; font-weight:700; cursor:pointer; background:var(--yellow); border:none; border-radius:6px; color:#000; font-size:0.88rem;">Send Message &rarr;</button>
       </form>
     </div>
 
@@ -1321,9 +1323,6 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
     </div>
 
   </div>
-  <div style="padding:1.25rem 1.75rem; border:1px solid rgba(128,128,128,0.15); border-radius:8px; font-size:0.78rem; opacity:0.55; line-height:1.8; text-align:center;">
-    &copy; 2026 KGTheTech LLC &nbsp;&middot;&nbsp; All products for authorized testing and educational use only.
-  </div>
 </div>
 </div>
 
@@ -1351,7 +1350,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
   <div id="checkout-inner"></div>
 </div>
 
-<footer style="margin-top:6rem; padding:2rem; border-top:1px solid rgba(128,128,128,0.15); text-align:center; font-size:0.78rem; opacity:0.5; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+<footer style="margin-top:4rem; padding:2rem 2rem 3.5rem; border-top:1px solid rgba(128,128,128,0.15); text-align:center; font-size:0.78rem; opacity:0.5;">
   &copy; 2026 KGTheTech LLC &nbsp;&middot;&nbsp; Built from the hood, for the culture. &nbsp;&middot;&nbsp; All sales final.
 </footer>
 
@@ -1507,28 +1506,28 @@ function changeQty(name, delta) {
 
     } else if (c.step === 4) {
       var amt2 = '$' + (c.amount % 1 === 0 ? parseInt(c.amount) : c.amount.toFixed(2));
-      var ppUrl = 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=gilliamtradesenterprises%40gmail.com&item_name=' + encodeURIComponent(c.name) + '&amount=' + c.amount.toFixed(2) + '&currency_code=USD&no_shipping=0';
+      var ppUrl = 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=gilliamtradesenterprises%40gmail.com&item_name=' + encodeURIComponent(c.name) + '&amount=' + c.amount.toFixed(2) + '&currency_code=USD&no_shipping=0&return=https://kgthetech.com/%23store&cancel_return=https://kgthetech.com/%23store';
       var body = '';
       if (c.method === 'paypal') {
         body =
           '<p class="co-step">PAY WITH PAYPAL</p>' +
           '<p class="co-price">' + amt2 + '</p>' +
-          '<p class="co-note">You will be taken to PayPal to complete payment securely. PayPal or any debit/credit card accepted.</p>' +
-          '<a href="' + ppUrl + '" target="_blank" class="co-btn-pay" onclick="_coConfirm(\'PayPal\')">Complete Payment via PayPal &rarr;</a>' +
+          '<p class="co-note">You will go to PayPal to pay, then return here. PayPal or any debit/credit card accepted.</p>' +
+          '<button class="co-btn-pay" onclick="_coGoPayPal('' + ppUrl.replace(/'/g,"\'") + '')">Go to PayPal &rarr;</button>' +
           '<button class="co-change" onclick="_coBack()">&larr; Change payment method</button>';
       } else if (c.method === 'zelle') {
         body =
           '<p class="co-step">PAY WITH ZELLE</p>' +
           '<p class="co-price">' + amt2 + '</p>' +
-          '<div class="co-instr"><p style="margin:0 0 0.25rem; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">OPEN YOUR BANK APP &rarr; ZELLE &rarr; SEND TO:</p><span class="co-contact-big">917-518-4458</span><p style="margin:0.5rem 0 0; font-size:0.75rem; color:#555;">Add memo: ' + c.name + '</p></div>' +
-          '<a href="zelle://?" class="co-btn-pay" style="margin-top:1rem;" onclick="_coConfirm(\'Zelle\')">Open Zelle &rarr;</a>' +
+          '<div class="co-instr"><p style="margin:0 0 0.25rem; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">OPEN YOUR BANK APP &rarr; ZELLE &rarr; SEND TO:</p><span class="co-contact-big">917-518-4458</span><p style="margin:0.5rem 0 0; font-size:0.75rem; color:#555;">Add note: ' + c.name + ' &middot; ' + amt2 + '</p></div>' +
+          '<button class="co-btn-pay" style="margin-top:1.25rem;" onclick="_coConfirm(\'Zelle\')">I\'ve Sent via Zelle &checkmark;</button>' +
           '<button class="co-change" onclick="_coBack()">&larr; Change payment method</button>';
       } else if (c.method === 'cashapp') {
         body =
           '<p class="co-step">PAY WITH CASH APP</p>' +
           '<p class="co-price">' + amt2 + '</p>' +
-          '<div class="co-instr"><p style="margin:0 0 0.25rem; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">SEND TO:</p><span class="co-contact-big">$GilliamTELLC</span><p style="margin:0.5rem 0 0; font-size:0.75rem; color:#555;">Note: ' + c.name + ' &middot; ' + amt2 + '</p></div>' +
-          '<a href="https://cash.app/$GilliamTELLC" target="_blank" class="co-btn-pay" style="margin-top:1rem;" onclick="_coConfirm(\'Cash App\')">Open Cash App &rarr;</a>' +
+          '<div class="co-instr"><p style="margin:0 0 0.25rem; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:#555;">OPEN CASH APP &rarr; SEND TO:</p><span class="co-contact-big">$GilliamTELLC</span><p style="margin:0.5rem 0 0; font-size:0.75rem; color:#555;">Note: ' + c.name + ' &middot; ' + amt2 + '</p></div>' +
+          '<button class="co-btn-pay" style="margin-top:1.25rem;" onclick="_coConfirm(\'Cash App\')">I\'ve Sent via Cash App &checkmark;</button>' +
           '<button class="co-change" onclick="_coBack()">&larr; Change payment method</button>';
       }
       inner.innerHTML = body;
@@ -1610,6 +1609,11 @@ function changeQty(name, delta) {
       '</div>';
   }
 
+  function _coGoPayPal(url) {
+    // Notify KG then navigate to PayPal in same tab (no popup)
+    _coConfirm('PayPal');
+    setTimeout(function(){ window.location.href = url; }, 1200);
+  }
   function showZelleDonate() {
     var el = document.getElementById('zelle-donate-info');
     if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
@@ -1703,44 +1707,7 @@ function changeQty(name, delta) {
     _loadTtThumbs();
   }
 
-  // ── CONTACT FORM (Web3Forms) ──
-  (function(){
-    var cf = document.getElementById('contact-form');
-    if (!cf) return;
-    cf.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var btn = document.getElementById('contact-submit');
-      var res = document.getElementById('contact-result');
-      var fd = new FormData(cf);
-      fd.append('access_key', _W3F_KEY);
-      fd.append('subject', 'Contact: ' + (fd.get('subject')||'Message') + ' — ' + (fd.get('name')||''));
-      fd.append('from_name', fd.get('name') + ' (kgthetech.com contact form)');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-      fetch('https://api.web3forms.com/submit', { method:'POST', body: fd })
-        .then(function(r){ return r.json(); })
-        .then(function(d){
-          if (d.success) {
-            res.textContent = 'Message sent. You will hear back soon.';
-            res.style.color = 'var(--yellow)';
-            cf.reset();
-          } else {
-            res.textContent = 'Error: ' + (d.message || 'Try again.');
-            res.style.color = '#f87171';
-          }
-          res.style.display = 'block';
-        })
-        .catch(function(){
-          res.textContent = 'Network error — try again.';
-          res.style.color = '#f87171';
-          res.style.display = 'block';
-        })
-        .finally(function(){
-          btn.textContent = 'Send Message →';
-          btn.disabled = false;
-        });
-    });
-  })();
+  // contact form handled natively via action attribute
 
 </script>
 
