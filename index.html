@@ -1584,6 +1584,35 @@ function changeQty(name, delta) {
 
   var _W3F_KEY = '7c94a151-5d03-420a-94f6-1e9098883494';
 
+  // ── EmailJS config — KG: paste your 3 values from emailjs.com ──
+  var _EJS_KEY = 'PASTE_PUBLIC_KEY';    // Account → API Keys → Public Key
+  var _EJS_SVC = 'PASTE_SERVICE_ID';   // Email Services → your Gmail service ID
+  var _EJS_TPL = 'PASTE_TEMPLATE_ID';  // Email Templates → your template ID
+
+  function _sendClientEmail(orderNum, c, method, amt2, dateStr) {
+    if (_EJS_KEY === 'PASTE_PUBLIC_KEY') return; // not configured yet
+    var shipLine = c.cAddr ? (c.cAddr + (c.cCity ? ', ' + c.cCity : '')) : (c.isSub ? 'Digital delivery — email' : '');
+    fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        service_id:  _EJS_SVC,
+        template_id: _EJS_TPL,
+        user_id:     _EJS_KEY,
+        template_params: {
+          to_email:       c.cEmail,
+          customer_name:  c.cName,
+          order_num:      orderNum,
+          order_date:     dateStr,
+          item_name:      c.name,
+          amount:         amt2,
+          payment_method: method,
+          ship_to:        shipLine
+        }
+      })
+    }).catch(function(){});
+  }
+
   function _coConfirm(method) {
     var c = _co;
     var amt2 = '$' + (c.amount % 1 === 0 ? parseInt(c.amount) : c.amount.toFixed(2)) + (c.isSub ? '/mo' : '');
@@ -1642,7 +1671,7 @@ function changeQty(name, delta) {
       '--------------------------------------------'
     ].filter(function(l) { return l !== null; }).join('\n');
 
-    // Single email to KG — reply-to is customer's email so KG can reply directly
+    // Email to KG with full invoice — reply-to is customer's email
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -1654,6 +1683,9 @@ function changeQty(name, delta) {
         message: invoice
       })
     }).catch(function(){});
+
+    // Confirmation email to customer via EmailJS
+    _sendClientEmail(orderNum, c, method, amt2, dateStr);
 
     // On-screen confirmation — customer screenshots this
     var payNote = {
