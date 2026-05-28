@@ -458,7 +458,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
       <h2><span class="y">THE</span> <span class="s">GEAR</span></h2>
     </div>
     <div class="product-grid">
-      <div class="product-card">
+      <div class="product-card" id="hc-cantenna-std">
         <div class="card-photo" style="padding:0; display:block; overflow:hidden;"><img src="images/products/cantenna-24ghz/cantenna-01.jpg" alt="Cantenna Standard" style="width:100%; height:220px; object-fit:cover; display:block;"></div>
         <div class="card-body">
           <div class="card-num">01</div>
@@ -470,7 +470,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
           </div>
         </div>
       </div>
-      <div class="product-card">
+      <div class="product-card" id="hc-cantenna-hd">
         <div class="card-photo" style="padding:0; display:block; overflow:hidden;"><img src="images/products/cantenna-24ghz/cantenna-05.jpg" alt="Cantenna Heavy Duty" style="width:100%; height:220px; object-fit:cover; display:block;"></div>
         <div class="card-body">
           <div class="card-num">02</div>
@@ -482,7 +482,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
           </div>
         </div>
       </div>
-      <div class="product-card">
+      <div class="product-card" id="hc-wardriver">
         <div class="card-photo" style="padding:0; display:block; overflow:hidden;"><img src="images/products/wardriver/KGPL7082.png" alt="ESP32 Wardriver Kit" style="width:100%; height:220px; object-fit:cover; display:block;"></div>
         <div class="card-body">
           <div class="card-num">03</div>
@@ -549,7 +549,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
       </div>
 
       <!-- PRODUCT 1 -->
-      <div class="store-card" style="border-radius:10px; padding:2rem; margin-bottom:2.5rem;">
+      <div class="store-card" id="sc-cantenna-std" style="border-radius:10px; padding:2rem; margin-bottom:2.5rem;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
           <div>
             <p class="store-cat" style="margin:0 0 0.25rem;">RF Hardware &middot; Standard</p>
@@ -579,13 +579,13 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
         </div>
         <p style="margin:0 0 1.5rem; font-size:0.78rem; opacity:0.5;">2.4 GHz &nbsp;&middot;&nbsp; 14 dBi &nbsp;&middot;&nbsp; 22&deg; Beam &nbsp;&middot;&nbsp; 300m Range &nbsp;&middot;&nbsp; N-Connector</p>
         <div style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center; margin-top:1.25rem;">
-        <button onclick="showPayment('Cantenna Standard',50,'RF Hardware')" style="display:inline-block; padding:0.85rem 2rem; font-weight:700; cursor:pointer; background:transparent; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Buy Now &rarr;</button>
-        <button onclick="addToCart('Cantenna Standard', 50.0)" style="padding:0.85rem 1.5rem; font-weight:700; cursor:pointer; background:transparent; border:1px solid rgba(128,128,128,0.4); border-radius:6px; color:inherit; font-size:0.88rem;">+ Add to Cart</button>
+        <button data-prod="cantenna-std" onclick="showPayment('Cantenna Standard',50,'RF Hardware')" style="display:inline-block; padding:0.85rem 2rem; font-weight:700; cursor:pointer; background:transparent; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Buy Now &rarr;</button>
+        <button data-prod="cantenna-std" onclick="addToCart('Cantenna Standard', 50.0)" style="padding:0.85rem 1.5rem; font-weight:700; cursor:pointer; background:transparent; border:1px solid rgba(128,128,128,0.4); border-radius:6px; color:inherit; font-size:0.88rem;">+ Add to Cart</button>
       </div>
       </div>
 
       <!-- PRODUCT 2 -->
-      <div class="store-card" style="border-radius:10px; padding:2rem; margin-bottom:2.5rem;">
+      <div class="store-card" id="sc-cantenna-hd" style="border-radius:10px; padding:2rem; margin-bottom:2.5rem;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
           <div>
             <p class="store-cat" style="margin:0 0 0.25rem;">RF Hardware &middot; Heavy Duty</p>
@@ -617,13 +617,13 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
         </div>
         <p style="margin:0 0 1.5rem; font-size:0.78rem; opacity:0.5;">2.4 GHz &nbsp;&middot;&nbsp; 14 dBi &nbsp;&middot;&nbsp; 3mm Steel &nbsp;&middot;&nbsp; Tripod Included &nbsp;&middot;&nbsp; Custom Wire</p>
         <div style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center; margin-top:1.25rem;">
-        <button onclick="showPayment('Cantenna Heavy Duty',150,'RF Hardware')" style="display:inline-block; padding:0.85rem 2rem; font-weight:700; cursor:pointer; background:transparent; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Buy Now &rarr;</button>
-        <button onclick="addToCart('Cantenna Heavy Duty', 150.0)" style="padding:0.85rem 1.5rem; font-weight:700; cursor:pointer; background:transparent; border:1px solid rgba(128,128,128,0.4); border-radius:6px; color:inherit; font-size:0.88rem;">+ Add to Cart</button>
+        <button data-prod="cantenna-hd" onclick="showPayment('Cantenna Heavy Duty',150,'RF Hardware')" style="display:inline-block; padding:0.85rem 2rem; font-weight:700; cursor:pointer; background:transparent; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Buy Now &rarr;</button>
+        <button data-prod="cantenna-hd" onclick="addToCart('Cantenna Heavy Duty', 150.0)" style="padding:0.85rem 1.5rem; font-weight:700; cursor:pointer; background:transparent; border:1px solid rgba(128,128,128,0.4); border-radius:6px; color:inherit; font-size:0.88rem;">+ Add to Cart</button>
       </div>
       </div>
 
       <!-- PRODUCT 3 -->
-      <div class="store-card" style="border-radius:10px; padding:2rem; margin-bottom:2.5rem;">
+      <div class="store-card" id="sc-wardriver" style="border-radius:10px; padding:2rem; margin-bottom:2.5rem;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
           <div>
             <p class="store-cat" style="margin:0 0 0.25rem;">Security Hardware</p>
@@ -658,8 +658,8 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
         </div>
         <p style="margin:0 0 1.5rem; font-size:0.78rem; opacity:0.5;">ESP32 &nbsp;&middot;&nbsp; GPS &nbsp;&middot;&nbsp; Dual Wi-Fi &nbsp;&middot;&nbsp; MicroSD &nbsp;&middot;&nbsp; NRF24 &nbsp;&middot;&nbsp; Wigle.net</p>
         <div style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center; margin-top:1.25rem;">
-        <button onclick="showPayment('ESP32 Wardriver Kit',150,'Security Hardware')" style="display:inline-block; padding:0.85rem 2rem; font-weight:700; cursor:pointer; background:transparent; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Buy Now &rarr;</button>
-        <button onclick="addToCart('ESP32 Wardriver Kit', 150.0)" style="padding:0.85rem 1.5rem; font-weight:700; cursor:pointer; background:transparent; border:1px solid rgba(128,128,128,0.4); border-radius:6px; color:inherit; font-size:0.88rem;">+ Add to Cart</button>
+        <button data-prod="wardriver" onclick="showPayment('ESP32 Wardriver Kit',150,'Security Hardware')" style="display:inline-block; padding:0.85rem 2rem; font-weight:700; cursor:pointer; background:transparent; color:inherit; border:2px solid currentColor; border-radius:6px; font-size:0.9rem;">Buy Now &rarr;</button>
+        <button data-prod="wardriver" onclick="addToCart('ESP32 Wardriver Kit', 150.0)" style="padding:0.85rem 1.5rem; font-weight:700; cursor:pointer; background:transparent; border:1px solid rgba(128,128,128,0.4); border-radius:6px; color:inherit; font-size:0.88rem;">+ Add to Cart</button>
       </div>
       </div>
 
@@ -1819,6 +1819,60 @@ function changeQty(name, delta) {
   if (document.getElementById('page-videos') && document.getElementById('page-videos').classList.contains('active')) {
     _loadTtThumbs();
   }
+
+  // ── INVENTORY — update numbers here when stock changes ──
+  var _inv = {
+    'cantenna-std': 1,   // Cantenna Standard
+    'cantenna-hd':  3,   // Cantenna Heavy Duty
+    'wardriver':    3    // ESP32 Wardriver Kit
+  };
+  var _invCards = {
+    'cantenna-std': ['sc-cantenna-std', 'hc-cantenna-std'],
+    'cantenna-hd':  ['sc-cantenna-hd',  'hc-cantenna-hd'],
+    'wardriver':    ['sc-wardriver',     'hc-wardriver']
+  };
+  function _applyInv() {
+    Object.keys(_inv).forEach(function(key) {
+      var stock = _inv[key];
+      var badgeStyle, badgeText;
+      if (stock === 0) {
+        badgeStyle = 'display:inline-block; padding:0.2rem 0.65rem; border-radius:3px; font-size:0.65rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; background:rgba(255,60,60,0.15); color:#ff4444; border:1px solid rgba(255,60,60,0.3); margin-left:0.6rem; vertical-align:middle;';
+        badgeText = 'OUT OF STOCK';
+      } else if (stock === 1) {
+        badgeStyle = 'display:inline-block; padding:0.2rem 0.65rem; border-radius:3px; font-size:0.65rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; background:rgba(255,180,0,0.15); color:#ffb400; border:1px solid rgba(255,180,0,0.35); margin-left:0.6rem; vertical-align:middle;';
+        badgeText = 'LAST ONE';
+      } else {
+        badgeStyle = 'display:inline-block; padding:0.2rem 0.65rem; border-radius:3px; font-size:0.65rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; background:rgba(58,255,122,0.1); color:#3aff7a; border:1px solid rgba(58,255,122,0.25); margin-left:0.6rem; vertical-align:middle;';
+        badgeText = stock + ' IN STOCK';
+      }
+      // Inject badge into store + home cards
+      (_invCards[key] || []).forEach(function(cardId) {
+        var card = document.getElementById(cardId);
+        if (!card) return;
+        var existing = card.querySelector('.inv-badge');
+        if (existing) existing.remove();
+        var badge = document.createElement('span');
+        badge.className = 'inv-badge';
+        badge.setAttribute('style', badgeStyle);
+        badge.textContent = badgeText;
+        var nameEl = card.querySelector('.card-name, h2');
+        if (nameEl) nameEl.appendChild(badge);
+      });
+      // Disable buy/cart buttons if out of stock
+      document.querySelectorAll('[data-prod="' + key + '"]').forEach(function(btn) {
+        if (stock === 0) {
+          btn.disabled = true;
+          btn.onclick = null;
+          btn.textContent = 'OUT OF STOCK';
+          btn.style.opacity = '0.35';
+          btn.style.cursor = 'not-allowed';
+          btn.style.borderColor = 'rgba(255,60,60,0.3)';
+          btn.style.color = '#ff4444';
+        }
+      });
+    });
+  }
+  _applyInv();
 
   // ── IMAGE PROTECTION ──────────────────────────────
   document.addEventListener('contextmenu', function(e) {
