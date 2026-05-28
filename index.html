@@ -33,9 +33,9 @@
 
   /* HOME */
   .hero { position: relative; overflow: hidden; padding: 0; min-height: 90vh; display: flex; flex-direction: column; }
-  .hero-top { background: var(--yellow); padding: 5px 3rem; display: flex; align-items: center; }
+  .hero-top { background: var(--yellow); padding: 3rem 3rem 2rem; display: flex; align-items: center; }
   .hero-top .location { font-size: 0.7rem; font-weight: 900; letter-spacing: 0.3em; text-transform: uppercase; color: #555; margin: 0; }
-  .hero-top .brand-logo { height: 44px; width: 44px; object-fit: contain; margin-left: 20px; display: block; flex-shrink: 0; }
+  .hero-top .brand-logo { height: 90px; width: 90px; object-fit: contain; margin-left: 20px; display: block; flex-shrink: 0; }
   .hero-main { background: var(--black); flex: 1; padding: 3rem 3rem 4rem; position: relative; }
   .hero-main::before {
     content: 'KG'; position: absolute; right: -1rem; top: -3rem;
@@ -1456,10 +1456,10 @@ function changeQty(name, delta) {
 }
 
   /* ── CHECKOUT STATE ── */
-  var _co = { name:'', amount:0, label:'', isSub:false, step:1, method:'', cName:'', cEmail:'', cPhone:'', cAddr:'', cCity:'' };
+  var _co = { name:'', amount:0, label:'', isSub:false, step:1, method:'', cName:'', cEmail:'', cPhone:'', cAddr:'', cCity:'', cIsSub:false };
 
   function showPayment(name, amount, label) {
-    _co = { name:name, amount:parseFloat(amount), label:label||'', isSub:(label||'').indexOf('/mo')!==-1, step:1, method:'', cName:'', cEmail:'', cPhone:'', cAddr:'', cCity:'' };
+    _co = { name:name, amount:parseFloat(amount), label:label||'', isSub:(label||'').indexOf('/mo')!==-1, step:1, method:'', cName:'', cEmail:'', cPhone:'', cAddr:'', cCity:'', cIsSub:false };
     _renderCo();
     document.getElementById('checkout-modal').style.display = 'flex';
   }
@@ -1495,6 +1495,9 @@ function changeQty(name, delta) {
           ? '<input id="co-addr" class="co-input" type="text" placeholder="Street Address *" value="' + c.cAddr + '">' +
             '<input id="co-city" class="co-input" type="text" placeholder="City, State, ZIP *" value="' + c.cCity + '">'
           : '') +
+        '<label style="display:flex; align-items:center; gap:0.6rem; margin:1rem 0 0.25rem; font-size:0.78rem; font-weight:700; letter-spacing:0.05em; cursor:pointer;">' +
+        '<input type="checkbox" id="co-issub" style="width:16px; height:16px; accent-color:var(--yellow); cursor:pointer;"' + (c.cIsSub ? ' checked' : '') + '>' +
+        '<span>I am a KGTheTech subscriber &nbsp;<span style="font-size:0.65rem; font-weight:400; opacity:0.5;">(monthly members get exclusive perks)</span></span></label>' +
         '<div class="co-btns"><button class="co-btn-back" onclick="_coBack()">&larr; Back</button><button class="co-btn-go" onclick="_coNext()">Continue &rarr;</button></div>';
 
     } else if (c.step === 3) {
@@ -1551,6 +1554,8 @@ function changeQty(name, delta) {
       c.cPhone = document.getElementById('co-phone') ? document.getElementById('co-phone').value.trim() : '';
       c.cAddr = a ? a.value.trim() : '';
       c.cCity = ci ? ci.value.trim() : '';
+      var subEl = document.getElementById('co-issub');
+      c.cIsSub = subEl ? subEl.checked : false;
     }
     c.step++;
     _renderCo();
@@ -1599,6 +1604,8 @@ function changeQty(name, delta) {
       D,
       '  CUSTOMER',
       D,
+      (c.cIsSub ? '  ★ SUBSCRIBER ★   ← monthly member — include gift' : null),
+      (c.cIsSub ? D : null),
       '  Name:         ' + c.cName,
       '  Email:        ' + c.cEmail,
       c.cPhone ? '  Phone:        ' + c.cPhone : null,
@@ -1623,7 +1630,7 @@ function changeQty(name, delta) {
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
         access_key: _W3F_KEY,
-        subject: '[ORDER ' + orderNum + '] ' + c.name + ' — ' + amt2 + ' via ' + method + ' — ' + c.cName,
+        subject: (c.cIsSub ? '[SUBSCRIBER] ' : '') + '[ORDER ' + orderNum + '] ' + c.name + ' — ' + amt2 + ' via ' + method + ' — ' + c.cName,
         from_name: c.cName + ' via KGTheTech.com',
         email: c.cEmail,
         message: invoice
