@@ -4,8 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KGTHETECH — HACKING ON A BUDGET</title>
+<!-- Firebase Auth (compat) — KG: see bottom of script for config -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  img { -webkit-user-drag: none; user-select: none; -moz-user-select: none; }
   :root { --yellow: #FFE600; --gold: #d4af37; --black: #000; --white: #fff; --gray: #111; }
   body { background: var(--black); color: var(--white); font-family: 'Arial Black', 'Impact', 'Helvetica Neue', Arial, sans-serif; line-height: 1.1; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
   a { color: inherit; text-decoration: none; }
@@ -389,6 +393,7 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
 <li><a onclick="showPage('contact',this)">CONTACT</a></li>
   </ul>
   <button id="nav-burger" onclick="toggleNav()" style="background:none; border:none; color:#888; font-size:1.5rem; cursor:pointer; padding:0.3rem 0.6rem; flex-shrink:0; line-height:1;">&#9776;</button>
+  <button id="nav-login-btn" onclick="_authOpen()" style="background:none; border:1px solid rgba(255,255,255,0.18); color:#888; font-size:0.7rem; font-weight:900; letter-spacing:0.08em; cursor:pointer; padding:0.38rem 0.9rem; border-radius:4px; flex-shrink:0; margin-right:0.5rem; text-transform:uppercase; white-space:nowrap;">LOGIN</button>
   <button class="kgt-cart-btn" onclick="showPage('cart',null)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
     <span class="kgt-cart-label">Cart</span>
@@ -1358,6 +1363,19 @@ nav ul li a { font-size: 0.73rem !important; white-space: nowrap; }
 </div>
 
 
+<!-- AUTH MODAL -->
+<div id="auth-modal" onclick="if(event.target===this)_authClose()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9998; align-items:center; justify-content:center; padding:1rem;">
+  <div style="background:#111; border:1px solid rgba(255,230,0,0.25); border-radius:12px; padding:2.5rem; width:min(420px,90vw); position:relative;">
+    <button onclick="_authClose()" style="position:absolute; top:1rem; right:1.25rem; background:none; border:none; color:#444; font-size:1.5rem; cursor:pointer; line-height:1;">&times;</button>
+    <div style="font-size:1.1rem; font-weight:900; letter-spacing:-0.02em; margin-bottom:1.75rem;">KG<span style="color:var(--yellow)">THE</span>TECH</div>
+    <div id="auth-tabs" style="display:flex; gap:0; margin-bottom:1.75rem; border-bottom:2px solid #222;">
+      <button id="auth-tab-login" onclick="_authTab('login')" style="flex:1; padding:0.6rem; background:none; border:none; border-bottom:2px solid var(--yellow); margin-bottom:-2px; color:var(--yellow); font-weight:900; font-size:0.78rem; letter-spacing:0.1em; cursor:pointer;">LOGIN</button>
+      <button id="auth-tab-signup" onclick="_authTab('signup')" style="flex:1; padding:0.6rem; background:none; border:none; border-bottom:2px solid transparent; margin-bottom:-2px; color:#444; font-weight:900; font-size:0.78rem; letter-spacing:0.1em; cursor:pointer;">SIGN UP</button>
+    </div>
+    <div id="auth-body"></div>
+  </div>
+</div>
+
 <!-- CHECKOUT MODAL -->
 <div id="checkout-modal" onclick="if(event.target===this)closeCheckout()">
   <div id="checkout-inner"></div>
@@ -1470,7 +1488,7 @@ function changeQty(name, delta) {
   var _co = { name:'', amount:0, label:'', isSub:false, step:1, method:'', cName:'', cEmail:'', cPhone:'', cAddr:'', cCity:'', cIsSub:false };
 
   function showPayment(name, amount, label) {
-    _co = { name:name, amount:parseFloat(amount), label:label||'', isSub:(label||'').indexOf('/mo')!==-1, step:1, method:'', cName:'', cEmail:'', cPhone:'', cAddr:'', cCity:'', cIsSub:false };
+    _co = { name:name, amount:parseFloat(amount), label:label||'', isSub:(label||'').indexOf('/mo')!==-1, step:1, method:'', cName:'', cEmail:'', cPhone:'', cAddr:'', cCity:'' };
     _renderCo();
     document.getElementById('checkout-modal').style.display = 'flex';
   }
@@ -1506,9 +1524,6 @@ function changeQty(name, delta) {
           ? '<input id="co-addr" class="co-input" type="text" placeholder="Street Address *" value="' + c.cAddr + '">' +
             '<input id="co-city" class="co-input" type="text" placeholder="City, State, ZIP *" value="' + c.cCity + '">'
           : '') +
-        '<label style="display:flex; align-items:center; gap:0.6rem; margin:1rem 0 0.25rem; font-size:0.78rem; font-weight:700; letter-spacing:0.05em; cursor:pointer;">' +
-        '<input type="checkbox" id="co-issub" style="width:16px; height:16px; accent-color:var(--yellow); cursor:pointer;"' + (c.cIsSub ? ' checked' : '') + '>' +
-        '<span>I am a KGTheTech subscriber &nbsp;<span style="font-size:0.65rem; font-weight:400; opacity:0.5;">(monthly members get exclusive perks)</span></span></label>' +
         '<div class="co-btns"><button class="co-btn-back" onclick="_coBack()">&larr; Back</button><button class="co-btn-go" onclick="_coNext()">Continue &rarr;</button></div>';
 
     } else if (c.step === 3) {
@@ -1529,8 +1544,9 @@ function changeQty(name, delta) {
         body =
           '<p class="co-step">PAY WITH PAYPAL</p>' +
           '<p class="co-price">' + amt2 + '</p>' +
-          '<p class="co-note">You will go to PayPal to pay, then return here. PayPal or any debit/credit card accepted.</p>' +
-          '<button class="co-btn-pay" onclick="_coGoPayPal(window._co_pp_url)">Go to PayPal &rarr;</button>' +
+          '<p class="co-note">Click below to open PayPal in a new tab. Complete your payment there, then come back and confirm.</p>' +
+          '<button class="co-btn-pay" id="co-pp-open" onclick="_coOpenPayPal()">Go to PayPal &rarr;</button>' +
+          '<button class="co-btn-go" id="co-pp-done" onclick="_coConfirm(\'PayPal\')" style="display:none; margin-top:0.75rem; background:var(--yellow); color:#000; border:none; border-radius:6px; width:100%; padding:0.85rem; font-weight:900; cursor:pointer; font-size:0.88rem; letter-spacing:0.04em;">I\'ve Completed My Payment &#10003;</button>' +
           '<button class="co-change" onclick="_coBack()">&larr; Change payment method</button>';
       } else if (c.method === 'zelle') {
         body =
@@ -1565,8 +1581,7 @@ function changeQty(name, delta) {
       c.cPhone = document.getElementById('co-phone') ? document.getElementById('co-phone').value.trim() : '';
       c.cAddr = a ? a.value.trim() : '';
       c.cCity = ci ? ci.value.trim() : '';
-      var subEl = document.getElementById('co-issub');
-      c.cIsSub = subEl ? subEl.checked : false;
+      // subscriber status auto-detected from login (c.isSub = subscription product)
     }
     c.step++;
     _renderCo();
@@ -1584,134 +1599,97 @@ function changeQty(name, delta) {
     var c = _co;
     var amt2 = '$' + (c.amount % 1 === 0 ? parseInt(c.amount) : c.amount.toFixed(2)) + (c.isSub ? '/mo' : '');
     var now = new Date();
-    var dateStr = now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    var dateStr = now.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
     var _seq = parseInt(localStorage.getItem('kgtt_seq') || '0') + 1;
     localStorage.setItem('kgtt_seq', _seq);
     var orderNum = 'KGTT-' + ('000000' + _seq).slice(-6);
 
     var payDetail = {
-      'PayPal':   'PayPal  |  gilliamtradesenterprises@gmail.com',
-      'Zelle':    'Zelle   |  917-518-4458',
-      'Cash App': 'Cash App  |  $GilliamTELLC'
+      'PayPal':   'PayPal  (gilliamtradesenterprises@gmail.com)',
+      'Zelle':    'Zelle  (917-518-4458)',
+      'Cash App': 'Cash App  ($GilliamTELLC)'
     };
-    var D = '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
-    var invoice = [
-      D,
-      '         KGTHETECH LLC — ORDER RECEIPT',
-      D,
-      '',
-      '  Order #:      ' + orderNum,
-      '  Date:         ' + dateStr,
-      '  Status:       RECEIVED — PENDING FULFILLMENT',
-      '',
-      D,
-      '  ITEM ORDERED',
-      D,
-      '  Item:         ' + c.name,
-      '  Type:         ' + (c.label || 'KGTheTech Product'),
-      '  Amount:       ' + amt2,
-      '  Payment via:  ' + (payDetail[method] || method),
-      '',
-      D,
-      '  CUSTOMER',
-      D,
-      (c.cIsSub ? '  ★ SUBSCRIBER ★   ← monthly member — include gift' : null),
-      (c.cIsSub ? D : null),
-      '  Name:         ' + c.cName,
-      '  Email:        ' + c.cEmail,
-      c.cPhone ? '  Phone:        ' + c.cPhone : null,
-      (c.cAddr ? '  Ship To:      ' + c.cAddr + (c.cCity ? ', ' + c.cCity : '') : null),
-      '',
-      D,
-      '  SELLER',
-      D,
-      '  KGTHETECH LLC',
-      '  kgthetech.com  |  kg@kgthetech.com',
-      '',
-      D,
-      '  Your order is logged. KG will reply to confirm',
-      '  payment receipt and shipping within 1-2 business',
-      '  days. All sales final. Custom-built hardware.',
-      D
-    ].filter(function(l){ return l !== null; }).join('\n');
 
-    // ── Email #1: notify KG with full invoice + customer email as reply-to
+    function col(label, value) {
+      var pad = label + ':';
+      while (pad.length < 16) pad += ' ';
+      return pad + value;
+    }
+    var shipLine = c.cAddr ? (c.cAddr + (c.cCity ? ', ' + c.cCity : '')) : null;
+
+    var invoice = [
+      '                    KGTHETECH LLC',
+      '                  Order Confirmation',
+      '',
+      col('Order Number', orderNum),
+      col('Date', dateStr),
+      col('Status', 'RECEIVED — PENDING FULFILLMENT'),
+      '',
+      '--------------------------------------------',
+      'ITEM',
+      '--------------------------------------------',
+      col('Product', c.name),
+      col('Type', c.label || 'KGTHETECH Product'),
+      col('Amount', amt2),
+      col('Payment', payDetail[method] || method),
+      (c.isSub ? col('Access', 'Digital — delivered to email') : null),
+      '',
+      '--------------------------------------------',
+      'CUSTOMER',
+      '--------------------------------------------',
+      col('Name', c.cName),
+      col('Email', c.cEmail),
+      (c.cPhone ? col('Phone', c.cPhone) : null),
+      (shipLine ? col('Ship To', shipLine) : null),
+      '',
+      '--------------------------------------------',
+      'Order logged. KG will confirm payment receipt',
+      'and reach out within 1-2 business days.',
+      '',
+      'Reply to this email with any questions.',
+      'kgthetech.com  |  kg@kgthetech.com',
+      '',
+      '© 2026 KGTHETECH LLC  ·  All sales final.',
+      '--------------------------------------------'
+    ].filter(function(l) { return l !== null; }).join('\n');
+
+    // Single email to KG — reply-to is customer's email so KG can reply directly
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
         access_key: _W3F_KEY,
-        subject: (c.cIsSub ? '[SUBSCRIBER] ' : '') + '[ORDER ' + orderNum + '] ' + c.name + ' — ' + amt2 + ' via ' + method + ' — ' + c.cName,
-        from_name: c.cName + ' via KGTheTech.com',
+        subject: '[ORDER ' + orderNum + '] ' + c.name + ' — ' + amt2 + ' via ' + method + ' — ' + c.cName,
+        from_name: c.cName + ' via KGTHETECH.com',
         email: c.cEmail,
         message: invoice
       })
     }).catch(function(){});
 
-    // ── Email #2: confirmation copy to customer (CC via second submission)
-    var clientMsg = [
-      D,
-      '    THANK YOU — KGTHETECH LLC',
-      D,
-      '',
-      '  Hi ' + c.cName + ', your order has been received.',
-      '',
-      '  Order #:   ' + orderNum,
-      '  Item:      ' + c.name,
-      '  Amount:    ' + amt2,
-      '  Payment:   ' + method,
-      '',
-      '  KG will confirm your payment and reach out within',
-      '  1-2 business days with shipping details.',
-      '',
-      '  Questions? Reply to this email or contact:',
-      '  kg@kgthetech.com  |  kgthetech.com',
-      '',
-      D,
-      '  IMPORTANT: If you do not see this email in your inbox,',
-      '  please check your Spam or Junk Mail folder and mark',
-      '  it as "Not Spam" to receive future order updates.',
-      '',
-      D,
-      '  KGTHETECH LLC — Built from the hood, for the culture.',
-      D
-    ].join('\n');
-
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        access_key: _W3F_KEY,
-        subject: 'Your Order ' + orderNum + ' — KGTHETECH LLC',
-        from_name: 'KGTHETECH LLC',
-        email: c.cEmail,
-        replyto: 'kg@kgthetech.com',
-        cc: c.cEmail,
-        message: clientMsg
-      })
-    }).catch(function(){});
-
-    // ── On-screen confirmation
+    // On-screen confirmation — customer screenshots this
     var payNote = {
-      'PayPal':   'PayPal is opening — complete payment there.',
-      'Zelle':    'Send ' + amt2 + ' to <strong>917-518-4458</strong> via Zelle.<br>Note: ' + c.name + ' &middot; ' + orderNum,
-      'Cash App': 'Send ' + amt2 + ' to <strong>$GilliamTELLC</strong> on Cash App.<br>Note: ' + c.name + ' &middot; ' + orderNum
+      'PayPal':   'Your PayPal payment is confirmed.',
+      'Zelle':    'Send ' + amt2 + ' to <strong>917-518-4458</strong> via Zelle if you haven\'t yet.<br><span style="font-size:0.75rem; color:#555;">Note: ' + c.name + ' &middot; ' + orderNum + '</span>',
+      'Cash App': 'Send ' + amt2 + ' to <strong>$GilliamTELLC</strong> on Cash App if you haven\'t yet.<br><span style="font-size:0.75rem; color:#555;">Note: ' + c.name + ' &middot; ' + orderNum + '</span>'
     };
     document.getElementById('checkout-inner').innerHTML =
       '<div style="text-align:center; padding:2rem 0;">' +
       '<div style="font-size:2.5rem; margin-bottom:0.75rem; color:var(--yellow);">&#10003;</div>' +
-      '<h2 style="margin:0 0 0.4rem; font-size:1.2rem;">Order Received</h2>' +
-      '<p style="font-family:monospace; font-size:0.72rem; color:var(--yellow); margin:0 0 1.25rem; letter-spacing:0.08em;">' + orderNum + '</p>' +
-      '<p style="font-family:Arial,sans-serif; color:#888; line-height:1.7; margin:0 0 0.75rem; font-size:0.85rem;">' + (payNote[method]||'') + '</p>' +
-      '<p style="font-family:Arial,sans-serif; color:#555; font-size:0.78rem; margin:0 0 1.5rem;">A confirmation was sent to ' + c.cEmail + '</p>' +
+      '<h2 style="margin:0 0 0.4rem; font-size:1.2rem; letter-spacing:-0.02em;">Order Received</h2>' +
+      '<p style="font-family:monospace; font-size:0.8rem; color:var(--yellow); margin:0 0 1rem; letter-spacing:0.1em; font-weight:900;">' + orderNum + '</p>' +
+      '<p style="font-family:Arial,sans-serif; color:#aaa; line-height:1.75; margin:0 0 0.85rem; font-size:0.85rem;">' + (payNote[method]||'') + '</p>' +
+      '<p style="font-family:Arial,sans-serif; color:#555; font-size:0.75rem; margin:0 0 0.35rem;">Screenshot your order number for your records.</p>' +
+      '<p style="font-family:Arial,sans-serif; color:#444; font-size:0.75rem; margin:0 0 1.75rem;">KG will follow up at <strong style="color:#666;">' + c.cEmail + '</strong> within 1–2 business days.</p>' +
       '<button class="co-btn-go" onclick="closeCheckout()" style="width:100%;">Done</button>' +
       '</div>';
   }
 
-  function _coGoPayPal(url) {
-    // Notify KG then navigate to PayPal in same tab (no popup)
-    _coConfirm('PayPal');
-    setTimeout(function(){ window.location.href = url; }, 1200);
+  function _coOpenPayPal() {
+    window.open(window._co_pp_url, '_blank');
+    var openBtn = document.getElementById('co-pp-open');
+    if (openBtn) { openBtn.textContent = 'Return to PayPal →'; }
+    var doneBtn = document.getElementById('co-pp-done');
+    if (doneBtn) { doneBtn.style.display = 'block'; }
   }
   function _cfSubmit() {
     var name  = document.getElementById('cf-name');
@@ -1852,7 +1830,140 @@ function changeQty(name, delta) {
     _loadTtThumbs();
   }
 
-  // contact form handled natively via action attribute
+  // ── IMAGE PROTECTION ──────────────────────────────
+  document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+      var existing = document.getElementById('img-protect-warn');
+      if (existing) { existing.remove(); }
+      var w = document.createElement('div');
+      w.id = 'img-protect-warn';
+      w.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#111; border:1px solid rgba(255,230,0,0.35); border-radius:10px; padding:1.5rem 2rem; z-index:99999; text-align:center; font-size:0.8rem; max-width:300px; color:#ccc; box-shadow:0 8px 32px rgba(0,0,0,0.7);';
+      w.innerHTML = '<div style="color:var(--yellow); font-weight:900; font-size:0.88rem; letter-spacing:0.08em; margin-bottom:0.6rem;">&#9888;&nbsp;PROTECTED CONTENT</div>Images on this site are copyright &copy; 2026 KGTHETECH LLC. Unauthorized use is prohibited.<button onclick="document.getElementById(\'img-protect-warn\').remove()" style="display:block; margin:1rem auto 0; padding:0.4rem 1.5rem; background:var(--yellow); color:#000; border:none; border-radius:4px; font-weight:900; cursor:pointer; font-size:0.75rem; letter-spacing:0.06em;">GOT IT</button>';
+      document.body.appendChild(w);
+      setTimeout(function() { var el = document.getElementById('img-protect-warn'); if (el) el.remove(); }, 5000);
+    }
+  });
+  document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName === 'IMG') { e.preventDefault(); }
+  });
+
+  // ── AUTH ──────────────────────────────────────────
+  var _authUser = null;
+  function _authOpen() {
+    var modal = document.getElementById('auth-modal');
+    if (_authUser) {
+      var name = (_authUser.email || '').split('@')[0].toUpperCase();
+      document.getElementById('auth-tabs').style.display = 'none';
+      document.getElementById('auth-body').innerHTML =
+        '<div style="text-align:center; padding:0.5rem 0;">' +
+        '<p style="color:var(--yellow); font-weight:900; font-size:1rem; margin:0 0 0.35rem;">' + name + '</p>' +
+        '<p style="color:#555; font-size:0.75rem; margin:0 0 1.75rem;">' + (_authUser.email||'') + '</p>' +
+        '<button onclick="_authSignOut()" style="width:100%; padding:0.85rem; background:transparent; color:#ff5a5a; border:1px solid rgba(255,90,90,0.35); border-radius:6px; font-weight:900; font-size:0.85rem; cursor:pointer; letter-spacing:0.05em;">SIGN OUT</button></div>';
+      modal.style.display = 'flex';
+      return;
+    }
+    document.getElementById('auth-tabs').style.display = 'flex';
+    _authTab('login');
+    modal.style.display = 'flex';
+  }
+  function _authClose() {
+    document.getElementById('auth-modal').style.display = 'none';
+  }
+  function _authTab(t) {
+    var isLogin = t === 'login';
+    var tl = document.getElementById('auth-tab-login');
+    var ts = document.getElementById('auth-tab-signup');
+    tl.style.color = isLogin ? 'var(--yellow)' : '#444';
+    tl.style.borderBottomColor = isLogin ? 'var(--yellow)' : 'transparent';
+    ts.style.color = isLogin ? '#444' : 'var(--yellow)';
+    ts.style.borderBottomColor = isLogin ? 'transparent' : 'var(--yellow)';
+    var b = document.getElementById('auth-body');
+    var inp = 'width:100%; padding:0.7rem 0.9rem; background:transparent; border:1px solid rgba(128,128,128,0.35); border-radius:6px; color:#fff; font-size:0.88rem; margin-bottom:0.85rem; display:block;';
+    var btn = 'width:100%; padding:0.85rem; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:900; font-size:0.88rem; cursor:pointer; letter-spacing:0.05em;';
+    if (isLogin) {
+      b.innerHTML =
+        '<p style="color:#555; font-size:0.78rem; margin:0 0 1.25rem;">Welcome back. Enter your credentials.</p>' +
+        '<input id="auth-em" type="email" placeholder="Email Address" style="' + inp + '">' +
+        '<input id="auth-pw" type="password" placeholder="Password" style="' + inp + '">' +
+        '<button onclick="_authDoLogin()" style="' + btn + '">LOGIN</button>' +
+        '<div id="auth-err" style="margin-top:0.85rem; font-size:0.75rem; color:#ff5a5a; text-align:center; display:none;"></div>';
+    } else {
+      b.innerHTML =
+        '<p style="color:#555; font-size:0.78rem; margin:0 0 1.25rem;">Create your KGTHETECH account.</p>' +
+        '<input id="auth-em" type="email" placeholder="Email Address" style="' + inp + '">' +
+        '<input id="auth-pw" type="password" placeholder="Password (min 8 chars)" style="' + inp + '">' +
+        '<input id="auth-pw2" type="password" placeholder="Confirm Password" style="' + inp + '">' +
+        '<button onclick="_authDoSignup()" style="' + btn + '">CREATE ACCOUNT</button>' +
+        '<div id="auth-err" style="margin-top:0.85rem; font-size:0.75rem; color:#ff5a5a; text-align:center; display:none;"></div>';
+    }
+  }
+  function _authErr(msg) {
+    var e = document.getElementById('auth-err');
+    if (e) { e.textContent = msg; e.style.display = 'block'; }
+  }
+  function _authDoLogin() {
+    var em = (document.getElementById('auth-em')||{}).value || '';
+    var pw = (document.getElementById('auth-pw')||{}).value || '';
+    if (!em || em.indexOf('@') === -1) { _authErr('Enter a valid email.'); return; }
+    if (!pw) { _authErr('Password required.'); return; }
+    if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length) {
+      firebase.auth().signInWithEmailAndPassword(em, pw)
+        .then(function(r) { _authOnLogin(r.user); })
+        .catch(function(err) { _authErr(err.message); });
+    } else {
+      _authErr('Auth not configured yet. Contact kg@kgthetech.com.');
+    }
+  }
+  function _authDoSignup() {
+    var em = (document.getElementById('auth-em')||{}).value || '';
+    var pw = (document.getElementById('auth-pw')||{}).value || '';
+    var pw2 = (document.getElementById('auth-pw2')||{}).value || '';
+    if (!em || em.indexOf('@') === -1) { _authErr('Enter a valid email.'); return; }
+    if (pw.length < 8) { _authErr('Password must be at least 8 characters.'); return; }
+    if (pw !== pw2) { _authErr('Passwords do not match.'); return; }
+    if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length) {
+      firebase.auth().createUserWithEmailAndPassword(em, pw)
+        .then(function(r) { _authOnLogin(r.user); })
+        .catch(function(err) { _authErr(err.message); });
+    } else {
+      _authErr('Auth not configured yet. Contact kg@kgthetech.com.');
+    }
+  }
+  function _authOnLogin(user) {
+    _authUser = user;
+    var name = (user.email || '').split('@')[0].toUpperCase();
+    var btn = document.getElementById('nav-login-btn');
+    if (btn) { btn.textContent = name; btn.style.color = 'var(--yellow)'; btn.style.borderColor = 'rgba(255,230,0,0.35)'; }
+    _authClose();
+  }
+  function _authSignOut() {
+    if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length) {
+      firebase.auth().signOut().catch(function(){});
+    }
+    _authUser = null;
+    var btn = document.getElementById('nav-login-btn');
+    if (btn) { btn.textContent = 'LOGIN'; btn.style.color = '#888'; btn.style.borderColor = 'rgba(255,255,255,0.18)'; }
+    _authClose();
+  }
+
+  // ── FIREBASE INIT ─────────────────────────────────
+  // KG: Go to https://console.firebase.google.com
+  // Create a project → Authentication → Sign-in method → enable Email/Password
+  // Web app → copy config → paste apiKey/authDomain/projectId below
+  (function() {
+    var cfg = {
+      apiKey:     "PASTE_API_KEY",
+      authDomain: "PASTE_AUTH_DOMAIN",
+      projectId:  "PASTE_PROJECT_ID"
+    };
+    if (cfg.apiKey !== "PASTE_API_KEY" && typeof firebase !== 'undefined') {
+      firebase.initializeApp(cfg);
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) _authOnLogin(user);
+      });
+    }
+  })();
 
 </script>
 
